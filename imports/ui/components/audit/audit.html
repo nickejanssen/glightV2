@@ -1,0 +1,72 @@
+<template name="audit">
+  <!-- Page header -->
+  <div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4><span class="text-semibold">Audit</span></h4>
+      </div>
+    </div>
+
+  </div>
+  <!-- /page header -->
+
+        <!--start container-->
+        <div class="content">
+
+          <!--
+              jQuery Validation Plugin
+          -->
+          <!--jqueryvalidation-->
+        <div id="jqueryvalidation">
+          <div class="row">
+            <div class="col-md-12">
+              <form class="form-horizontal formAudit" id="formAudit" method="get" action="">
+          <div class="panel panel-flat">
+              <div class="panel-heading">
+                  <h5 class="panel-title">Specify Audit Details Below</h5>
+                      </div>
+                       <div class="panel-body">
+                         <fieldset class="content-group">
+                           <div class="form-group">
+                              <div class="col-lg-3">
+                                <select class="select" id="coverage" required name="coverage">
+                                  <option value="" disabled selected>Coverage type</option>
+                                  {{#each getCoverageType}}
+                                	<option value="{{this.key}}">{{this.value}}</option>
+                                  {{/each}}
+                                </select>
+                              </div>
+                              <div class="col-lg-3">
+                                <input type="date" class="form-control datepicker" id="startDate">
+                              </div>
+                              <div class="col-lg-3">
+                                <input type="date" class="form-control datepicker" id="endDate">
+                              </div>
+                              <div class="col-lg-3">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light right submit" name="action">Start<i class="icon-arrow-right14 position-right"></i></button>
+                              </div>
+                            </div>
+                         </fieldset>
+                       </div>
+                    </div>
+                  </form>
+                  <!-- /basic layout -->
+
+               </div>
+              </div>
+                  <div class="panel panel-flat">
+                      <div class="panel-heading">
+                          <h5 class="panel-title">Audit Results</h5>
+                              </div>
+                              {{> policyTable}}
+                            </div>
+          </div>
+
+        </div>
+
+
+</template>
+
+<template name="policyTable">
+    {{> tabular table=TabularTables.policyList selector=selector class="table display table-striped table-bordered table-hover dataTable no-footer"}}
+</template>

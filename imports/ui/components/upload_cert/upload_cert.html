@@ -1,0 +1,110 @@
+<template name="upload_cert">
+  <!-- Page header -->
+  <div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4><span class="text-semibold">Upload Certificate</span></h4>
+      </div>
+    </div>
+  </div>
+  <!-- /page header -->
+
+<!--BEGIN UPLOAD FORM-->
+<div class="content">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <!-- Basic layout-->
+      <form class="form-horizontal formValidate" id="formAddCert"  method="POST" autocomplete="false">
+        <div class="panel panel-flat">
+          <div class="panel-heading">
+            <h5 class="panel-title">Policy Details</h5>
+
+           <!-- <div class="panel-body"> -->
+              <fieldset class="content-group">
+
+               <div class="form-group">
+                  <label class="control-label col-lg-3">Select Policy</label>
+                  <div class="col-lg-9">
+                      <input id="uploadFile" required class="form-control uploadFile" type="file">
+                  </div>
+                </div>
+
+               <div class="form-group">
+
+                  <label class="control-label col-lg-3">Policy Name</label>
+                  <div class="col-lg-9">
+                    <input id="pname" type="text" name="pname"  class="form-control validate" placeholder="First Name" required>
+                </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-3">Select a Company</label>
+                  <div class="col-lg-9">
+                    <select class="select" id="certComp" required name="certComp">
+                      <option value="" disabled selected>Choose your company</option>
+                          {{#with AllCompanies}}
+                              {{#each this}}
+                              <option value="{{this._id}}">{{this.companyName}}</option>
+                              {{/each}}
+                          {{/with}}
+                       </select>
+                </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-3">Uploading Agent</label>
+                  <div class="col-lg-9">
+                  <input id="certAgent" type="text" required class="form-control validate" placeholder="Uploading Agent" name="certAgent">
+                </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-lg-3">Policy Notes</label>
+                  <div class="col-lg-9">
+                  <textarea id="comments" class="form-control" placeholder="Policy Notes" name="cphone"></textarea>
+                </div>
+                </div>
+                <h5 class="panel-title">Coverage Details</h5>
+                <div class="form-group">
+                  <label class="control-label col-lg-3">Enter Coverage Information</label>
+                  <div class="col-lg-9">
+
+                    <select class="select error browser-default" id="certCov" required name="certCove">
+                      <option value="" disabled selected>Select Coverage</option>
+                      {{#each getCoverageType}}
+                      <option value="{{this.key}}">{{this.value}}</option>
+                      {{/each}}
+                       </select>
+                </div>
+                </div>
+                <div class="form-group">
+
+                   <label class="control-label col-lg-3">Enter Start Date</label>
+                   <div class="col-lg-9">
+                     <input id="startDate" type="date" class="form-control datepicker">
+                 </div>
+                 </div>
+                 <div class="form-group">
+
+                    <label class="control-label col-lg-3">Enter Expiration Date</label>
+                    <div class="col-lg-9">
+                      <input id="expiryDate" type="date" class="form-control datepicker">
+                  </div>
+                  </div>
+                  {{#with chooseCov name}}
+                                {{> template}}
+                        {{/with}}
+              </fieldset>
+              <br/>
+
+             <div class="text-center">
+                <button type="submit" class="btn btn-primary btn waves-effect waves-light right submit" name="action">Submit your certificate!</button>
+              </div>
+          <!-- </div> -->
+        </div>
+          </div>
+
+      </form>
+      <!-- /basic layout -->
+
+   </div>
+  </div>
+</div>
+</template>

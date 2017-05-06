@@ -1,0 +1,28 @@
+<template name="header">
+<!-- START HEADER -->
+<div class="navbar-fixed">
+    <nav id="nav_f" class="navbar-color" role="navigation">
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="/" id="logo-container" class="brand-logo darken-1">GreenLight</a>
+            <ul class="right hide-on-med-and-down">
+            <li>
+            <div class="header-search-wrapper hide-on-med-and-down left">
+                <i class="mdi-action-search"></i>
+                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search"/>
+            </div>
+            </li>
+                {{>navmenu}}
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="#" class="logout">Logout</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+    </div>
+    </nav>
+</div>
+<!-- END HEADER -->
+</template>
+

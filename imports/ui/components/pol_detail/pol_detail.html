@@ -1,0 +1,238 @@
+<template name="pol_detail">
+    <div id="profile-page" class="section">
+        <!-- profile-page-content -->
+        <div id="profile-page-content" class="row">
+            <!-- Company Detail sidebar-->
+            <div id="profile-page-sidebar" class="col s12 m4">
+                <!--Pending Certificates-->
+                <ul id="task-card" class="collection with-header rbi-mss-login_widget card">
+                    <li class="collection-header mlb-blue-bg">
+                        <h4 class="task-card-title">History</h4>
+                    </li>
+                    <li>
+                        <div class="card-content">
+                            <table class="striped">
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- profile-page-sidebar-->
+
+            <!-- Right Side -->
+            <div id="profile-page-wall" class="col s12 m8">
+                <!-- profile-page-header -->
+                <div id="profile-page-header" class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col">
+                                <h4 class="card-title grey-text text-darken-4">{{CompanyName}}</h4>
+                                <p class="medium-small grey-text">
+                                    <a class="btn-floating activator waves-effect waves-light darken-2 left">
+                                        <i class="mdi-action-perm-identity"></i>
+                                    </a>
+                                </p>
+                            </div>
+
+                            {{#with CurrentPolicies}}
+                            <div class="col s2 center-align">
+                                <h4 class="card-title grey-text text-darken-4">
+                                    {{CurrentPolicies.length}}
+                                </h4>
+                                <p class="medium-small grey-text">Current</p>
+                            </div>
+                            {{/with}}
+
+                            {{#with PendingPolicies}}
+                            <div class="col s2 center-align">
+                                <h4 class="card-title grey-text text-darken-4">
+                                    {{PendingPolicies.length}}
+                                </h4>
+                                <p class="medium-small grey-text">Pending</p>
+                            </div>
+                            {{/with}}
+
+                            {{#with PastPolicies}}
+                            <div class="col s2 center-align">
+                                <h4 class="card-title grey-text text-darken-4">
+                                    {{PastPolicies.length}}
+                                </h4>
+                                <p class="medium-small grey-text">Archived</p>
+                            </div>
+                            {{/with}}
+
+                            <div class="col s2 right-align">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-action button-fit">
+                        <!-- profile-page-wall-share -->
+                        <div id="profile-page-wall-share" class="row">
+                            <div class="input-field col s4 center-align">
+                                <button class="btn waves-effect waves-light right submit" type="submit" name="action"><a href="/upload_cert" style="color:white;">Upload Certificate</a>
+                      </button>
+                            </div>
+                            <div class="input-field col s4 center-align">
+                                <button class="btn waves-effect waves-light right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a>
+                      </button>
+                            </div>
+                            {{#if AllCompanies.archived}}
+                            <div class="input-field col s4 center-align co-un-archive">
+                                <button class="btn waves-effect waves-light right submit" type="submit" name="action">Unarchive Company
+                            </button>
+                            </div>
+                            {{else}}
+                            <div class="input-field col s4 center-align co-archive">
+                                <button class="btn waves-effect waves-light right submit" type="submit" name="action">Archive Company
+                            </button>
+                            </div>
+                            {{/if}}
+
+                        </div>
+                        <!--/ profile-page-wall-share -->
+                    </div>
+                    <div class="card-reveal">
+                        <p>
+                            <span class="card-title grey-text text-darken-4">
+						Contact Info
+                            <i class="mdi-navigation-close right"></i>
+                        </span>
+                        </p>
+                        {{#with AllCompanies}}
+                        <p>
+                            <i class="mdi-social-person-outline green-text text-darken-2"></i> {{this.firstName}} {{this.lastName}}
+                        </p>
+                        <p>
+                            <i class="mdi-action-perm-phone-msg green-text text-darken-2"></i> {{this.companyPhone}}
+                        </p>
+                        <p>
+                            <i class="mdi-communication-email green-text text-darken-2"></i> {{this.companyEmail}}
+                        </p>
+                        {{/with}}
+                    </div>
+                </div>
+                <!--/ profile-page-header -->
+                <!-- Main Area -->
+                <div id="profile-page-wall-posts" class="row">
+                    <div class="col s12">
+                        <!--Pending Certificates-->
+                        <ul id="task-card" class="collection with-header rbi-mss-login_widget card">
+                            <li class="collection-header mlb-yellow-bg">
+                                <h4 class="task-card-title">Pending Certificates</h4>
+                            </li>
+                            <li>
+                                <div class="card-content">
+                                    <table class="striped centered highlight bordered">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="status">Status</th>
+                                                <th data-field="id">Policy Name</th>
+                                                <th data-field="active">Coverage</th>
+                                                <th data-field="waiting">Agent</th>
+                                                <th data-field="expired">Company</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {{#with PendingPolicies}} {{#each this}}
+                                            <tr>
+                                                <td valign="bottom" text-align="center">
+                                                <p><a class="btn-small waves-effect waves-light green" id="approve" name="{{this._id}}">Approve</a></p>
+                                                <div class="bdivider"></div>
+                                                <p><a class="btn-small waves-effect waves-light red" name="{{this._id}}">Reject</a></p>
+                                                </td>
+                                                <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
+                                                </td>
+                                                <td valign="bottom" text-align="center">{{this.coverage}}</td>
+                                                <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                                                <td valign="bottom" text-align="center">{{CompanyName}}</td>
+                                            </tr>
+                                            {{/each}} {{/with}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Current Certificates-->
+                        <ul id="task-card" class="collection with-header rbi-mss-login_widget card">
+                            <li class="collection-header mlb-blue-bg">
+                                <h4 class="task-card-title">Current Certificates</h4>
+                            </li>
+                            <li>
+                                <div class="card-content">
+                                    <table class="striped centered">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="status">Status</th>
+                                                <th data-field="id">Policy Name</th>
+                                                <th data-field="active">Coverage</th>
+                                                <th data-field="waiting">Agent</th>
+                                                <th data-field="expired">Company</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {{#each CurrentPolicies}}
+                                                {{#unless isPendingPolicies}}
+                                            <tr>
+                                                <td valign="bottom" text-align="center">
+                                                <p><a class="btn-small waves-effect waves-light green approved" id="unapprove" name="{{this._id}}">Approved</a></p>
+                                                </td>
+                                                <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                                                <td valign="bottom" text-align="center">{{this.coverage}}</td>
+                                                <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                                                <td valign="bottom" text-align="center">{{CompanyName}}</td>
+                                            </tr>
+                                                {{/unless}}
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Past Certificates-->
+                        <ul id="task-card" class="collection with-header rbi-mss-login_widget card">
+                            <li class="collection-header mlb-red-bg">
+                                <h4 class="task-card-title">Past Certificates</h4>
+                            </li>
+                            <li>
+                                <div class="card-content">
+                                    <table class="striped hoverable">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id">Policy Name</th>
+                                                <th data-field="active">Coverage</th>
+                                                <th data-field="waiting">Agent</th>
+                                                <th data-field="expired">Company</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {{#with PastPolicies}} {{#each this}}
+                                            <tr>
+                                                <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                                                <td>{{this.coverage}}</td>
+                                                <td>{{this.agentId}}</td>
+                                                <td>{{CompanyName}}</td>
+                                            </tr>
+                                            {{/each}} {{/with}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--End Col-->
+                    </div>
+                </div>
+                <!--/ profile-page-wall-posts -->
+
+            </div>
+            <!--/ profile-page-wall -->
+
+        </div>
+    </div>
+
+</template>

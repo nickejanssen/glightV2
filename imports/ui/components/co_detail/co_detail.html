@@ -1,0 +1,837 @@
+<template name="co_detail">
+  <div class="content">
+
+    <!-- Detached sidebar -->
+    <div class="sidebar-detached">
+      <div class="sidebar sidebar-default sidebar-separate">
+        <div class="sidebar-content">
+
+          <!-- User details -->
+          <div class="content-group">
+            <div class="panel-body bg-indigo-400 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
+              <div class="content-group-sm">
+                <h6 class="text-semibold no-margin-bottom">
+                  {{LoginUserName}}
+                </h6>
+
+                <span class="display-block">{{Userrole}}</span>
+              </div>
+
+              <a href="#" class="display-inline-block content-group-sm">
+                <img src="/avatar.jpg" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+              </a>
+            </div>
+
+            <div class="panel no-border-top no-border-radius-top">
+              <ul class="navigation">
+                <li class="navigation-header">Navigation</li>
+                <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Profile</a></li>
+                <li><a href="#schedule" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
+                <li><a href="#messages" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
+                <li><a href="#orders" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
+                <li class="navigation-divider"></li>
+                <li><a href="login_advanced.html"><i class="icon-switch2"></i> Log out</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /user details -->
+
+          <!-- Latest Events -->
+          <div class="sidebar-category">
+            <div class="category-title">
+              <span>Latest Events</span>
+              <ul class="icons-list">
+                <li><a href="#" data-action="collapse"></a></li>
+              </ul>
+            </div>
+
+            <div class="category-content" id="history-section">
+              <ul class="media-list">
+                {{#each allHistory}}
+                <li class="media">
+                  <!-- <div class="media-left">
+                    <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-folder-upload2"></i></a>
+                  </div> -->
+
+                  <div class="media-body">
+                    <!-- <a href="#">NicoDev</a> has a new<span class="text-semibold">Certificate</span>  -->
+                    {{this.msg}}
+                    <div class="media-annotation">{{formatDate this.createdAt 'DD/MM/YYYY'}} - {{this.type}}</div>
+                  </div>
+                </li>
+                {{/each}}
+                <div class="input-field col s12 center-align" style="text-align:center;">
+                    <button id="btnLoadMore" style="background-color: gray;" class="btn waves-effect waves-light right submit" type="button"
+                        name="btnLoadMore">Load More
+                    </button>
+                </div>
+              </ul>
+            </div>
+          </div>
+          <!-- /latest updates -->
+
+        </div>
+      </div>
+    </div>
+    <!-- /detached sidebar -->
+
+
+    <!-- Detached content -->
+    <div class="container-detached">
+      <div class="content-detached">
+
+        <!-- Tab content -->
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="profile">
+
+            <!-- Simple text stats with icons -->
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h6 class="panel-title">Policy Summary</h6>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+              </div>
+            <div class="panel-body">
+              <div class="row text-center">
+                {{#with CurrentPolicies}}
+                <div class="col-xs-4">
+                  <p><i class="icon-notification2 icon-2x display-inline-block text-warning"></i></p>
+                  <h5 class="text-semibold no-margin">{{CurrentPolicies.length}}</h5>
+                  <span class="text-muted text-size-small">Current</span>
+                </div>
+                {{/with}}
+                {{#with PendingPolicies}}
+                <div class="col-xs-4">
+                  <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
+                  <h5 class="text-semibold no-margin">{{PendingPolicies.length}}</h5>
+                  <span class="text-muted text-size-small">Pending</span>
+                </div>
+                {{/with}}
+                {{#with PastPolicies}}
+                <div class="col-xs-4">
+                  <p><i class=" icon-cancel-circle2 icon-2x display-inline-block text-danger"></i></p>
+                  <h5 class="text-semibold no-margin">{{PastPolicies.length}}</h5>
+                  <span class="text-muted text-size-small">Archived</span>
+                </div>
+                {{/with}}
+              </div>
+
+              <div class="row text-center">
+
+                <div class="col-xs-4">
+                  <button id="btnUpload" class="btn btn-primary waves-effect waves-light right submit" type="button" name="action">Upload Certificate</button>
+                </div>
+
+                <div class="col-xs-4">
+                  <button class="btn btn-primary waves-effect waves-light right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a></button>
+                </div>
+                {{#if AllCompanies.archived}}
+                <div class="col-xs-4">
+                  <button class="btn btn-primary waves-effect waves-light right submit co-un-archive" type="submit" name="action">Unarchive Company</button>
+                </div>
+                {{else}}
+                <div class="col-xs-4">
+                  <button class="btn btn-primary waves-effect waves-light right submit co-archive" type="submit" name="action">Archive Company</button>
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+            <!-- /simple text stats with icons -->
+
+        <!-- User details (with sample pattern) -->
+        <div class="panel panel-flat">
+          <div class="panel-heading">
+                <h6 class="panel-title">Profile Info</h6>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+              </div>
+          <div class="panel-body">
+            {{#with AllCompanies}}
+            <div class="form-group mt-5">
+              <label class="text-semibold">Full name:</label>
+              <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
+            </div>
+
+            <div class="form-group">
+              <label class="text-semibold">Phone number:</label>
+              <span class="pull-right-sm">{{this.companyPhone}}</span>
+            </div>
+
+            <!-- <div class="form-group">
+              <label class="text-semibold">Corporate Email:</label>
+              <span class="pull-right-sm"><a href="#">corporate@domain.com</a></span>
+            </div> -->
+
+            <div class="form-group no-margin-bottom">
+              <label class="text-semibold">Personal Email:</label>
+              <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
+            </div>
+            {{/with}}
+        </div>
+        </div>
+        <!-- /user details (with sample pattern) -->
+
+            <!-- Account Activity -->
+
+            <!-- /Account Activity-->
+            <div class="panel panel-flat">
+						<div class="panel-heading">
+							<h5 class="panel-title">Requested Certificates</h5>
+							<div class="heading-elements">
+								<ul class="icons-list">
+			                		<li><a data-action="collapse"></a></li>
+			                		<!-- <li><a data-action="reload"></a></li>
+			                		<li><a data-action="close"></a></li> -->
+			                	</ul>
+		                	</div>
+						</div>
+
+						<div class="panel-body">
+						</div>
+
+						<div class="table-responsive">
+							<table class="table">
+                <thead>
+                    <tr>
+                        <th data-field="status">Req. Type</th>
+                        <th data-field="status">Coverage</th>
+                        <th data-field="status">Requested On</th>
+                        <th data-field="id">Remind</th>
+                        <th data-field="active">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each requestedPolicies}}
+                <tr>
+                    <td valign="bottom" text-align="center">{{this.type}}</td>
+                    <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                    <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
+                    <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
+                    <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
+                    <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                </tr>
+                {{/each}}
+            </tbody>
+							</table>
+						</div>
+					</div>
+            <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Pending Certificates</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+                    </div>
+                <div class="panel-body">
+              </div>
+              <div class="table-responsive">
+  							<table class="table">
+                  <thead>
+                          <tr>
+                              <th data-field="status">Status</th>
+                              <th data-field="id">Policy Name</th>
+                              <th data-field="active">Coverage</th>
+                              <th data-field="waiting">Agent</th>
+                              <th data-field="expired">Summary</th>
+                              <!--<th data-field="expired">Company</th>-->
+                          </tr>
+                      </thead>
+
+                      <tbody>
+                          {{#with PendingPolicies}} {{#each this}}
+                          <tr>
+                              <td valign="bottom" text-align="center">
+                                  <p><a class="btn btn-small waves-effect waves-light green" id="approve" name="{{this._id}}">Approve</a></p>
+                                  <!--<div class="bdivider"></div>
+                                      <p><a class="btn-small waves-effect waves-light red" name="{{this._id}}">Reject</a></p>-->
+                              </td>
+                              <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
+                              </td>
+                              <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                              <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                              <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                              <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                          </tr>
+                          {{/each}} {{/with}}
+                      </tbody>
+  							</table>
+  						</div>
+            </div>
+            <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Current Certificates</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+                    </div>
+                <div class="panel-body">
+              </div>
+              <table class="table">
+                <thead>
+                <tr>
+                    <th data-field="status">Status</th>
+                    <th data-field="id">Policy Name</th>
+                    <th data-field="active">Coverage</th>
+                    <th data-field="waiting">Agent</th>
+                    <th data-field="expired">Expire</th>
+                    <th data-field="expired">Summary</th>
+                    <th data-field="update">Req/Update</th>
+                </tr>
+            </thead>
+
+              <tbody>
+                  {{#each CurrentPolicies}} {{#unless isPendingPolicies}}
+                  <tr>
+                      <td valign="bottom" text-align="center">
+                          <a class="btn btn-small btn-danger waves-effect waves-light green approved" id="unapprove"
+                                  name="{{this._id}}">Approved</a>
+                      </td>
+                      <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                      <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                      <td valign="bottom" text-align="center">{{formatDate this.expDate 'DD/MM/YYYY'}}</td>
+                      <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                      <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
+                  </tr>
+                  {{/unless}} {{/each}}
+              </tbody>
+              </table>
+            </div>
+            <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Past Certificates</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+                    </div>
+                <div class="panel-body">
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                      <th data-field="status">Status</th>
+                      <th data-field="id">Policy Name</th>
+                      <th data-field="active">Coverage</th>
+                      <th data-field="waiting">Agent</th>
+                      <th data-field="expired">Summary</th>
+                      <th data-field="update">Req/Update</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  {{#with PastPolicies}} {{#each this}}
+                  <tr>
+                      {{#if this.isPast}}
+                      <td valign="bottom" text-align="center">
+                          <p><a class="btn-small waves-effect waves-light green">Updated</a></p>
+                      </td>
+                      {{else}}
+                      <td valign="bottom" text-align="center">
+                          <p><a class="btn-small waves-effect waves-light red">Expired</a></p>
+                      </td>
+                      {{/if}}
+                      <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                      <td>{{getCoverageValue this.coverage}}</td>
+                      <td>{{this.agentId}}</td>
+                      <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                      {{#if this.isPast}}
+                      <td valign="bottom" text-align="center"><a href="#">N/A</a></td>
+                      {{else}}
+                      <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
+                      {{/if}}
+                  </tr>
+                  {{/each}} {{/with}}
+              </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Company Overview -->
+          <!-- <div class="tab-pane fade" id="schedule">
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h5 class="panel-title">Active Companies</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <table class="table table-bordered table-hover datatable-highlight">
+                <thead>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Status</th>
+                    <th>Active</th>
+                    <th>Pending</th>
+                    <th>Past</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NicoDev</td>
+                    <td><span class="label label-success">Active</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archive</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cool Roofing</td>
+                    <td><span class="label label-success">Active</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archive</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Awesome Flooring</td>
+                    <td><span class="label label-success">Active</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archive</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h5 class="panel-title">Archived</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <table class="table table-bordered table-hover datatable-highlight">
+                <thead>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Status</th>
+                    <th>Active</th>
+                    <th>Pending</th>
+                    <th>Past</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NicoDev</td>
+                    <td><span class="label label-danger">Archived</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archive</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Cool Roofing</td>
+                    <td><span class="label label-danger">Archived</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archived</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Awesome Flooring</td>
+                    <td><span class="label label-danger">Archived</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> View</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Archive</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div> -->
+          <!-- /Company Overview -->
+
+          <!-- Highlighting rows and columns -->
+          <!-- <div class="tab-pane fade" id="messages">
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h5 class="panel-title">Policy Overview</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <table class="table table-bordered table-hover datatable-highlight">
+                <thead>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Policy Name</th>
+                    <th>Coverage</th>
+                    <th>Start Date</th>
+                    <th>Expiration Date</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>NicoDev</td>
+                    <td><a href="#">Cool Policy</a></td>
+                    <td>General Liability</td>
+                    <td>22 Jun 2017</td>
+                    <td>22 Jun 2018</td>
+                    <td><span class="label label-success">Active</span></td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                            <li><a href="#"><i class="icon-file-word"></i> Email</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NicoDev</td>
+                    <td><a href="#">Cool Policy</a></td>
+                    <td>General Liability</td>
+                    <td>22 Jun 2017</td>
+                    <td>22 Jun 2018</td>
+                    <td><span class="label label-danger">Expired</span></td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                            <li><a href="#"><i class="icon-file-word"></i> Email</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>NicoDev</td>
+                    <td><a href="#">Cool Policy</a></td>
+                    <td>General Liability</td>
+                    <td>22 Jun 2017</td>
+                    <td>22 Jun 2018</td>
+                    <td><span class="label label-warning">Pending</span></td>
+                    <td class="text-center">
+                      <ul class="icons-list">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-menu9"></i>
+                          </a>
+
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                            <li><a href="#"><i class="icon-file-word"></i> Email</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            /highlighting rows and columns
+          </div> -->
+
+          <!-- Total Settings -->
+          <!-- <div class="tab-pane fade" id="orders">
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h6 class="panel-title">Profile information</h6>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <form action="#">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Username</label>
+                        <input type="text" value="Eugene" class="form-control">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Full name</label>
+                        <input type="text" value="Kopyov" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Email</label>
+                        <input type="text" readonly="readonly" value="eugene@kopyov.com" class="form-control">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Phone #</label>
+                        <input type="text" value="+99-99-9999-9999" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Address line 1</label>
+                        <input type="text" value="Ring street 12" class="form-control">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Address line 2</label>
+                        <input type="text" value="building D, flat #67" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label>City</label>
+                        <input type="text" value="Munich" class="form-control">
+                      </div>
+                      <div class="col-md-4">
+                        <label>State/Province</label>
+                        <input type="text" value="Bayern" class="form-control">
+                      </div>
+                      <div class="col-md-4">
+                        <label>ZIP code</label>
+                        <input type="text" value="1031" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label class="display-block">Upload profile image</label>
+                        <input type="file" class="file-styled">
+                        <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h6 class="panel-title">Account settings</h6>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="panel-body">
+                <form action="#">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Username</label>
+                        <input type="text" value="Kopyov" readonly="readonly" class="form-control">
+                      </div>
+
+                      <div class="col-md-6">
+                        <label>Current password</label>
+                        <input type="password" value="password" readonly="readonly" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>New password</label>
+                        <input type="password" placeholder="Enter new password" class="form-control">
+                      </div>
+
+                      <div class="col-md-6">
+                        <label>Repeat password</label>
+                        <input type="password" placeholder="Repeat new password" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div> -->
+          <!-- /Total Settings-->
+
+        </div>
+      </div><!-- /tab content -->
+
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+    <!-- <div id="modal1" class="modal modal-fixed-footer">
+        {{#each policyDetail}}
+        <div class="modal-content">
+            <h4>Policy Details of {{this.policyName}}</h4>
+            <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
+            <p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>
+            <p><b>Policy Uploaded Date:</b> {{formatDate this.uploadDate 'DD/MM/YYYY'}}</p>
+            <p><b>Policy Start Date:</b> {{formatDate this.startDate 'DD/MM/YYYY'}}</p>
+            <p><b>Policy Exp. Date:</b> {{formatDate this.expDate 'DD/MM/YYYY'}}</p>
+        </div>
+        {{/each}}
+        <div class="modal-footer green ligthen-4">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div> -->
+    <div id="modal1" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<!-- <h5 class="modal-title">Basic modal</h5> -->
+					</div>
+
+					<div class="modal-body">
+            {{#each policyDetail}}
+                <h4>Policy Details of {{this.policyName}}</h4>
+                <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
+                <p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>
+                <p><b>Policy Uploaded Date:</b> {{formatDate this.uploadDate 'DD/MM/YYYY'}}</p>
+                <p><b>Policy Start Date:</b> {{formatDate this.startDate 'DD/MM/YYYY'}}</p>
+                <p><b>Policy Exp. Date:</b> {{formatDate this.expDate 'DD/MM/YYYY'}}</p>
+            {{/each}}
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+</template>

@@ -1,0 +1,97 @@
+<template name="register">
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Advanced login -->
+					<form id="msform" method="POST" autocomplete="false">
+						<div class="panel panel-body login-form">
+							<div class="text-center">
+								<img src="/login-logo.png" alt="" class="square responsive-img valign profile-image-login">
+								<h5 class="content-group">Create your account</h5>
+							</div>
+
+							{{#if errorMessage}}
+				          <div class="alert alert-warning err">
+				            {{errorMessage}}
+				          </div>
+				      {{/if}}
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" name="email" class="form-control" placeholder="Your email">
+								<div class="form-control-feedback">
+									<i class="icon-mention text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" name="pass" class="form-control" placeholder="password">
+								<div class="form-control-feedback">
+									<i class="icon-user-lock text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" name="cpass" class="form-control" placeholder="Confirm password">
+								<div class="form-control-feedback">
+									<i class="icon-user-lock text-muted"></i>
+								</div>
+							</div>
+
+							<div class="content-divider text-muted form-group"><span>Basic Information</span></div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" name="fname" class="form-control" placeholder="First Name">
+								<div class="form-control-feedback">
+									<i class="icon-user-check text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" name="lname" class="form-control" placeholder="Last Name">
+								<div class="form-control-feedback">
+									<i class="icon-user-check text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" name="cname" class="form-control" placeholder="Company Name">
+								<div class="form-control-feedback">
+									<i class="icon-user-check text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" name="phone" class="form-control" placeholder="Phone">
+								<div class="form-control-feedback">
+									<i class="icon-user-check text-muted"></i>
+								</div>
+							</div>
+							<div class="form-group has-feedback has-feedback-left">
+							<button type="submit" name="submit" class="btn bg-teal btn-block btn-lg submit">Register <i class="icon-circle-right2 position-right"></i></button>
+						</div>
+						<div class="form-group has-feedback has-feedback-left">
+									<a href="/login">Login</a>
+						</div>
+						</div>
+					</form>
+					<!-- /advanced login -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+</template>

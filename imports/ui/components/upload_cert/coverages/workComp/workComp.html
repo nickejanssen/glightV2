@@ -1,0 +1,80 @@
+<template name = "workComp">
+	<form class="form-horizontal" id="workComp">
+		<div class="panel panel-flat">
+			<div class="panel-heading">
+				<div class="form-group">
+					<label class="control-label col-lg-3">Employer's Liability Limit</label>
+					<div class="col-lg-9">
+						<select class="select validate error" id="empLiLim" name="empLiLim">
+							<option value="" disabled selected>Employer's Liability Limit</option>
+							<option value="$100/500/100">$100/500/100</option>
+							<option value="$500/500/500">$500/500/500</option>
+							<option value="$1,000/1,000/1,000">$1,000/1,000/1,000</option>
+						</select>
+				</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-3">Deductible</label>
+					<div class="col-lg-9">
+						<select class="select validate error" id="deduct" name="deduct">
+							<option value="" disabled selected>Deductible</option>
+							<option value="None">None</option>
+							<option value="$250">$250</option>
+							<option value="$500">$500</option>
+							<option value="$1,000">$1,000</option>
+							<option value="$2,500">$2,500</option>
+							<option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Aggregate Deductible</label>
+					<div class="col-lg-9">
+						<select class="select validate error" id="aggDeduct" name="aggDeduct">
+							<option value="" disabled selected>Aggregate Deductible</option>
+							<option value="N/A">N/A</option>
+							<option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-lg-3">Applies To</label>
+					<div class="col-lg-9">
+						<select class="select validate error" id="appTo" name="appTo">
+							<option value="" disabled selected>Applies To</option>
+              <option value="None">None</option>
+              <option value="Medical">Medical</option>
+              <option value="Indemnity">Indemnity</option>
+              <option value="Both">Both</option>
+						</select>
+				</div>
+				</div>
+				<fieldset>
+            <legend><b>Limits</b></legend>
+						<div class="form-group">
+							<label class="checkbox-inline">
+								<input type="checkbox" id="stat" name="stat">
+								Statutory
+							</label>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-3">Other</label>
+							<div class="col-lg-9">
+							<input id="other" type="text" required class="form-control validate" placeholder="other" name="other">
+						</div>
+						</div>
+        </fieldset>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Notes & Endorsements</label>
+					<div class="col-lg-9">
+					<textarea id="message5" class="form-control" name="notes" length="150"></textarea>
+				</div>
+				</div>
+		</div>
+	</div>
+
+	</form>
+</template>

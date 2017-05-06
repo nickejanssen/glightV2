@@ -1,0 +1,155 @@
+<template name="user_profile">
+<div id="profile-page" class="section">
+            <!-- profile-page-header -->
+            <div id="profile-page-header" class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="user-profile-bg.jpg" alt="user background">
+                </div>
+                <figure class="card-profile-image">
+                    <img src="avatar.jpg" alt="profile image" class="circle z-depth-2 responsive-img activator">
+                </figure>
+                <div class="card-content">
+                  <div class="row">
+                    <div class="col s3 offset-s2">
+                        <h4 class="card-title grey-text text-darken-4">{{LoginUserName}}</h4>
+                        <p class="medium-small grey-text">Project Manager</p>
+                    </div>
+                    <div class="col s2 center-align">
+                    </div>
+                    <div class="col s2 center-align">
+                    </div>
+                    <div class="col s2 center-align">
+                    </div>
+                    <div class="col s1 right-align">
+                      <a class="btn-floating activator waves-effect waves-light darken-2 right">
+                          <i class="mdi-action-perm-identity"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-reveal">
+                    <p>
+                      <span class="card-title grey-text text-darken-4">{{LoginUserName}}<i class="mdi-navigation-close right"></i></span>
+                      <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</span>
+                    </p>
+                    <p><i class="mdi-action-perm-phone-msg green-text text-darken-2"></i> {{UserCo}}</p>
+                    <p><i class="mdi-action-perm-phone-msg green-text text-darken-2"></i> {{UserPhone}}</p>
+                    <p><i class="mdi-communication-email green-text text-darken-2"></i> {{UserEmail}}</p>
+                </div>
+            </div>
+            <!--/ profile-page-header -->
+
+            <!-- profile-page-content -->
+            <div id="profile-page-content" class="row">
+              <!-- profile-page-sidebar-->
+              <div id="profile-page-sidebar" class="col s12 m4">
+                <!-- Profile About  -->
+                <div class="card green">
+                  <div class="card-content white-text">
+                    <span class="card-title">Companies Overview</span>
+                    <p></p>
+                  </div>
+                </div>
+                <!-- Profile About  -->
+
+                <!-- Profile About Details  -->
+                <ul id="profile-page-about-details" class="collection z-depth-1">
+                  <li class="collection-item">
+                    <div class="row">
+                      <div class="col s5 green-text darken-1"><i class="mdi-action-wallet-travel"></i> Current</div>
+                      <div class="col s7 black-text text-darken-4 right-align">1</div>
+                    </div>
+                  </li>
+                  <li class="collection-item">
+                    <div class="row">
+                      <div class="col s5 yellow-text darken-1"><i class="mdi-social-poll"></i> Expiring</div>
+                      <div class="col s7 black-text text-darken-4 right-align">1</div>
+                    </div>
+                  </li>
+                  <li class="collection-item">
+                    <div class="row">
+                      <div class="col s5 red-text darken-1"><i class="mdi-social-domain"></i> Expired</div>
+                      <div class="col s7 black-text text-darken-4 right-align">2</div>
+                    </div>
+                  </li>
+
+                </ul>
+                <!--/ Profile About Details  -->
+
+                <!-- Map Card -->
+                <div class="map-card">
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <div id="map-canvas" data-lat="40.747688" data-lng="-74.004142"></div>
+                        </div>
+                        <div class="card-content">
+                            <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                                <i class="mdi-maps-pin-drop"></i>
+                            </a>
+                            <h4 class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4">Company Name LLC</a>
+                            </h4>
+                            <p class="blog-post-content">Some more information about this company.</p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Company Name LLC <i class="mdi-navigation-close right"></i></span>
+                            <p>Here is some more information about this company. </p>
+                            <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Manager Name</p>
+                            <p><i class="mdi-communication-business cyan-text text-darken-2"></i> 125, ABC Street, Savannah, GA</p>
+                            <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
+                            <p><i class="mdi-communication-email cyan-text text-darken-2"></i> support@greenlight.com</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map Card -->
+
+              </div>
+              <!-- profile-page-sidebar-->
+
+              <!-- profile-page-wall -->
+              <div id="profile-page-wall" class="col s12 m8">
+
+                <!-- profile-page-wall-posts -->
+                <div id="profile-page-wall-posts" class="row">
+                  <div class="col s12">
+                                  <!-- task-card -->
+                <ul id="task-card" class="collection with-header">
+                  <li class="collection-header green">
+                      <h4 class="task-card-title">My Companies</h4>
+                      <p class="task-card-date">{{currentDate}}</p>
+                  </li>
+                  <li class="collection-item dismissable">
+                      <input type="checkbox" id="task1" />
+                      <label for="task1">Company 1 <a href="#" class="secondary-content"><span class="ultra-small">Updated</span></a>
+                      </label>
+                      <span class="task-cat green">Current</span>
+                  </li>
+                  <li class="collection-item dismissable">
+                      <input type="checkbox" id="task2" />
+                      <label for="task2">Company 2 <a href="#" class="secondary-content"><span class="ultra-small">Updated</span></a>
+                      </label>
+                      <span class="task-cat yellow">Expiring</span>
+                  </li>
+                  <li class="collection-item dismissable">
+                      <input type="checkbox" id="task2"/>
+                      <label for="task3">Company 3<a href="#" class="secondary-content"><span class="ultra-small">Updated</span></a>
+                      </label>
+                      <span class="task-cat red">Expired</span>
+                  </li>
+                  <li class="collection-item dismissable">
+                      <input type="checkbox" id="task2"/>
+                      <label for="task4">Company 4</label>
+                      <span class="task-cat red">Expired</span>
+                  </li>
+                </ul>
+                <!-- task-card -->
+                  </div>
+                </div>
+                <!--/ profile-page-wall-posts -->
+
+              </div>
+              <!--/ profile-page-wall -->
+
+            </div>
+          </div>
+
+</template>

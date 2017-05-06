@@ -1,0 +1,92 @@
+<template name="req_cert">
+  <!-- Page header -->
+  <div class="page-header page-header-default">
+    <div class="page-header-content">
+      <div class="page-title">
+        <h4><span class="text-semibold">Request Certificate</span></h4>
+      </div>
+    </div>
+
+  </div>
+  <!-- /page header -->
+  <div class="content">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <!-- Basic layout-->
+      <form class="form-horizontal formValidate" id="formValidate" method="get" action="">
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <!-- <center><h5 class="panel-title">Request Certificate</h5></center> -->
+
+             <div class="panel-body">
+                <fieldset class="content-group">
+                  <div class="form-group">
+                    <label class="control-label col-lg-3">Choose company*</label>
+                    <div class="col-lg-6">
+
+                   <select class="select browser-default" id="certComp" required name="certComp" data-error=".errorTxt6">
+                     <option value="" disabled selected>Choose company to request from</option>
+                       {{#with AllCompanies}}
+                           {{#each this}}
+                           <option value="{{this._id}}" class="company" id="company">{{this.companyName}}</option>
+                           {{/each}}
+                       {{/with}}
+                      </select>
+
+                 </div>
+                 <div class="col-lg-3">
+                  <button type="button" id="btnAddCo" class="btn btn-primary btn waves-effect waves-light right submit" name="action">Add New Company</button>
+                 </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label class="control-label col-lg-3">Company's Email*</label>
+                     <div class="col-lg-9">
+                         <input id="cemail" type="email" required class="form-control" name="cemail" data-error=".errorTxt2" placeholder="Company's Email">
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="control-label col-lg-3">Select Coverage*</label>
+                     <div class="col-lg-6">
+
+                    <select class="select" id="coverage" required name="coverage">
+                      <option value="" disabled selected>Select Coverage</option>
+                       {{#each getCoverageType}}
+                       <option value="{{this.key}}">{{this.value}}</option>
+                       {{/each}}
+                       </select>
+
+                  </div>
+                  <div class="col-lg-3">
+                   <button type="button" id="btnAddCo" class="btn btn-primary btn waves-effect waves-light right submit" name="action">Add Another Coverage</button>
+                  </div>
+                   </div>
+                   <div class="form-group">
+                       <div class="col-lg-12">
+                           <p><b>Note:</b></p>
+                           <p>Please verify that the above information is correct. Once the upload
+                               button is clicked, the file will be uploaded and notified. If the
+                               coverage values are too low, you may adjust the values to reflect
+                               the needed coverage limits. If such a change is made, the requestor
+                               will be notified.
+                           </p>
+                       </div>
+                   </div>
+                </fieldset>
+                <br/>
+
+               <div class="text-center">
+                  <button type="submit" class="btn btn-primary waves-effect waves-light center submit" name="action">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                  <button class="btn btn-primary waves-effect waves-light center submit" type="button" name="action">Reset</button>
+                </div>
+            </div>
+          </div>
+            </div>
+        </form>
+        <!-- /basic layout -->
+
+     </div>
+    </div>
+  </div>
+</template>

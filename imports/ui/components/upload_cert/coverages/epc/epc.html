@@ -1,0 +1,139 @@
+<template name = "epc">
+	<form class="form-horizontal" id="epc">
+		<div class="panel panel-flat">
+			<div class="panel-heading">
+				<div class="form-group">
+					<!-- <label class="control-label col-lg-3">Location Description</label> -->
+					<div class="col-lg-12">
+					<textarea id="locDesc" class="form-control validate" placeholder="Location Description" name="locDesc" length="150"></textarea>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Location Description</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="perils" name="perils">
+							<option value="" disabled selected>Perils</option>
+              <option value="Basic">Basic</option>
+              <option value="Broad">Broad</option>
+              <option value="Special Form">Special Form</option>
+              <option value="Named Perils">Named Perils</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Coverage Type</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="covType" name="covType">
+							<option value="" disabled selected>Coverage Type</option>
+              <option value="Building">Building</option>
+              <option value="Contents">Contents</option>
+              <option value="Equipment">Equipment</option>
+              <option value="Income">Income</option>
+              <option value="Electronic Data Processing">Electronic Data Processing</option>
+              <option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Coverage Amount</label>
+					<div class="col-lg-9">
+					<input id="covAmt" type="text" required class="form-control validate" placeholder="Coverage Amount" name="covAmt">
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Valuation</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="val" name="val">
+							<option value="" disabled selected>Valuation</option>
+							<option value="Replacement">Replacement</option>
+							<option value="Actual Cash Value">Actual Cash Value</option>
+							<option value="Functional Replacement">Functional Replacement</option>
+							<option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Co-Insurance</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="coIns" name="coIns">
+							<option value="" disabled selected>Co-Insurance</option>
+              <option value="50">50</option>
+              <option value="60">60</option>
+							<option value="70">70</option>
+              <option value="80">80</option>
+							<option value="90">90</option>
+              <option value="100">100</option>
+							<option value="Waived">Waived</option>
+              <option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="checkbox-inline checkbox-right">
+						<input type="checkbox" id="av" name="av">
+						Agreed Value
+					</label>
+
+					<label class="checkbox-inline checkbox-right">
+						<input type="checkbox"  id="blanket" name="blanket">
+						Blanket
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="display-block text-semibold">Additional Perils</label>
+					<label class="checkbox-inline checkbox-right">
+						<input type="checkbox" id="flood" name="flood">
+						Flood
+					</label>
+
+					<label class="checkbox-inline checkbox-right" id="blanket" name="blanket">
+						<input type="checkbox" id="earth" name="earth">
+						Earthquake
+					</label>
+
+					<label class="checkbox-inline checkbox-right" id="blanket" name="blanket">
+						<input type="checkbox" id="eqpBreak" name="eqpBreak">
+						Equipment Breakdown
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Deductible</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="deduct" name="deduct">
+							<option value="" disabled selected>Deductible</option>
+              <option value="$100">$100</option>
+              <option value="$250">$250</option>
+							<option value="$500">$500</option>
+              <option value="$1000">$1000</option>
+							<option value="$2500">$2500</option>
+              <option value="$5000">$5000</option>
+							<option value="$7500">$7500</option>
+							<option value="$10,000">$10,000</option>
+							<option value="Waived">Waived</option>
+              <option value="Other">Other</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Endorsements</label>
+					<div class="col-lg-9">
+						<select class="select error validate" id="end" name="end">
+							<option value="" disabled selected>Endorsements</option>
+							<option value="Mortgagee">Mortgagee</option>
+							<option value="Loss Payee">Loss Payee</option>
+							<option value="Additional Insured">Additional Insured</option>
+						</select>
+				</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-3">Notes & Endorsements</label>
+					<div class="col-lg-9">
+					<textarea id="message5" class="form-control" name="notes" length="150"></textarea>
+				</div>
+				</div>
+
+		</div>
+			</div>
+
+	</form>
+</template>

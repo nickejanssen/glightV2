@@ -1,0 +1,230 @@
+/*================================================================================
+	Item Name: GreenLight
+	Version: 3.1
+	Author: NicoDev
+================================================================================*/
+
+/*form styles*/
+#msform {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+
+	/*stacking fieldsets above each other*/
+	position: absolute;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+.fieldset {
+	border: none;
+}
+
+/*inputs*/
+#msform input, #msform textarea {
+}
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*headings*/
+.fs-title {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 15px;
+	margin-top: 0px !important;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 9px;
+	width: 25%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: #333;
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: #27AE60;
+	color: white;
+}
+
+.vTable {
+	height: 100%;
+	display: table-cell;
+}
+
+.btn {
+	background-color: #8bc34a;
+}
+
+.btn-small {
+    height: 24px;
+    line-height: 24px;
+		color: #ffffff !important;
+		padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.9;
+    border-radius: 3px;
+
+}
+
+.bdivider{
+    width:auto;
+    height:.5rem;
+
+}
+
+
+ul.side-nav.leftside-navigation li.active > a {
+	color: #8bc34a;
+}
+
+.mss-logo{
+height: 33px !important;
+}
+.rbi-logo{
+height: 47px !important;
+margin: 6px 3px -6px 13px !important;
+}
+.mlb-blue-bg{
+	background: #8bc34a !important;
+}
+.mlb-yellow-bg{
+	background: #fdd835 !important;
+}
+.mlb-red-bg{
+	background: #e53935 !important;
+}
+.mlb-pb-bg{
+	background: #4267bc !important;
+}
+.rbi-mss-login_widget h4{
+	font-size: 31px;
+}
+	.rbi-mss-login_widget .btn{
+		margin: 3px;
+		width: 91%;
+	}
+	.rbi-mss-login_widget li.btn-row{
+		display: inline-block;
+		width: 47%;
+		text-align: center;
+		margin: auto auto 13px auto;
+	}
+	.rbi-mss-login_widget li.register-row{
+		margin: auto 0 auto 13px;
+	}
+	.rbi-mss-login_widget .login-btn{
+		background: #EF3D47;
+	}
+
+	.mss-shares_widget{
+		border: none;
+	}
+	.mss-shares_widget h4{
+	    padding: 9px 0 0 0;
+    	font-weight: bold !important;
+    	font-size: 23px !important;
+	}
+	.mss-shares_widget li{
+		padding: 0 !important;
+		height: 45px;
+		width: 96px;
+		border-radius: 6px;
+		text-align: center;
+		margin: auto;
+	}
+	.mss-shares_widget img{
+		height: 44px;
+    	float: left;
+	}
+
+	#history-section{
+		max-height: 500px;
+		overflow: visible;
+		overflow-y: scroll;
+	}
+
+	.custom-card-content{
+		padding: 0 !important;
+	}
+
+	.user-details a{
+		color: #000 !important;
+	}
+
+	.viewPolicy{
+		cursor: pointer;
+		color: #27AE60;
+	}
+
+	.hbg {
+		background-color: #27AE60;
+	}

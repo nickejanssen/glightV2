@@ -1,0 +1,268 @@
+<template name="landing">
+
+<!-- Pre Loader
+<div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+ -->
+
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="navbar-color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="/" id="logo-container" class="brand-logo">GreenLight</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#intro">Explain Certificates</a></li>
+                    <li><a href="#work">How it Works</a></li>
+                    <li><a href="#team">Price and Features</a></li>
+					{{#if currentUser}}
+					<li><a href="/dash">Dashboard</a></li>
+					{{else}}
+					<li><a href="/login">Login</a></li>					
+					{{/if}}
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#intro">Explain Certificates</a></li>
+                    <li><a href="#work">How it Works</a></li>
+                    <li><a href="#team">Price and Features</a></li>
+					{{#if currentUser}}
+					<li><a href="/dash">Dashboard</a></li>
+					{{else}}
+					<li><a href="/login">Login</a></li>					
+					{{/if}}
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <div class="text_h center header">
+            <span class="cd-words-wrapper waiting">
+                <b>A Certificate of insurance Management System</b>
+            </span>
+        </div>
+				<div class="butt_h center header">
+					<a class="waves-effect waves-light btn-large light-green" href="/user-register">Sign Up</a>
+				</div>
+    </div>
+</div>
+
+<!--Intro and service-->
+<div id="intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2">Is your business collecting certificates of insurance? Greenlight is the <span class="span_h2">low cost online option</span> for you. We help you take control of this very important process.</h2>
+            </div>
+
+            <div  class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-image-flash-on"></i>
+                    <h5 class="promo-caption">Lower the cost of certificate management</h5>
+                    <p class="light center">Be more efficient, more acurate and more effective with the help of Greenlight. The greatest cost you may incure could come from a failure in your documentation system. Our obvious light system lets you know who is in compliance just a few seconds glancing at your list. Red means stop, yellow is your warning and green means get to work. </p>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-hardware-desktop-windows"></i>
+                    <h5 class="promo-caption">Access your information anywhere</h5>
+                    <p class="light center">Take your certificate file and put it online for easy access. Navigate with ease with large intuitive buttons. Instant notifications let you know the status of important documents. It is easy to opperate from a laptop, tablet or phone so even on the job your ready to get to work.</p>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="center promo promo-example">
+                    <i class="mdi-social-group"></i>
+                    <h5 class="promo-caption">Simplify the process and insurance terms</h5>
+                    <p class="light center">Greenlight makes the information you need to know standout so that anyone on your staff can manage this process. When something is wrong, it stands out in red making it easy to find the changes. Prefilled forms make it easy to update and confirm coverage. Simplified enough that you can focus on your business.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Pricing and Features-->
+<div class="section scrollspy" id="work">
+	<div class="section">
+	<div class="divider"></div>
+		<div class="row">
+			<div class="col s12 center">
+			<h2 class="header text_b">Pricing</h2>
+			</div>
+			<section class="plans-container" id="plans">
+				<article class="col s12 m6 l4">
+					<div class="card hoverable">
+          	<div class="card-image purple waves-effect">
+            	<div class="card-title">BASIC</div>
+							<div class="price">FREE</div>
+            </div>
+							<div class="card-content">
+								<ul class="collection">
+									<li class="collection-item">Management of up to 5 Companies</li>
+									<li class="collection-item">1 users</li>
+								</ul>
+							</div>
+							<div class="card-action center-align">
+								<button class="waves-effect waves-light  btn">Select Plan</button>
+							</div>
+					</div>
+				</article>
+				<article class="col s12 m6 l4">
+					<div class="card z-depth-1 hoverable">
+						<div class="card-image cyan waves-effect">
+							<div class="card-title">PROFESSIONAL</div>
+							<div class="price"><sup>$</sup>10<sub>/mo</sub></div>
+							<div class="price-desc">Most Popular</div>
+						</div>
+						<div class="card-content">
+							<ul class="collection">
+								<li class="collection-item">Management of up to 30 Companies</li>
+								<li class="collection-item">5 users</li>
+							</ul>
+						</div>
+						<div class="card-action center-align">
+							<button class="waves-effect waves-light  btn">Select Plan</button>
+						</div>
+					</div>
+				</article>
+				<article class="col s12 m6 l4">
+					<div class="card hoverable">
+						<div class="card-image green waves-effect">
+							<div class="card-title">PREMIUM</div>
+							<div class="price"><sup>$</sup>30<sub>/mo</sub></div>
+						</div>
+						<div class="card-content">
+							<ul class="collection">
+								<li class="collection-item">Management of up to 100 Companies</li>
+								<li class="collection-item">10 users</li>
+							</ul>
+						</div>
+						<div class="card-action center-align">
+							<button class="waves-effect waves-light  btn">Select Plan</button>
+						</div>
+					</div>
+				</article>
+			</section>
+			<div class="col s12 center">
+				<h2 class="header text_b">Features</h2>
+			</div>
+
+			<div class="row">
+						<!--Email Feature-->
+            <div  class="col s12 m3 l3">
+							<div id="card-reveal" class="section">
+								<div class="card small">
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="email.jpg" alt="office">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">Email within the system<i class="mdi-navigation-more-vert right"></i></span>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">Email within the system<i class="mdi-navigation-close right"></i></span>
+										<p>Send requests from within the Greenlight system and greenlight will store a record and update the status of the file until the request is filled. </p>
+									</div>
+								</div>
+							</div>
+            </div>
+						<!--Track Feature-->
+            <div class="col s12 m3 l3">
+                <div id="card-reveal" class="section">
+								<div class="card small">
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="track.jpg" alt="office">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">Track unlimited documents <i class="mdi-navigation-more-vert right"></i></span>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">Track unlimited documents<i class="mdi-navigation-close right"></i></span>
+										<p>For each company you many need to track a dozen documents. The file stays red until all the required documents are recieved and confirmed. Certificates of insurance, contracts, government records or anything else you need.</p>
+									</div>
+								</div>
+							</div>
+            </div>
+						<!--Compare Feature-->
+            <div class="col s12 m3 l3">
+                <div id="card-reveal" class="section">
+								<div class="card small">
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="compare.png" alt="office">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">Compare what is recieved by what is requested<i class="mdi-navigation-more-vert right"></i></span>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">Compare what is recieved by what is requested<i class="mdi-navigation-close right"></i></span>
+										<p>The Greelight System compares what you requested to what is recieved so $1000000 and $100000 dont get confused.</p>
+									</div>
+								</div>
+							</div>
+            </div>
+
+					<!--Audit Feature-->
+            <div  class="col s12 m3 l3">
+							<div id="card-reveal" class="section">
+								<div class="card small">
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="audit.png" alt="office">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">Audit Reports<i class="mdi-navigation-more-vert right"></i></span>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">Audit Reports<i class="mdi-navigation-close right"></i></span>
+										<p>Produce all the documents within a specified time frame in an easy to distribute file for an audit.</p>
+									</div>
+								</div>
+							</div>
+            </div>
+            <div class="col s12 m3 l3">
+                <div id="card-reveal" class="section">
+								<div class="card small">
+									<div class="card-image waves-effect waves-block waves-light">
+										<img class="activator" src="storage.jpg" alt="office">
+									</div>
+									<div class="card-content">
+										<span class="card-title activator grey-text text-darken-4">Unlimited Storage<i class="mdi-navigation-more-vert right"></i></span>
+									</div>
+									<div class="card-reveal">
+										<span class="card-title grey-text text-darken-4">Unlimited Storage<i class="mdi-navigation-close right"></i></span>
+										<p>Unlimited Storage of your documents available for download anytime.</p>
+									</div>
+								</div>
+							</div>
+            </div>
+        </div>
+		</div>
+	</div>
+</div>
+
+<!--Team-->
+<div class="section scrollspy" id="team">
+    <div class="container">
+        <h2 class="header text_b"></h2>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+<!--Footer-->
+<footer id="contact" class="page-footer default_color scrollspy">
+   
+    <div class="footer-copyright default_color">
+        <div class="container">
+            <a class="white-text" href="">Copyright 2017 GreenLight, All rights reserved.</a>
+        </div>
+    </div>
+</footer>
+</template>

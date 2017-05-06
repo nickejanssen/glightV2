@@ -1,0 +1,55 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base@1.0.4             # Packages every Meteor app needs to have
+mobile-experience@1.0.4       # Packages for a great mobile UX
+mongo@1.1.16                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+reactive-var@1.0.11            # Reactive variable for tracker
+jquery@1.11.10                  # Helpful client-side library
+tracker@1.1.2                 # Meteor's client-side reactive programming library
+
+standard-minifier-css@1.3.4   # CSS minifier run for production mode
+standard-minifier-js@2.0.0    # JS minifier run for production mode
+es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.7.2              # Enable ECMAScript2015+ syntax in app code
+
+less@2.7.9                    # Leaner CSS language
+
+
+practicalmeteor:mocha             # A package for writing and running your meteor app and package tests with mocha
+johanbrook:publication-collector  # Test a Meteor publication by collecting its output
+fortawesome:fontawesome
+meteorhacks:picker
+modules-runtime@0.7.10
+accounts-password@1.3.5
+matb33:collection-hooks
+cwohlman:materialize-modal
+momentjs:moment
+cfs:standard-packages
+edgee:slingshot
+npm-bcrypt@0.9.2
+service-configuration
+accounts-google@1.1.2
+accounts-facebook@1.1.1
+perak:user-roles
+facebook-config-ui@1.0.0
+google-config-ui@1.0.0
+andrei:tablesorter
+derekmartin1:tablesorter
+aldeed:collection2-core
+aldeed:autoform
+ephemer:reactive-datatables
+aldeed:tabular
+meteorhacks:fast-render
+iron:router
+sacha:spin
+msavin:mongol
+#aldeed:collection2
+session@1.1.7
+harrison:papa-parse
+kit:sweetalert
+limitless-theme

@@ -1,0 +1,115 @@
+<template name="req_cert_update">
+    <!-- START CONTENT -->
+    <section id="content">
+        <!--breadcrumbs start-->
+        <div id="breadcrumbs-wrapper" class=" grey lighten-3">
+            <!-- Search for small screen -->
+            <div class="header-search-wrapper grey hide-on-large-only">
+                <i class="mdi-action-search active"></i>
+                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <h1 class="breadcrumbs-title">Request Certificate</h1>
+                        <!--<ol class="breadcrumbs">-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--breadcrumbs end-->
+
+        <!--start container-->
+        <div class="container">
+            <!--
+              jQuery Validation Plugin
+          -->
+            <!--jqueryvalidation-->
+            <div id="jqueryvalidation" class="section">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="col s12 m12 l12">
+                            <div class="row">
+                                <ul id="task-card" class="collection with-header rbi-mss-login_widget card">
+                                    <li class="collection-header mlb-blue-bg">
+                                        <h4 class="task-card-title">Request Certificate</h4>
+                                    </li>
+                                    <li>
+                                        <form class="formValidate" id="formValidate" method="get" action="">
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <select class="error browser-default" id="certComp" required name="certComp" data-error=".errorTxt6">
+                                                <option value="" disabled selected>Choose your company</option>
+                                                {{#with AllCompanies}}
+                                                    {{#each this}}
+                                                    <option value="{{this._id}}" class="company" id="company">{{this.companyName}}</option>
+                                                    {{/each}}
+                                                {{/with}}
+                                			</select>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <button id="btnAddCo" class="btn waves-effect waves-light right submit" type="button" name="action">Add New Company
+                                            </button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <label for="cemail" id="lemail">Company's Email *</label>
+                                                    <input id="cemail" type="email" required name="cemail" data-error=".errorTxt2">
+                                                    <div class="errorTxt2"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <select id="coverage">
+                                                        <option value="" disabled selected>Select Coverage</option>
+                                                        {{#each getCoverageType}}
+                                                        <option value="{{this.key}}">{{this.value}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <button class="btn waves-effect waves-light right submit" type="button" name="action">Add Another Type of Coverage
+                                                </button>
+                                                </div>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <p><b>Note:</b></p>
+                                                    <p>Please verify that the above information is correct. Once the upload
+                                                        button is clicked, the file will be uploaded and notified. If the
+                                                        coverage values are too low, you may adjust the values to reflect
+                                                        the needed coverage limits. If such a change is made, the requestor
+                                                        will be notified.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="center row">
+
+                                                <div class="input-field col s6">
+                                                    <button class="btn waves-effect waves-light center submit" type="submit" name="action">Submit
+                                                </button>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <button class="btn waves-effect waves-light center submit" type="button" name="action">Reset
+                                                </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <!--end container-->
+
+    </section>
+    <!-- END CONTENT -->
+</template>

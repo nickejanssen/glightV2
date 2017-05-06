@@ -1,0 +1,145 @@
+<template name = "autoLiability">
+	<!-- <div class="content"> -->
+
+	      <!-- Basic layout-->
+	      <form class="form-horizontal" id="autoLiability">
+	        <div class="panel panel-flat">
+	          <div class="panel-heading">
+
+	           <!-- <div class="panel-body"> -->
+	              <!-- <fieldset class="content-group"> -->
+
+	                <div class="form-group">
+	                  <label class="control-label col-lg-3">Policy Type</label>
+	                  <div class="col-lg-9">
+	                    <select class="select error validate" id="covType" name="covType">
+												<option value="" disabled selected>Policy Type</option>
+												<option value="Any Auto">Any Auto</option>
+												<option value="Hired/Non-Owned">Hired/Non-Owned</option>
+												<option value="Hired">Hired</option>
+												<option value="Non-Owned">Non-Owned</option>
+												<option value="All Owned">All Owned</option>
+												<option value="Scheduled Autos">Scheduled Autos</option>
+												<option value="Other">Other</option>
+	                       </select>
+	                </div>
+	                </div>
+									<div class="form-group">
+	                  <label class="control-label col-lg-3">Limit Types</label>
+	                  <div class="col-lg-9">
+	                    <select multiple class="select error validate" id="limType" name="limType[]">
+												<option value="" disabled>Limits Types</option>
+												<option value="Combined Single">Combined Single</option>
+												<option value="Split">Split</option>
+	                       </select>
+	                </div>
+	                </div>
+									<div class="form-group">
+	                  <label class="control-label col-lg-3">Combined Single Limits</label>
+	                  <div class="col-lg-9">
+	                    <select class="select error validate" id="combLim" name="combLim">
+												<option value="" disabled selected>Combined Single Limits</option>
+												<option value="$1,000,000">$1,000,000</option>
+												<option value="$100,000">$100,000</option>
+												<option value="$300,000">$300,000</option>
+												<option value="$500,000">$500,000</option>
+												<option value="$750,000">$750,000</option>
+												<option value="Other">Other</option>
+												<option value="N/A">N/A</option>
+	                       </select>
+	                </div>
+	                </div>
+									<div class="form-group">
+	                  <label class="control-label col-lg-3">Medical Payments</label>
+	                  <div class="col-lg-9">
+	                    <select class="select error validate" id="medPay" name="medPay">
+												<option value="" disabled selected>Medical Payments</option>
+					              <option value="$5,000">$5,000</option>
+					              <option value="$250">$250</option>
+					              <option value="$500">$500</option>
+					              <option value="$1,000">$1,000</option>
+					              <option value="$2,500">$2,500</option>
+					              <option value="$10,000">$10,000</option>
+					              <option value="Other">Other</option>
+					              <option value="N/A">N/A</option>
+	                       </select>
+	                </div>
+	                </div>
+									<fieldset class="content-group">
+									<legend><b>Split Limits</b></legend>
+														<div class="form-group">
+															<label class="control-label col-lg-3">Per Person</label>
+														<div class="col-lg-9">
+															<select class="select error validate" id="perPer" name="perPer">
+																<option value="" disabled selected>Per Person</option>
+																<option value="$25,000">$25,000</option>
+																<option value="$50,000">$50,000</option>
+																<option value="$100,000">$100,000</option>
+																<option value="$250,000<">$250,000</option>
+																<option value="Other">Other</option>
+																<option value="N/A">N/A</option>
+																 </select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-lg-3">Per Accident</label>
+												<div class="col-lg-9">
+													<select class="select error validate" id="perAcc" name="perAcc">
+														<option value="" disabled selected>Per Accident</option>
+														<option value="$50,000">$50,000</option>
+														<option value="$100,000">$100,000</option>
+														<option value="$200,000">$200,000</option>
+														<option value="$500,000">$500,000</option>
+														<option value="Other">Other</option>
+														<option value="N/A">N/A</option>
+														 </select>
+											</div>
+										</div>
+
+												<div class="form-group">
+				                  <label class="control-label col-lg-3">Damage to Rented Premise</label>
+												<div class="col-lg-9">
+													<select class="select error validate" id="dmgPremise" name="dmgPremise">
+														<option value="" disabled selected>Damage to Rented Premise</option>
+														<option value=">$100,000">$100,000</option>
+														<option value="$50,000">$50,000</option>
+														<option value="$300,000">$300,000</option>
+														<option value="$500,000">$500,000</option>
+														<option value="$1,000,000">$1,000,000</option>
+														<option value="Excluded">Excluded</option>
+														<option value="Other">Other</option>
+														 </select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-lg-3">Medical Payments</label>
+										<div class="col-lg-9">
+											<select class="select error validate browser-default" id="medPay" name="medPay">
+												<option value="" disabled selected>Medical Payments</option>
+												<option value="$5,000">$5,000</option>
+												<option value="$1,000">$1,000</option>
+												<option value="$2,000">$2,000</option>
+												<option value="$10,000">$10,000</option>
+												<option value="Excluded">Excluded</option>
+												<option value="Other">Other</option>
+												 </select>
+									</div>
+								</div>
+								<div class="form-group">
+                  <label class="control-label col-lg-3">Notes & Endorsements</label>
+                  <div class="col-lg-9">
+                  <textarea id="message5" class="form-control" name="notes" length="150"></textarea>
+                </div>
+                </div>
+								</fieldset>
+
+	              <!-- </fieldset> -->
+	          <!-- </div> -->
+	        </div>
+	          </div>
+
+	      </form>
+	      <!-- /basic layout -->
+
+	<!-- </div> -->
+</template>

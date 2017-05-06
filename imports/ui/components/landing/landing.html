@@ -1,0 +1,460 @@
+<template name="landing">
+
+<!-- Pre Loader
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+ -->
+    <!--Header-->
+    <header id="header" class="header">
+        <div class="container">
+            <h1 class="logo">
+                <a class="scrollto" href="#main">
+                    <span class="logo-icon-wrapper"><img class="logo-icon" src="traffic.png" alt="icon"></span>
+                    <span class="text"><span class="">Green</span>Light</span></a>
+            </h1><!--//logo-->
+            <nav class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button><!--//nav-toggle-->
+                </div><!--//navbar-header-->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active nav-item"><a class="scrollto" href="#main">Home</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#explain">Explain Certificates</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#how">How it works</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#features">Features</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#pricing">Pricing</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#contact">Contact</a></li>
+                        {{#if currentUser}}
+							<li class="nav-item"><a class="scrollto" href="/dash">Dashboard</a></li>
+						{{else}}
+							<li class="nav-item"><a href="/login">Login</a></li>
+						{{/if}}
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->
+        </div><!--//container-->
+    </header>
+    <!--/Header-->
+
+    <!--Main-->
+    <div class="main" id="main">
+        <!--Hero-->
+        <div class="hero">
+            <div class="hero-text">
+                <b>A Certificate of insurance Management System</b>
+            </div>
+            <a href="/register.html" class="btn btn-primary btn-large" style="margin-top:0px;">Sign Up</a>
+            <!--<span class='pulse-button'>Learn More</span>-->
+        </div>
+        <!--/Hero-->
+
+        <!--About-->
+        <div id="about" class="about-section">
+            <div class="container text-center">
+                <h2 class="section-title">Is your business collecting certificates of insurance?</h2>
+
+                <h2 class="intro">Greenlight is the <b>low cost online option</b> for you. We help you take control of this very important process.</h2>
+                <div class="items-wrapper row">
+                    <div class="item col-sm-4 col-xs-12">
+                        <div class="item-inner">
+                            <div class="figure-holder">
+                                <img class="figure-image" src="figure-1.png" alt="image">
+                            </div><!--//figure-holder-->
+                            <h3 class="item-title">Lower the cost of certificate management</h3>
+                            <div class="item-desc">
+                            Be more efficient, more acurate, and more effective with the help of Greenlight. The greatest cost you may incure could come
+                            from a failure in your documentation system. Our stoplight-based system lets you know who is in compliance by just
+                            glancing at your list. Red means stop, yellow is your warning and green means get to work.
+                            </div><!--//item-desc-->
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                    <div class="item col-sm-4 col-xs-12">
+                        <div class="item-inner">
+                            <div class="figure-holder">
+                                <img class="figure-image" src="figure-3.png" alt="image">
+                            </div><!--//figure-holder-->
+                            <h3 class="item-title">Access your information anywhere</h3>
+                            <div class="item-desc">
+                            Take your certificate file and put it online for easy access. Navigate with ease with our large intuitive buttons. Instant notifications
+                            let you know the status of important documents. It is easy to opperate from a laptop, tablet or phone so even on the job your ready to get to work.
+                            </div><!--//item-desc-->
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                    <div class="item col-sm-4 col-xs-12">
+                        <div class="item-inner">
+                            <div class="figure-holder">
+                                <img class="figure-image" src="figure-2.png" alt="image">
+                            </div><!--//figure-holder-->
+                            <h3 class="item-title">Simplify the process <br/> and insurance terms</h3>
+                            <div class="item-desc">
+                            Greenlight makes the important information standout so that anyone on your staff can manage this process. When something is wrong, it stands out in red
+                            making it easy to find the changes. Autofilled forms make it easy to update and confirm coverage. Focus less on redundant mangement, and focus more on your business.
+                            </div><!--//item-desc-->
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                </div><!--//items-wrapper-->
+            </div><!--//container-->
+        </div>
+        <!--/About-->
+    </div>
+    <!--/Main-->
+
+    <br/>
+    <!--Explain Certificates-->
+    <div id="explain" class="question-section">
+        <div class="container">
+            <h2 class="section-title text-center">Questions about certificates?</h2>
+
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="card accordion-panel">
+                    <div class="card-block accordion-heading" role="tab" id="headingOne">
+                      <h3 class="card-title accordion-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          What is a certificate of insurance?
+                        </a>
+                      </h3>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="accordion-content">
+                            <div class="divider"></div>
+                            <p class="lead">
+                            "A certificate of insurance is a document issued by or on behalf of an insurance company to a third party.
+                            The most common type of certificate is that provided for informational purposes of the existence and amount
+                            of insurance issued to the named insured.”
+                            <br/>
+                            - (Allan D. Windt, Insurance Claims and Disputes, 4th ed., 2001)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card accordion-panel">
+                    <div class="card-block accordion-heading" role="tab" id="headingTwo">
+                      <h3 class="card-title accordion-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                          Where do certificates come from?
+                        </a>
+                      </h3>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="accordion-content">
+                            <div class="divider"></div>
+                            <p class="lead">
+                            Certificates should always come directly from the insurance agent or the insurance carrier with a current date,
+                            your information correctly listed including you name, address and contact number to reduce the potential for fraud.
+                            The certificate should include a signature from the agent who issued the document. Taking these steps will help
+                            insure that the insurance carrier or the agent are held responsible when a loss occurs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card accordion-panel">
+                    <div class="card-block accordion-heading" role="tab" id="headingThree">
+                      <h3 class="card-title accordion-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Why would I need a certificate?
+                        </a>
+                      </h3>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="accordion-content">
+                            <div class="divider"></div>
+                            <p class="lead nlist">
+                                - To verify someone actually is insured to limit your exposure to loss.
+                                <br/>
+                                - To fullfil a legal requirement found in a contract
+                                <br/>
+                                - To fullfil an obligation in your insurance contract
+                                <br/>
+                                <br/>
+                                These documents are the current standard for verification.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card accordion-panel">
+                    <div class="card-block accordion-heading" role="tab" id="heading4">
+                      <h3 class="card-title accordion-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                          What are the consequences of not collecting certificates?
+                        </a>
+                      </h3>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                        <div class="accordion-content">
+                            <div class="divider"></div>
+                            <p class="lead">
+                            You risk incuring liability and paying claims you shouldn't be responsible for. You may owe additional premium to your
+                            own insurance carrier for uninsured vendors. Failure to collect certificates may make it impossible to secure the proper
+                            coverage or may invalidate coverage in certain circumstances.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card accordion-panel">
+                    <div class="card-block accordion-heading" role="tab" id="heading5">
+                      <h3 class="card-title accordion-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                          Who should collect certificates??
+                        </a>
+                      </h3>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                        <div class="accordion-content">
+                            <div class="divider"></div>
+                            <p class="lead nlist">
+                                - General Contractors, from their subcontractors and vendors.
+                                <br/>
+                                - Property owners and managers, from their tenants, subcontractors and vendors.
+                                <br/>
+                                - Lenders, from their bowers.
+                                <br/>
+                                - Manufactuers from their suppliers.
+                                <br/>
+                                - Business owners from their service providers.
+                                <br/>
+                                - Homeowners from the people who work on their homes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--//container-->
+    </div>
+    <!--//Explain Certificates-->
+
+    <!--How it works-->
+    <div id="how" class="team-section">
+        <div class="container">
+            <h2 class="section-title">How does it work?</h2>
+            <p class="intro"></p>
+            <div class="story">
+            </div>
+
+            <ul class="timeline">
+                <li>
+                <div class="timeline-badge success"><i class="glyphicon glyphicon-pencil"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                    <h4 class="timeline-title">Set up the coverage terms and limits of the certificate you are tracking.</h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Greenlight provides easy prefilled drop down boxes for each coverage type. There is a custom option
+                            so you can track any type of document. The best in class work with their insurance agent to determine
+                            the limit and they review their contract requirements with their attorney.
+                        </p>
+                    </div>
+                </div>
+                </li>
+                <li class="timeline-inverted">
+                <div class="timeline-badge warning"><i class="glyphicon glyphicon-copy"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                    <h4 class="timeline-title">Review your received coverage data.</h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Review the data you recieve but with our advantage anything that is changed shows up in bright red.
+                            These notifications come no mater what the change.
+                        </p>
+                    </div>
+                </div>
+                </li>
+                <li>
+                <div class="timeline-badge info"><i class="glyphicon glyphicon-question-sign"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title">Accept or Reject the certificate</h4>
+                    </div>
+                </div>
+                </li>
+                <li class="timeline-inverted end">
+                <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                    <h4 class="timeline-title">Review your other certificates.</h4>
+                    </div>
+                    <div class="timeline-body">
+                        <p>See everything you need to know in seconds. Red for invalid, Yellow warning you the certificate is about to
+                            expire or Green which means your good to go.
+                        </p>
+                    </div>
+                </div>
+                </li>
+            </ul>
+
+            </div><!--//members-wrapper-->
+        </div>
+    <!--//How it works-->
+
+    <!--Features-->
+    <div id="features" class="feature-section">
+        <div class="container text-center">
+            <h2 class="section-title text-center">Features</h2>
+            <p class="intro">GreenLight gives you the tools to spend less time managing certificates, and more time running your business.</p>
+            <br/>
+            <!--Row 1-->
+            <div class="row">
+                <div class="col-sm-4">
+                    <i class="fa fa-clipboard features-icon"></i>
+                    <h3 class="feature-title">Track Unlimited Documents</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>For each company you many need to track a dozen documents. The file stays red until all the required documents
+                                are recieved and confirmed. Certificates of insurance, contracts, government records or anything else you need.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+
+                <div class="col-sm-4">
+                    <i class="fa fa-envelope-o features-icon" aria-hidden="true"></i>
+                    <h3 class="feature-title">Email within the system</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>Send requests from within the Greenlight system and greenlight will store a record and update the status of the
+                                file until the request is filled.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+
+                <div class="col-sm-4">
+                    <i class="fa fa-balance-scale features-icon"></i>
+                    <h3 class="feature-title">Recieved Vs. Requested Docs.</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>The Greelight System compares what you requested to what is recieved so $1000000 and $100000 dont get confused.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+            </div>
+            <!--/Row 1-->
+
+            <!--Row 2-->
+            <div class="row">
+                <div class="col-sm-4">
+                    <i class="fa fa-book features-icon"></i>
+                    <h3 class="feature-title">Audit Reports</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>Produce all the documents within a specified time frame in an easy to distribute file for an audit.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+
+                <div class="col-sm-4">
+                    <i class="fa fa-archive features-icon"></i>
+                    <h3 class="feature-title">Unlimited Storage</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>Unlimited Storage of your documents available for download anytime.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+
+                <div class="col-sm-4">
+                    <i class="fa fa-thumbs-up features-icon"></i>
+                    <h3 class="feature-title">Easy to Use</h3>
+                    <div class="quote-holder">
+                        <div class="quote">
+                            <p>Intuitive user interface with documentation to help you answer any questions you have.
+                            </p>
+                        </div>
+                    </div><!--//quote-holder-->
+                </div>
+            </div>
+            <!--/Row 2-->
+
+        </div><!--//container-->
+    </div><!--//features-->
+
+    <!--Pricing-->
+    <div id="pricing" class="pricing-section">
+        <div class="container text-center">
+            <h2 class="section-title">Pricing</h2>
+            <div class="intro">
+                <h4>Have Greenlight do your <b>initional upload</b> for only $5 per company.</h4>
+                <h4>Have Greenlight <b>enforce your requirements</b> for only $5 per company per month.</h4>
+            </div>
+            <div class="pricing-wrapper">
+                <div class="item item-1 col-md-4 col-sm-4 col-xs-12">
+                    <div class="item-inner">
+                        <h3 class="item-heading">Starter</h3>
+                        <div class="price-figure">
+                            <span class="number">FREE</span>
+                        </div><!--//price-figure-->
+                        <div class="price-desc">
+                            <p>Management of up to 5 Companies</p>
+                        </div><!--//price-desc-->
+                        <a class="btn btn-cta" href="/register.html">Sign Up</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+
+                <div class="item item-2 col-md-4 col-sm-4 col-xs-12">
+                    <div class="item-inner">
+                        <h3 class="item-heading">Standard</h3>
+                        <div class="price-figure">
+                            <span class="currency">$</span><span class="number">10</span>
+                        </div><!--//price-figure-->
+                        <div class="price-desc">
+                            <p>Management of up to 30 companies</p>
+                        </div><!--//price-desc-->
+                        <a class="btn btn-cta" href="./register">Sign Up</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+
+                <div class="item item-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="item-inner">
+                        <h3 class="item-heading">Prime</h3>
+                        <div class="price-figure">
+                            <span class="currency">$</span><span class="number">30</span>
+                        </div><!--//price-figure-->
+                        <div class="price-desc">
+                            <p>Management of up to 100 companies</p>
+                        </div><!--//price-desc-->
+                        <a class="btn btn-cta" href="./register">Sign Up</a>
+                    </div><!--//item-inner-->
+                </div><!--//item-->
+            </div><!--//pricing-wrapper-->
+        </div><!--//container-->
+    </div>
+    <!--//Pricing-->
+
+    <!--Contact-->
+    <div id="contact" class="contact-section">
+        <div class="container text-center">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.</p>
+
+            </div>
+            <a class="btn btn-cta btn-primary" href="https://wrapbootstrap.com/theme/admin-appkit-admin-theme-angularjs-WB051SCJ1?ref=3wm">Get in Touch</a>
+
+        </div><!--//container-->
+    </div>
+    <!--//Contact-->
+
+    <!--Footer-->
+    <footer class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">GreenLight Certificate Management</small>
+        </div><!--//container-->
+    </footer>
+    <!--//Footer-->
+</template>

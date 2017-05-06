@@ -1,0 +1,81 @@
+<template name="login">
+  <div class="page-container">
+
+  <!-- Page content -->
+  <div class="page-content">
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+  <div class="content">
+
+  					<!-- Advanced login -->
+  					<form class="login-form" id="login-form"  autocomplete="false" >
+  						<div class="panel panel-body login-form">
+  							<div class="text-center">
+                  <img src="/login-logo.png" alt="" class="square responsive-img valign profile-image-login">
+                  <p class="center login-form-text"> GreenLight Online Document Management</p>
+  								<!-- <img src="login-logo.png" alt="" class="square responsive-img valign profile-image-login">
+  								<h5 class="content-group">GreenLight Online Document Management</h5> -->
+  							</div>
+                {{#if errorMessage}}
+                  <div class="alert alert-warning err col s12">
+                    {{errorMessage}}
+                  </div>
+                {{/if}}
+
+  							<div class="form-group has-feedback has-feedback-left">
+  								<input type="text" id="username" name="username" class="form-control" placeholder="Username">
+  								<div class="form-control-feedback">
+  									<i class="icon-user text-muted"></i>
+  								</div>
+  							</div>
+
+  							<div class="form-group has-feedback has-feedback-left">
+  								<input type="password" id="password" name="password" class="form-control" placeholder="Password">
+  								<div class="form-control-feedback">
+  									<i class="icon-lock2 text-muted"></i>
+  								</div>
+  							</div>
+
+  							<div class="form-group login-options">
+  								<div class="row">
+  									<div class="col-sm-6">
+  										<!-- <label class="checkbox-inline">
+  											<input type="checkbox" class="styled" checked="checked">
+  											Remember
+  										</label> -->
+  									</div>
+
+  									<div class="col-sm-6 text-right">
+  										<a href="\forgot-password">Forgot password?</a>
+  									</div>
+  								</div>
+  							</div>
+
+  							<div class="form-group">
+  								<button type="submit" data-loading-text="Please wait..." class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
+  							</div>
+
+  							<div class="content-divider text-muted form-group"><span>or sign in with</span></div>
+  							<ul class="list-inline form-group list-inline-condensed text-center">
+                  <button id="login-with-facebook" type="button" class="loginBtn loginBtn--facebook">
+                Login with Facebook
+            </button>
+  								<!-- <li><a href="#" class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded"><i class="icon-facebook"></i></a></li> -->
+  								<!-- <li><a href="#" class="btn border-pink-300 text-pink-300 btn-flat btn-icon btn-rounded"><i class="icon-dribbble3"></i></a></li> -->
+  								<!-- <li><a href="#" class="btn border-slate-600 text-slate-600 btn-flat btn-icon btn-rounded"><i class="icon-github"></i></a></li> -->
+  								<!-- <li><a href="#" class="btn border-info text-info btn-flat btn-icon btn-rounded"><i class="icon-twitter"></i></a></li> -->
+  							</ul>
+
+  							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+  							<a href="\user-register" class="btn btn-success btn-block content-group">Sign up</a>
+  							<!-- <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span> -->
+  						</div>
+  					</form>
+  					<!-- /advanced login -->
+
+          </div>
+        </div>
+      </div>
+  </div>
+  </template>

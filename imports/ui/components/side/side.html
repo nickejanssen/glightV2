@@ -1,0 +1,49 @@
+<template name="side">
+<!-- START LEFT SIDEBAR NAV-->
+            <aside id="left-sidebar-nav">
+                <ul id="slide-out" class="side-nav fixed leftside-navigation blue-grey darken-3">
+                <li class="user-details blue-grey darken-3">
+                <div class="row">
+                    <div class="col col s4 m4 l4">
+                        <img src="/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                    </div>
+                    <div class="col col s8 m8 l8">
+                        {{>profile_menu}}
+                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">
+                            <div class="uname" style="color:#fff !important;">{{LoginUserName}}</div>
+                            <i class="mdi-navigation-arrow-drop-down right ddarrow" style="color:#fff !important;"></i>
+                        </a>
+                        <p class="user-roal">{{Userrole}}</p>
+                    </div>
+                </div>
+                </li>
+                <li class="li-hover"><div class="divider"></div></li>
+                <li class="li-hover"><p class="ultra-small margin more-text">MAIN</p></li>
+                <li class="bold"><a href="/dash" class="waves-effect waves-green"><i class="mdi-action-dashboard"></i>Active Companies</a>
+                </li>
+                <li class="bold"><a href="/arch" class="waves-effect waves-green"><i class="mdi-action-dashboard"></i>Archived Companies</a>
+                </li>
+                <li class="bold"><a href="/add-co" class="waves-effect waves-green"><i class="mdi-content-add-box"></i> Add Company </a>
+                </li>
+                <!--
+                <li class="bold"><a href="/add-agent" class="waves-effect waves-green"><i class="mdi-content-add-box"></i> Add Agent </a>
+                </li>
+                <li class="bold"><a href="/upload_cert" class="waves-effect waves-green"><i class="mdi-file-cloud-upload"></i> Upload Certificate</a>
+                </li>
+                -->
+                <li class="bold"><a href="/req-cert" class="waves-effect waves-green"><i class="mdi-content-mail"></i> Request Certificate</a>
+                </li>
+                <li class="bold"><a href="/audit" class="waves-effect waves-green"><i class="mdi-editor-insert-invitation"></i> Audit</a>
+                </li>
+                <br/>
+                <li class="li-hover"><div class="divider"></div></li>
+                <!--<li class="li-hover"><p class="ultra-small margin more-text">SUPPORT</p></li>
+                <li><a href="/contact" class="waves-effect waves-green"><i class="mdi-communication-live-help"></i>Help</a>
+                </li>
+                <li><a href="/contact" class="waves-effect waves-green"><i class="mdi-communication-chat"></i>Contact</a>
+                </li>-->
+            </ul>
+                <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-green hide-on-large-only light-green"><i class="mdi-navigation-menu"></i></a>
+            </aside>
+            <!-- END LEFT SIDEBAR NAV-->
+</template>

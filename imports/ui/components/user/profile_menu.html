@@ -1,0 +1,23 @@
+<template name="profile_menu">
+    <ul id="profile-dropdown" class="dropdown-content">
+        <li><a href="/profile"><i class="mdi-action-face-unlock"></i> Profile</a>
+        </li>
+        <li><a href="#"><i class="mdi-action-settings"></i> Settings</a></li>
+        <li><a href="/help"><i class="mdi-communication-live-help"></i> Help</a></li>
+
+        <li class="divider"></li>
+
+        {{#if currentUser}}
+            <li>
+                <a href="{{pathFor route='login'}}" class="logout" id="logout"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+            </li>
+        {{else}}
+            <li>
+                <a href="{{pathFor route='user-register'}}">Register</a>
+            </li>
+            <li>
+                <a href="{{pathFor route='login'}}">Login</a>
+            </li>
+        {{/if}}
+    </ul>
+</template>

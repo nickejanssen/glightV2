@@ -1,0 +1,96 @@
+<template name="add_agent">
+    <!-- START ADD COMPANY -->
+      <section id="content">
+        <!--breadcrumbs start-->
+        <div id="breadcrumbs-wrapper" class=" grey lighten-3">
+            <!-- Search for small screen -->
+            <div class="header-search-wrapper grey hide-on-large-only">
+                <i class="mdi-action-search active"></i>
+                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+            </div>
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <h5 class="breadcrumbs-title">Add Agent</h5>
+                <ol class="breadcrumbs"></ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--breadcrumbs end-->
+        <!--start container-->
+        <div class="container">
+          <!--
+              jQuery Validation Plugin
+          -->
+          <!--jqueryvalidation-->
+          <div id="jqueryvalidation" class="section">
+            <div class="row">
+              <div class="col s12 m12 l12">
+                  <div class="col s12 m12 l12">
+                        <div class="card-panel">
+                            <div class="row">
+                                <form class="formValidate" id="formAddAgent"  method="POST" autocomplete="false">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <label for="uname">Company Name*</label>
+                                            <input id="uname" name="Cname" required type="text" data-error=".errorTxt1">
+                                            <div class="errorTxt1"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="curl">First Name *</label>
+                                            <input id="curl" type="text" name="cfName" required data-error=".errorTxt5">
+                                            <div class="errorTxt5"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <label for="curl">Last Name *</label>
+                                            <input id="curl" type="text" name="clName" required data-error=".errorTxt5">
+                                            <div class="errorTxt5"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                          <label for="cemail">Primary E-Mail *</label>
+                                          <input id="cemail" type="email" required name="cemail" data-error=".errorTxt2">
+                                          <div class="errorTxt2"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                          <label for="cphone">Phone *</label>
+                                          <input id="cphone" type="text" required name="cphone" data-error=".errorTxt2">
+                                          <div class="errorTxt2"></div>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <button class="btn waves-effect waves-light right submit" type="submit" name="action">Save
+                                              <i class="mdi-content-send right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!--
+                            <div class="row">
+                                <table class="table">
+
+                                    {{#with AllCompanies}}
+                                        {{#each this}}
+                                        <tr>
+                                            <td>{{this.companyName}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    {{/with}}
+
+                                </table>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END ROW-->
+          </div>
+          <!--END JQUERY VALIDATION-->
+        </div>
+        <!--end container-->
+      </section>
+    <!-- END ADD COMPANY -->
+</template>
+
