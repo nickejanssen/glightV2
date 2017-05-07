@@ -11,6 +11,14 @@
 	text-align: center;
 	position: relative;
 }
+
+#register-form {
+	width: 500px;
+	margin: auto;
+	text-align: center;
+	position: relative;
+}
+
 #msform fieldset {
 	background: white;
 	border: 0 none;
@@ -121,18 +129,42 @@
 }
 
 .btn {
-	background-color: #8bc34a;
+	background-color: #27AE60;
 }
 
 .btn-small {
-    height: 24px;
-    line-height: 24px;
+		background-color: #27AE60;
+    height: 36px;
+    line-height: 36px;
 		color: #ffffff !important;
 		padding: 1px 5px;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.9;
     border-radius: 3px;
+}
 
+.btn-login {
+		background-color: #27AE60;
+		color: #ffffff !important;
+    border-radius: 3px;
+		display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 16px;
+    line-height: 1.5384616;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .bdivider{

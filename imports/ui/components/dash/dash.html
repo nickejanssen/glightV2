@@ -50,10 +50,7 @@
                                 <div class="content-group">
                                     <div class="panel-body bg-indigo-400 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
                                         <div class="content-group-sm">
-                                            <h6 class="text-semibold no-margin-bottom">
-                                                Nicolas Janssen
-                                            </h6>
-
+                                            <span class="media-heading text-semibold">{{LoginUserName}}</span>
                                             <span class="display-block">General Contractor</span>
                                         </div>
 
@@ -69,8 +66,6 @@
                                             <li><a href="#schedule" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
                                             <li><a href="#messages" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
                                             <li><a href="#orders" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
-                                            <li class="navigation-divider"></li>
-                                            <li><a href="login_advanced.html"><i class="icon-switch2"></i> Log out</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,25 +181,27 @@
                                             </div>
                                         </div>
                                         <div class="panel-body">
+                                            {{#with currentUser}}
                                             <div class="form-group mt-5">
                                                 <label class="text-semibold">Full name:</label>
-                                                <span class="pull-right-sm">Victoria Anna Davidson</span>
+                                                <span class="pull-right-sm">{{LoginUserName}}</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="text-semibold">Company Name:</label>
+                                                <span class="pull-right-sm">{{this.profile.cname}}</span>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="text-semibold">Phone number:</label>
-                                                <span class="pull-right-sm">+3630 8911837</span>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="text-semibold">Corporate Email:</label>
-                                                <span class="pull-right-sm"><a href="#">corporate@domain.com</a></span>
+                                                <span class="bfh-phone pull-right-sm" data-format="+1 (ddd) ddd-dddd" data-number="{{this.profile.phone}}">{{this.profile.phone}}</span>
                                             </div>
 
                                             <div class="form-group no-margin-bottom">
                                                 <label class="text-semibold">Personal Email:</label>
-                                                <span class="pull-right-sm"><a href="#">personal@domain.com</a></span>
+                                                <span class="pull-right-sm"><a href="{{this.profile.email}}">{{this.profile.email}}</a></span>
                                             </div>
+                                            {{/with}}
                                         </div>
                                     </div>
                                     <!-- /Profile Info -->
@@ -261,11 +258,10 @@
                                                 </ul>
                                             </div>
                                         </div>
-
                                         {{>companyTable}}
                                     </div>
                                 </div>
-
+                                <!-- /Company Overview Tab -->
 
                                 <!-- Policy Overview Tab -->
                                 <div class="tab-pane fade" id="messages">
@@ -386,15 +382,16 @@
 
                                         <div class="panel-body">
                                             <form action="#">
+                                                {{#with currentUser}}
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Username</label>
-                                                            <input type="text" value="Eugene" class="form-control">
+                                                            <label>First Name</label>
+                                                            <input type="text" value="{{this.profile.fname}}" class="form-control">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label>Full name</label>
-                                                            <input type="text" value="Kopyov" class="form-control">
+                                                            <label>Last Name</label>
+                                                            <input type="text" value="{{this.profile.lname}}" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -403,11 +400,11 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label>Email</label>
-                                                            <input type="text" readonly="readonly" value="eugene@kopyov.com" class="form-control">
+                                                            <input type="text" readonly="readonly" value="{{this.profile.email}}" class="form-control">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>Phone #</label>
-                                                            <input type="text" value="+99-99-9999-9999" class="form-control">
+                                                            <input type="text" value="{{this.profile.phone}}" class="form-control input-medium" data-country="US">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -453,8 +450,9 @@
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                                                    <button type="submit" class="btn-small btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
                                                 </div>
+                                                {{/with}}
                                             </form>
                                         </div>
                                     </div>
@@ -475,11 +473,12 @@
 
                                         <div class="panel-body">
                                             <form action="#">
+                                                {{#with currentUser}}
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            <label>Username</label>
-                                                            <input type="text" value="Kopyov" readonly="readonly" class="form-control">
+                                                            <label>Email</label>
+                                                            <input type="email" value="{{this.profile.email}}" readonly="readonly" class="form-control">
                                                         </div>
 
                                                         <div class="col-md-6">
@@ -504,8 +503,9 @@
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                                                    <button type="submit" class="btn-small btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
                                                 </div>
+                                                {{/with}}
                                             </form>
                                         </div>
                                     </div><!-- /account settings -->
