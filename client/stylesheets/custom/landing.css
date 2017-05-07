@@ -229,10 +229,11 @@ a.btn-cta {
 }
 /* ====== Footer ====== */
 .footer {
-  background: #26282c;
+  background: #263238;
   color: rgba(255, 255, 255, 0.6);
   padding: 15px 0;
   position: relative !important;
+  bottom: 0px !important;
 }
 .footer a {
   color: #75c181;
