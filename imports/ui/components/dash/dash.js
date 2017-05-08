@@ -26,7 +26,7 @@ Template.dash.events({
     let profile = {};
 
     //Basic Profile Info
-    //profile.cname = event.currentTarget.cname.value.trim();
+    profile.cname = event.currentTarget.cname.value.trim();
     profile.fname = event.currentTarget.fname.value.trim();
     profile.lname = event.currentTarget.lname.value.trim();
     profile.phone = event.currentTarget.phone.value.trim();

@@ -1,42 +1,43 @@
 <template name="add_co">
   <!-- Page header -->
   <div class="page-header page-header-default">
-    <div class="page-header-content">
-      <div class="page-title">
-        <h4><span class="text-semibold">Add Company</span></h4>
+      <div class="page-header-content">
+          <div class="page-title">
+              <h4><span class="text-semibold">Add Company</span></h4>
+          </div>
       </div>
-    </div>
 
-    <!-- <div class="breadcrumb-line">
-      <ul class="breadcrumb">
-        <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-      </ul>
+      <div class="breadcrumb-line">
+          <ol class="breadcrumb">
+              <li><a href="/dash"><i class="icon-home2 position-left"></i> Home</a></li>
+              <li class="active">Add Company</li>
+          </ol>
 
-      <ul class="breadcrumb-elements">
-        <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-gear position-left"></i>
-            Settings
-            <span class="caret"></span>
-          </a>
+          <ul class="breadcrumb-elements">
+              <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="icon-gear position-left"></i>
+                      Settings
+                      <span class="caret"></span>
+                  </a>
 
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#"><i class="icon-user-lock"></i> Profile Settings</a></li>
-            <li><a href="#"><i class="icon-statistics"></i> Account Settings</a></li>
-            <li><a href="#"><i class="icon-accessibility"></i> Security</a></li>
-            <li class="divider"></li>
-            <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#"><i class="icon-user-lock"></i> Profile Settings</a></li>
+                      <li><a href="#"><i class="icon-statistics"></i> Account Settings</a></li>
+                      <li><a href="#"><i class="icon-accessibility"></i> Security</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
+                  </ul>
+              </li>
           </ul>
-        </li>
-      </ul>
-    </div> -->
+      </div>
   </div>
-  <!-- /page header -->
+  <!-- /Page header -->
   <div class="content">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <!-- Basic layout-->
+        <!-- Add Co Form-->
         <form class="form-horizontal formValidate" id="formAddCompany"  method="POST" autocomplete="false">
           <div class="panel panel-flat">
             <div class="panel-heading">
@@ -46,33 +47,33 @@
                 <fieldset class="content-group">
 
                  <div class="form-group">
-                    <label class="control-label col-lg-3">Company Name*</label>
-                    <div class="col-lg-9">
+                    <label class="control-label col-md-4">Company Name</label>
+                    <div class="col-md-8">
                         <input id="uname" name="Cname" required class="form-control" placeholder="Company Name" type="text" data-error=".errorTxt1">
                     </div>
                   </div>
 
                  <div class="form-group">
-                    <label class="control-label col-lg-3">First Name *</label>
-                    <div class="col-lg-9">
+                    <label class="control-label col-md-4">First Name</label>
+                    <div class="col-md-8">
                       <input id="curl" type="text" name="cfName"  class="form-control" placeholder="First Name" required data-error=".errorTxt5">
                   </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Last Name *</label>
-                    <div class="col-lg-9">
+                    <label class="control-label col-md-4">Last Name</label>
+                    <div class="col-md-8">
                     <input id="curl" type="text" name="clName" class="form-control" placeholder="Last Name" required data-error=".errorTxt5">
                   </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Primary E-Mail *</label>
-                    <div class="col-lg-9">
+                    <label class="control-label col-md-4">E-Mail</label>
+                    <div class="col-md-8">
                     <input id="cemail" type="email" required class="form-control" placeholder="Primary Name" name="cemail" data-error=".errorTxt2">
                   </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-lg-3">Phone *</label>
-                    <div class="col-lg-9">
+                    <label class="control-label col-md-4">Phone</label>
+                    <div class="col-md-8">
                     <input id="cphone" type="text" required class="form-control" placeholder="Phone" name="cphone" data-error=".errorTxt2">
                   </div>
                   </div>
@@ -80,15 +81,14 @@
                 </fieldset>
                 <br/>
 
-               <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn waves-effect waves-light right submit" name="action">Save<i class="icon-arrow-right14 position-right"></i></button>
+               <div class="text-right">
+                  <button type="submit" class="btn-small btn-primary submit" name="action">Save<i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </div>
           </div>
             </div>
         </form>
-        <!-- /basic layout -->
-
+        <!-- /Add Co Form -->
      </div>
     </div>
 </div>

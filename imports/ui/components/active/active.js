@@ -22,3 +22,19 @@ Template.archCompanyTable.helpers({
     return {userId:Meteor.userId(), archived: false};
   }
 });
+
+Template.dash.events({
+  /*'click #settingsTab': function (event, template) {
+    // Javascript to enable link to tab
+    var hash = document.location.hash;
+    if (hash) {
+        $('.navigation a[href='+hash+']').tab('show');
+    }
+
+    // Change hash for page-reload
+    $('.navigation a').on('shown.bs.tab', function (e) {
+        window.location.hash = e.target.hash;
+    });
+  }*/
+
+});

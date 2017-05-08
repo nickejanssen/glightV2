@@ -15,31 +15,18 @@
 
                     <div class="breadcrumb-line">
                         <ul class="breadcrumb">
-                            <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
+                            <li><a href="/dash"><i class="icon-home2 position-left"></i> Home</a></li>
                         </ul>
 
                         <ul class="breadcrumb-elements">
                             <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="icon-gear position-left"></i>
-                                    Settings
-                                    <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#"><i class="icon-user-lock"></i> Profile Settings</a></li>
-                                    <li><a href="#"><i class="icon-statistics"></i> Account Settings</a></li>
-                                    <li><a href="#"><i class="icon-accessibility"></i> Security</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#"><i class="icon-gear"></i> All settings</a></li>
-                                </ul>
+                                <a href="#settings" data-toggle="tab"><i class="icon-gear position-left"></i>Settings</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!-- /Page header -->
-
                 <!-- Content area -->
                 <div class="content">
                     <!-- Detached sidebar -->
@@ -63,9 +50,9 @@
                                         <ul class="navigation">
                                             <li class="navigation-header">Navigation</li>
                                             <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Profile</a></li>
-                                            <li><a href="#schedule" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
-                                            <li><a href="#messages" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
-                                            <li><a href="#orders" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
+                                            <li><a href="#companies" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
+                                            <li><a href="#policies" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
+                                            <li><a href="#settings" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -247,7 +234,7 @@
                                 <!-- /Profile Overview Tab -->
 
                                 <!-- Company Overview Tab -->
-                                <div class="tab-pane fade" id="schedule">
+                                <div class="tab-pane fade" id="companies">
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
                                             <h5 class="panel-title">All Companies</h5>
@@ -264,7 +251,7 @@
                                 <!-- /Company Overview Tab -->
 
                                 <!-- Policy Overview Tab -->
-                                <div class="tab-pane fade" id="messages">
+                                <div class="tab-pane fade" id="policies">
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
                                             <h5 class="panel-title">Policy Overview</h5>
@@ -366,7 +353,7 @@
                                 <!-- /Policy Overview Tab -->
 
                                 <!-- Account Settings Tab -->
-                                <div class="tab-pane fade" id="orders">
+                                <div class="tab-pane fade" id="settings">
                                     <!-- Profile info -->
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
@@ -385,11 +372,15 @@
                                                 {{#with currentUser}}
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
+                                                            <label>Company Name</label>
+                                                            <input type="text" name="cname" value="{{this.profile.cname}}" class="form-control">
+                                                        </div>
+                                                        <div class="col-md-4">
                                                             <label>First Name</label>
                                                             <input type="text" name="fname" value="{{this.profile.fname}}" class="form-control">
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <label>Last Name</label>
                                                             <input type="text" name="lname" value="{{this.profile.lname}}" class="form-control">
                                                         </div>

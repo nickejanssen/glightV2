@@ -76,6 +76,9 @@ Template.req_cert.events({
 });
 
 Template.req_cert.onRendered(() => {
+  //$('.multiselect').select2();
   $('.select').select2();
-  // $('select').not('.disabled').material_select();
+  $(".multiselect").select2({
+      placeholder: "Click here to select coverages."
+    });
 });

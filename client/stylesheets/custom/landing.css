@@ -5,7 +5,10 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position:relative;
+  margin: 0 0 50px;
 }
+
 p {
   margin-bottom: 15px;
   line-height: 1.5;
@@ -229,18 +232,21 @@ a.btn-cta {
 }
 /* ====== Footer ====== */
 .footer {
+  /*position: relative !important;*/
   background: #263238;
   color: rgba(255, 255, 255, 0.6);
-  padding: 15px 0;
-  position: relative !important;
-  bottom: 0px !important;
+  height:50px;
+  width:100%;
+  line-height: 50px;
+  clear:both;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 }
 .footer a {
   color: #75c181;
 }
-.footer .fa-heart {
-  color: #EA5395;
-}
+
 /* ======= Hero Section ======= */
 .hero {
     background-image:url('hero3.jpg');
