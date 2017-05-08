@@ -9,6 +9,7 @@ import { History } from '../../../api/history/history.js';
 import './co_detail.html';
 import { Session } from 'meteor/session';
 import { RequestCertificate } from '/imports/api/req_certificate/req_certificate.js';
+import { coverageType, getCoverageVal, getCoverageLabels } from '/imports/api/constant.js';
 
 
 Template.co_detail.helpers({
@@ -82,6 +83,16 @@ Template.co_detail.helpers({
   },
   Userrole() {
     return "Administrator";
+  },
+  coverageInfo(coverage){
+    let CoverageLabels = getCoverageLabels(coverage);
+    let Labels = Object.keys(CoverageLabels);
+    let policyDetail = Session.get('policyDetail');
+    let html = '';
+    Labels.forEach(function(d,i){
+       html +=  "<p><b>"+CoverageLabels[d]+":</b> "+policyDetail[0].coverageInfo[d]+"</p>"
+    });
+    return html;
   }
 
 });

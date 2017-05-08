@@ -15,3 +15,13 @@ export function getCoverageVal(coverageKey) {
   });
   return coverageVal;
 }
+
+export function getCoverageLabels(coverageKey) {
+  let coverageLabels = '';
+  coverageType.forEach(function (d, i) {
+    if (d.key == coverageKey) {
+      coverageLabels = d.labels;
+    }
+  });
+  return coverageLabels;
+}

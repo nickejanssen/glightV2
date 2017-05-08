@@ -823,6 +823,8 @@
                 <p><b>Policy Uploaded Date:</b> {{formatDate this.uploadDate 'DD/MM/YYYY'}}</p>
                 <p><b>Policy Start Date:</b> {{formatDate this.startDate 'DD/MM/YYYY'}}</p>
                 <p><b>Policy Exp. Date:</b> {{formatDate this.expDate 'DD/MM/YYYY'}}</p>
+                <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
+                {{{coverageInfo this.coverage}}}
             {{/each}}
 					</div>
 

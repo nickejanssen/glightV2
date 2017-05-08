@@ -58,6 +58,33 @@ Meteor.methods({
     }
 
   },
+  testEmailSend() {
+    options = {
+      from: 'greenlightrequests@getagreenlight.com',
+      to: 'mavani.nitesh@gmail.com',
+      bcc: '',
+      subject: 'Certificate Upload',
+      headers: {
+        "X-SMTPAPI": {
+          "sub": {
+            "-companyName-": ["apex"],
+            "-requestedDocument-": ["text"]
+          },
+          "category": ["Promotions"],
+          "filters": {
+            "templates": {
+              "settings": {
+                "enable": 1,
+                "template_id": "f20b8ef8-f941-4c29-a866-e708645d7a22"
+              }
+            }
+          }
+        }
+      }
+    };
+
+    Email.send(options);
+  },
   'remindReq'(reqID) {
     console.log('reqID', reqID);
     if (this.userId) {
