@@ -87,7 +87,7 @@ Template.upload_cert.events({
             AddPolicy.policyID = Session.get('policyID');
           }
           AddPolicy.coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
-          debugger;
+          //debugger;
           Meteor.call("AddNewPolicy", AddPolicy, (error, result) => {
             if (error) {
               console.log(error.reason);

@@ -37,6 +37,7 @@ a:focus {
   width: auto;
   margin-bottom: -5px;
 }
+
 .btn-reg{
   background: #64b071;
   display: inline-block;
@@ -848,8 +849,16 @@ a.btn-cta {
     left: 0;
     top: 60px;
     position: absolute;
-    background: #26282c;
+
     z-index: 40;
+  }
+  .navbar-inverse {
+    background-color: #75c181 !important;
+    border-color: #75c181 !important;
+  }
+  .navbar-collapse {
+    background-color: #75c181 !important;
+    border-color: #75c181 !important;
   }
   .header .main-nav .navbar-collapse .nav-item.active a {
     color: #75c181;

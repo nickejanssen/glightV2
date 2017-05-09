@@ -8,29 +8,26 @@
 
           <!-- User details -->
           <div class="content-group">
-            <div class="panel-body bg-indigo-400 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
+            <div class="panel-body bg-green-600 border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain;">
               <div class="content-group-sm">
-                <h6 class="text-semibold no-margin-bottom">
-                  {{LoginUserName}}
-                </h6>
-
-                <span class="display-block">{{Userrole}}</span>
+                <h2 class="text-semibold no-margin-bottom">{{CompanyName}}</h2>
+                <span class="display-block">Subcontractor</span>
               </div>
 
               <a href="#" class="display-inline-block content-group-sm">
-                <img src="/avatar.jpg" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                <img src="/company-placeholder.jpg" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
               </a>
             </div>
 
             <div class="panel no-border-top no-border-radius-top">
               <ul class="navigation">
                 <li class="navigation-header">Navigation</li>
-                <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Profile</a></li>
-                <li><a href="#schedule" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
-                <li><a href="#messages" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
-                <li><a href="#orders" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
-                <li class="navigation-divider"></li>
-                <li><a href="login_advanced.html"><i class="icon-switch2"></i> Log out</a></li>
+                <li class="active"><a href="#overview" data-toggle="tab"><i class="icon-files-empty"></i>Company Overview</a></li>
+                <li><a href="#requested" data-toggle="tab"><i class="icon-files-empty text-blue-600"></i> Requested Policies</a></li>
+                <li><a href="#pending" data-toggle="tab"><i class="icon-files-empty text-orange-300"></i> Pending Policies<span class="badge bg-warning">5 Pending</span></a></li>
+                <li><a href="#current" data-toggle="tab"><i class="icon-files-empty text-green-600"></i> Current Policies</a></li>
+                <li><a href="#past" data-toggle="tab"><i class="icon-files-empty text-danger-600"></i> Past Policies</a></li>
+
               </ul>
             </div>
           </div>
@@ -56,12 +53,12 @@
                   <div class="media-body">
                     <!-- <a href="#">NicoDev</a> has a new<span class="text-semibold">Certificate</span>  -->
                     {{this.msg}}
-                    <div class="media-annotation">{{formatDate this.createdAt 'DD/MM/YYYY'}} - {{this.type}}</div>
+                    <div class="media-annotation">{{formatDate this.createdAt 'MM/DD/YYYY'}} - {{this.type}}</div>
                   </div>
                 </li>
                 {{/each}}
                 <div class="input-field col s12 center-align" style="text-align:center;">
-                    <button id="btnLoadMore" style="background-color: gray;" class="btn waves-effect waves-light right submit" type="button"
+                    <button id="btnLoadMore" style="margin-top:20px; background-color: gray;" class="btn-small btn-primary right submit" type="button"
                         name="btnLoadMore">Load More
                     </button>
                 </div>
@@ -98,14 +95,14 @@
               <div class="row text-center">
                 {{#with CurrentPolicies}}
                 <div class="col-xs-4">
-                  <p><i class="icon-notification2 icon-2x display-inline-block text-warning"></i></p>
+                  <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
                   <h5 class="text-semibold no-margin">{{CurrentPolicies.length}}</h5>
                   <span class="text-muted text-size-small">Current</span>
                 </div>
                 {{/with}}
                 {{#with PendingPolicies}}
                 <div class="col-xs-4">
-                  <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
+                  <p><i class="icon-notification2 icon-2x display-inline-block text-warning"></i></p>
                   <h5 class="text-semibold no-margin">{{PendingPolicies.length}}</h5>
                   <span class="text-muted text-size-small">Pending</span>
                 </div>
@@ -118,23 +115,22 @@
                 </div>
                 {{/with}}
               </div>
-
+              <br/>
               <div class="row text-center">
-
                 <div class="col-xs-4">
-                  <button id="btnUpload" class="btn btn-primary waves-effect waves-light right submit" type="button" name="action">Upload Certificate</button>
+                  <button id="btnUpload" class="btn-small btn-primary right submit" type="button" name="action">Upload Certificate</button>
                 </div>
 
                 <div class="col-xs-4">
-                  <button class="btn btn-primary waves-effect waves-light right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a></button>
+                  <button class="btn-small btn-primary right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a></button>
                 </div>
                 {{#if AllCompanies.archived}}
                 <div class="col-xs-4">
-                  <button class="btn btn-primary waves-effect waves-light right submit co-un-archive" type="submit" name="action">Unarchive Company</button>
+                  <button class="btn-small btn-primary right submit co-un-archive" type="submit" name="action">Unarchive Company</button>
                 </div>
                 {{else}}
                 <div class="col-xs-4">
-                  <button class="btn btn-primary waves-effect waves-light right submit co-archive" type="submit" name="action">Archive Company</button>
+                  <button class="btn-small btn-primary right submit co-archive" type="submit" name="action">Archive Company</button>
                 </div>
                 {{/if}}
               </div>
@@ -145,7 +141,7 @@
         <!-- User details (with sample pattern) -->
         <div class="panel panel-flat">
           <div class="panel-heading">
-                <h6 class="panel-title">Profile Info</h6>
+                <h6 class="panel-title">Company Info</h6>
                 <div class="heading-elements">
                   <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -155,75 +151,67 @@
           <div class="panel-body">
             {{#with AllCompanies}}
             <div class="form-group mt-5">
-              <label class="text-semibold">Full name:</label>
+              <label class="text-semibold">Company:</label>
+              <span class="pull-right-sm">{{this.companyName}}</span>
+            </div>
+
+            <div class="form-group mt-5">
+              <label class="text-semibold">Name:</label>
               <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
             </div>
 
             <div class="form-group">
-              <label class="text-semibold">Phone number:</label>
+              <label class="text-semibold">Phone:</label>
               <span class="pull-right-sm">{{this.companyPhone}}</span>
             </div>
 
-            <!-- <div class="form-group">
-              <label class="text-semibold">Corporate Email:</label>
-              <span class="pull-right-sm"><a href="#">corporate@domain.com</a></span>
-            </div> -->
-
             <div class="form-group no-margin-bottom">
-              <label class="text-semibold">Personal Email:</label>
+              <label class="text-semibold">Email:</label>
               <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
             </div>
             {{/with}}
         </div>
         </div>
         <!-- /user details (with sample pattern) -->
-
-            <!-- Account Activity -->
-
-            <!-- /Account Activity-->
-            <div class="panel panel-flat">
-						<div class="panel-heading">
-							<h5 class="panel-title">Requested Certificates</h5>
+            <div class="panel">
+						<div class="panel-heading bg-blue-600">
+							<h5 class="panel-title white-text">Requested Certificates</h5>
 							<div class="heading-elements">
 								<ul class="icons-list">
-			                		<li><a data-action="collapse"></a></li>
-			                		<!-- <li><a data-action="reload"></a></li>
-			                		<li><a data-action="close"></a></li> -->
-			                	</ul>
-		                	</div>
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                </ul>
+              </div>
 						</div>
-
-						<div class="panel-body">
-						</div>
-
 						<div class="table-responsive">
 							<table class="table">
                 <thead>
-                    <tr>
-                        <th data-field="status">Req. Type</th>
-                        <th data-field="status">Coverage</th>
-                        <th data-field="status">Requested On</th>
-                        <th data-field="id">Remind</th>
-                        <th data-field="active">Action</th>
-                    </tr>
+                  <tr>
+                      <th data-field="status">Req. Type</th>
+                      <th data-field="status">Coverage</th>
+                      <th data-field="status">Requested On</th>
+                      <th data-field="id">Remind</th>
+                      <th data-field="active">Action</th>
+                  </tr>
                 </thead>
                 <tbody>
-                {{#each requestedPolicies}}
-                <tr>
-                    <td valign="bottom" text-align="center">{{this.type}}</td>
-                    <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
-                    <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
-                    <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
-                    <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
-                    <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
-                </tr>
-                {{/each}}
-            </tbody>
+                  {{#each requestedPolicies}}
+                  <tr>
+                      <td valign="bottom" text-align="center">{{this.type}}</td>
+                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                      <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
+                      <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
+                      <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
+                      <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                  </tr>
+                  {{/each}}
+                </tbody>
 							</table>
 						</div>
 					</div>
-            <div class="panel panel-flat">
-            <div class="panel-heading">
+
+            <div class="panel">
+            <div class="panel-heading bg-orange-300">
                 <h5 class="panel-title">Pending Certificates</h5>
                 <div class="heading-elements">
                   <ul class="icons-list">
@@ -231,43 +219,43 @@
                   </ul>
                 </div>
                     </div>
-                <div class="panel-body">
-              </div>
               <div class="table-responsive">
   							<table class="table">
                   <thead>
-                          <tr>
-                              <th data-field="status">Status</th>
-                              <th data-field="id">Policy Name</th>
-                              <th data-field="active">Coverage</th>
-                              <th data-field="waiting">Agent</th>
-                              <th data-field="expired">Summary</th>
-                              <!--<th data-field="expired">Company</th>-->
-                          </tr>
-                      </thead>
+                      <tr>
+                          <th data-field="status">Status</th>
+                          <th data-field="id">Policy Name</th>
+                          <th data-field="active">Coverage</th>
+                          <th data-field="waiting">Agent</th>
+                          <th data-field="expired">Summary</th>
+                          <!--<th data-field="expired">Company</th>-->
+                      </tr>
+                  </thead>
 
-                      <tbody>
-                          {{#with PendingPolicies}} {{#each this}}
-                          <tr>
-                              <td valign="bottom" text-align="center">
-                                  <p><a class="btn btn-small waves-effect waves-light green" id="approve" name="{{this._id}}">Approve</a></p>
-                                  <!--<div class="bdivider"></div>
-                                      <p><a class="btn-small waves-effect waves-light red" name="{{this._id}}">Reject</a></p>-->
-                              </td>
-                              <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
-                              </td>
-                              <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
-                              <td valign="bottom" text-align="center">{{this.agentId}}</td>
-                              <td valign="bottom" text-align="center" class="viewPolicy">View</td>
-                              <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
-                          </tr>
-                          {{/each}} {{/with}}
-                      </tbody>
+                  <tbody>
+                      {{#with PendingPolicies}} {{#each this}}
+                      <tr>
+                          <td valign="bottom" text-align="center">
+                              <p><a class="btn-primary btn-xs btn-collapsible" id="approve" name="{{this._id}}">
+                                Approve</a>
+                              </p>
+                              <div class="bdivider"></div>
+                              <p><a class="btn-danger btn-xs" id="unapprove" name="{{this._id}}">Reject</a></p>
+                          </td>
+                          <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
+                          </td>
+                          <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                          <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                          <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                          <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                      </tr>
+                      {{/each}} {{/with}}
+                  </tbody>
   							</table>
   						</div>
             </div>
-            <div class="panel panel-flat">
-            <div class="panel-heading">
+            <div class="panel">
+            <div class="panel-heading bg-green-600">
                 <h5 class="panel-title">Current Certificates</h5>
                 <div class="heading-elements">
                   <ul class="icons-list">
@@ -275,8 +263,6 @@
                   </ul>
                 </div>
                     </div>
-                <div class="panel-body">
-              </div>
               <table class="table">
                 <thead>
                 <tr>
@@ -294,8 +280,8 @@
                   {{#each CurrentPolicies}} {{#unless isPendingPolicies}}
                   <tr>
                       <td valign="bottom" text-align="center">
-                          <a class="btn btn-small btn-danger waves-effect waves-light green approved" id="unapprove"
-                                  name="{{this._id}}">Approved</a>
+                          <a class="btn-xs btn-primary" id="approved"
+                          name="{{this._id}}">Approved</a>
                       </td>
                       <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
                       <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
@@ -308,8 +294,8 @@
               </tbody>
               </table>
             </div>
-            <div class="panel panel-flat">
-            <div class="panel-heading">
+            <div class="panel">
+            <div class="panel-heading bg-danger-600">
                 <h5 class="panel-title">Past Certificates</h5>
                 <div class="heading-elements">
                   <ul class="icons-list">
@@ -317,8 +303,6 @@
                   </ul>
                 </div>
                     </div>
-                <div class="panel-body">
-              </div>
               <table class="table">
                 <thead>
                   <tr>
@@ -791,49 +775,63 @@
     </div>
   </div>
 
-  <!-- Modal Structure -->
-    <!-- <div id="modal1" class="modal modal-fixed-footer">
+  <div id="modal1" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
         {{#each policyDetail}}
-        <div class="modal-content">
-            <h4>Policy Details of {{this.policyName}}</h4>
+        <div class="modal-header panel-heading">
+          <h3 class="panel-title text-bold">Policy Details of {{this.policyName}}</h3>
+          <div class="heading-elements">
+            {{#if this.uApproved}}
+              <div class="heading-text">
+                <span class="status-mark border-success position-left"></span>
+                <b>Status:</b> Approved
+              </div>
+            {{else}}
+              <div class="heading-text">
+                <span class="status-mark border-danger position-left"></span>
+                <b>Status:</b> Not Approved
+              </div>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="modal-body panel-body">
+          <fieldset class="form-group">
+            <legend class="text-green-600"><b>Basic Coverage Info</b></legend>
             <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
-            <p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>
-            <p><b>Policy Uploaded Date:</b> {{formatDate this.uploadDate 'DD/MM/YYYY'}}</p>
-            <p><b>Policy Start Date:</b> {{formatDate this.startDate 'DD/MM/YYYY'}}</p>
-            <p><b>Policy Exp. Date:</b> {{formatDate this.expDate 'DD/MM/YYYY'}}</p>
+            <!--<p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>-->
+            <div class="row">
+              <div class="col-md-6">
+                <p><b>Date Uploaded:</b> {{formatDate this.uploadDate 'MM/DD/YYYY'}}</p>
+              </div>
+              <div class="col-md-6">
+                <p><b>Uploaded By:</b> {{this.agentId}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p><b>Start Date:</b> {{formatDate this.startDate 'MM/DD/YYYY'}}</p>
+              </div>
+              <div class="col-md-6">
+                <p><b>Expiration Date:</b> {{formatDate this.expDate 'MM/DD/YYYY'}}</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend class="text-green-600"><b>Coverage Limits</b></legend>
+            <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
+            {{{coverageInfo this.coverage}}}
+          </fieldset>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-small btn-primary btn-link" data-dismiss="modal">Close</button>
         </div>
         {{/each}}
-        <div class="modal-footer green ligthen-4">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
-    </div> -->
-    <div id="modal1" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<!-- <h5 class="modal-title">Basic modal</h5> -->
-					</div>
-
-					<div class="modal-body">
-            {{#each policyDetail}}
-                <h4>Policy Details of {{this.policyName}}</h4>
-                <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
-                <p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>
-                <p><b>Policy Uploaded Date:</b> {{formatDate this.uploadDate 'DD/MM/YYYY'}}</p>
-                <p><b>Policy Start Date:</b> {{formatDate this.startDate 'DD/MM/YYYY'}}</p>
-                <p><b>Policy Exp. Date:</b> {{formatDate this.expDate 'DD/MM/YYYY'}}</p>
-                <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
-                {{{coverageInfo this.coverage}}}
-            {{/each}}
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
-						<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-					</div>
-				</div>
-			</div>
-		</div>
+      </div>
+    </div>
+  </div>
 
 </template>

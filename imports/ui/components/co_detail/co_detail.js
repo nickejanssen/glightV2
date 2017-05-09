@@ -177,15 +177,17 @@ Template.co_detail.events({
     });
   },
 
-  'mouseover .approved': (e, t) => {
+  'mouseover #approved': (e, t) => {
     $(e.target).html("Unapprove");
-    $(e.target).removeClass("green").addClass("red");
+    $(e.target).removeClass("btn-primary").addClass("btn-danger");
   },
 
-  'mouseout .approved': (e, t) => {
+  'mouseout #approved': (e, t) => {
     $(e.target).html("Approved");
-    $(e.target).removeClass("red").addClass("green");
+    $(e.target).removeClass("btn-danger").addClass("btn-primary");
   },
+
+
 
   'click #btnUpload': (e, t) => {
     Session.set('compID', Router.current().params.companyId);
