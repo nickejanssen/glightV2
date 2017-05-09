@@ -72,7 +72,7 @@ Template.register.events({
 });
 
 Template.register.onRendered(() => { //console.log(Users.findOne());
-  $('body').addClass("login-container");
+   $('body').addClass("login-container");
    if(Users.findOne()) Template.instance().pageSession.set("userCreated", true);
 
 	// $(".submit").click(function(){

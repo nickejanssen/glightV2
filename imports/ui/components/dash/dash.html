@@ -42,7 +42,13 @@
                                         </div>
 
                                         <a href="#" class="display-inline-block content-group-sm">
-                                            <img src="/avatar.jpg" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                                          {{#with currentUser}}
+                                            {{#if this.profile.imageurl}}
+                                            <img src="{{this.profile.imageurl}}" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                                            {{else}}
+                                            <img src="./avatar.jpg" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                                            {{/if}}
+                                          {{/with}}
                                         </a>
                                     </div>
 
@@ -52,7 +58,7 @@
                                             <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Profile</a></li>
                                             <li><a href="#companies" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
                                             <li><a href="#policies" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
-                                            <li><a href="#settings" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
+                                            <li class="settingsClick"><a href="#settings" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -69,38 +75,24 @@
 
                                     <div class="category-content">
                                         <ul class="media-list">
-                                            <li class="media">
-                                                <div class="media-left">
-                                                    <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-folder-upload2"></i></a>
-                                                </div>
+                                          {{#each allHistory}}
+                                          <li class="media">
+                                            <!-- <div class="media-left">
+                                              <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-folder-upload2"></i></a>
+                                            </div> -->
 
-                                                <div class="media-body">
-                                                    <a href="#">NicoDev</a> has a new<span class="text-semibold">Certificate</span> ready for your review.
-                                                    <div class="media-annotation">2 hours ago</div>
-                                                </div>
-                                            </li>
-
-                                            <li class="media">
-                                                <div class="media-left">
-                                                    <a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-mail5"></i></a>
-                                                </div>
-
-                                                <div class="media-body">
-                                                    You requested a new <span class="text-semibold">General Liability</span> certificate from <a href="#">NicoDev</a>.
-                                                    <div class="media-annotation">March 18, 18:36</div>
-                                                </div>
-                                            </li>
-
-                                            <li class="media">
-                                                <div class="media-left">
-                                                    <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-stack-plus"></i></a>
-                                                </div>
-
-                                                <div class="media-body">
-                                                    You added a new company: <a href="#">NicoDev</a>.
-                                                    <div class="media-annotation">Dec 12, 05:46</div>
-                                                </div>
-                                            </li>
+                                            <div class="media-body">
+                                              <!-- <a href="#">NicoDev</a> has a new<span class="text-semibold">Certificate</span>  -->
+                                              {{this.msg}}
+                                              <div class="media-annotation">{{formatDate this.createdAt 'MM/DD/YYYY'}} - {{this.type}}</div>
+                                            </div>
+                                          </li>
+                                          {{/each}}
+                                          <div class="input-field col s12 center-align" style="text-align:center;">
+                                              <button id="btnLoadMore" style="margin-top:20px; background-color: gray;" class="btn-small btn-primary right submit" type="button"
+                                                  name="btnLoadMore">Load More
+                                              </button>
+                                          </div>
                                         </ul>
                                     </div>
                                 </div>
@@ -133,22 +125,28 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="row text-center">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-3">
+                                                    <p><i class="icon-office icon-2x display-inline-block text-info"></i></p>
+                                                    <h5 class="text-semibold no-margin">{{activeCompany}}</h5>
+                                                    <span class="text-muted text-size-small">Active Companies</span>
+                                                </div>
+
+                                                <div class="col-xs-3">
                                                     <p><i class="icon-notification2 icon-2x display-inline-block text-warning"></i></p>
-                                                    <h5 class="text-semibold no-margin">3</h5>
-                                                    <span class="text-muted text-size-small">Pending</span>
+                                                    <h5 class="text-semibold no-margin">{{policyCount.Pending}}</h5>
+                                                    <span class="text-muted text-size-small">Pending Policies</span>
                                                 </div>
 
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-3">
                                                     <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
-                                                    <h5 class="text-semibold no-margin">10</h5>
-                                                    <span class="text-muted text-size-small">Active</span>
+                                                    <h5 class="text-semibold no-margin">{{policyCount.Current}}</h5>
+                                                    <span class="text-muted text-size-small">Active Policies</span>
                                                 </div>
 
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-3">
                                                     <p><i class=" icon-cancel-circle2 icon-2x display-inline-block text-danger"></i></p>
-                                                    <h5 class="text-semibold no-margin">5</h5>
-                                                    <span class="text-muted text-size-small">Expired</span>
+                                                    <h5 class="text-semibold no-margin">{{policyCount.Past}}</h5>
+                                                    <span class="text-muted text-size-small">Expired Policies</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -434,10 +432,27 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label class="display-block">Upload profile image</label>
-                                                            <input type="file" class="file-styled">
+                                                            <input type="file" id="profilePic" class="file-styled profilePic">
                                                             <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="form-group showImage">
+                                                  {{#if isUploading}}
+                                                  <div class="row">
+                                                      <div class="col-md-4">
+                                                        <div class="progress">
+                                                          <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+                                                            <span class="sr-only">{{progress}}% Complete</span>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                                  {{else}}
+                                                    <img src="{{url}}" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
+                                                  {{/if}}
+
                                                 </div>
 
                                                 <div class="text-right">

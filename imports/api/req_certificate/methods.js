@@ -61,14 +61,14 @@ Meteor.methods({
   testEmailSend() {
     options = {
       from: 'greenlightrequests@getagreenlight.com',
-      to: 'mavani.nitesh@gmail.com',
+      to: 'piyushapex94@gmail.com',
       bcc: '',
       subject: 'Certificate Upload',
       headers: {
         "X-SMTPAPI": {
           "sub": {
-            "-companyName-": ["apex"],
-            "-requestedDocument-": ["text"]
+            ":companyName": ["apex"],
+            ":requestedDocument": ["text"]
           },
           "category": ["Promotions"],
           "filters": {

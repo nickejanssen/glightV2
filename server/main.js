@@ -13,6 +13,21 @@ Meteor.startup(() => {
     });
 
     Accounts.urls.verifyEmail = token => Meteor.absoluteUrl(`verify_email/${token}`);
+    SSR.compileTemplate('verifyEmailTemplate', Assets.getText('verification_email.html'));
+    Accounts.emailTemplates.verifyEmail = {
+      subject() {
+        return 'greenlight verification email';
+      },
+      html(user, url) {
+        const html = SSR.render('verifyEmailTemplate', {
+          user,
+          url,
+        });
+        return html;
+      },
+
+    };
+
     Accounts.urls.resetPassword = (token) => {
         return Meteor.absoluteUrl('reset-password/' + token);
     };
@@ -32,7 +47,7 @@ Meteor.startup(() => {
     Accounts.validateLoginAttempt(info => { //console.log(info);
         // reject user without verified e-mail address
         if (verifyEmail && info.user && info.user.emails && info.user.emails.length && !info.user.emails[0].verified) {
-            //throw new Meteor.Error(499, "E-mail not verified.");
+            throw new Meteor.Error(499, "E-mail not verified.");
         }
         return true;
     });

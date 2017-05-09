@@ -14,9 +14,9 @@ Meteor.methods({
 
     },
 
-    reqNewCertEmail(reqCertID){
-
-    },
+    // reqNewCertEmail(reqCertID){
+    //
+    // },
 
     reqRemindEmail(reqCertDetail){
         //console.log('reqCertDetail', reqCertDetail);

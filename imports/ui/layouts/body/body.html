@@ -21,7 +21,13 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="/avatar.jpg" alt="">
+						{{#with currentUser}}
+							{{#if this.profile.imageurl}}
+							<img src="{{this.profile.imageurl}}" style="width: 30px;">
+							{{else}}
+							<img src="/avatar.jpg" alt="" style="width: 36px;">
+							{{/if}}
+						{{/with}}
 						<span>{{LoginUserName}}</span>
 						<i class="caret"></i>
 					</a>
@@ -52,7 +58,13 @@
 					<div class="sidebar-user">
 						<div class="category-content">
 							<div class="media">
-								<a href="#" class="media-left"><img src="/avatar.jpg" class="img-circle img-sm" alt=""></a>
+								{{#with currentUser}}
+									{{#if this.profile.imageurl}}
+									<a href="#" class="media-left"><img src="{{this.profile.imageurl}}" class="img-circle img-sm" alt=""></a>
+									{{else}}
+									<a href="#" class="media-left"><img src="/avatar.jpg" class="img-circle img-sm" alt=""></a>
+									{{/if}}
+								{{/with}}
 								<div class="media-body">
 									<span class="media-heading text-semibold">{{LoginUserName}}</span>
 									<div class="text-size-mini text-muted">

@@ -44,7 +44,7 @@ Meteor.methods({
     let current = _.filter(_PolicyDetail, (elem) => {
       if (elem.uApproved === true && elem.startDate <= new Date() && new Date() <= elem.expDate && elem.isPast == false) return true;
     });
-    let actCert = current.length;    
+    let actCert = current.length;
     Meteor.call('updateCurrent', company, actCert);
 
     let past = _.filter(_PolicyDetail, (elem) => {
@@ -62,5 +62,11 @@ Meteor.methods({
     // else if (new Date() > doc.expDate || doc.isPast == true) {
 
     // }
-  }
+  },
+  'dashboardCount'(){
+    return Company.find({ userId: this.userId }).fetch();
+  },
+  'activeCompany'() {
+    return Company.find({ userId: this.userId, archived: false }).count();
+  },
 });

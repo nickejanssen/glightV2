@@ -9,7 +9,7 @@ let ac = Meteor.settings.acl;
 let reg = Meteor.settings.region;
 
 Slingshot.fileRestrictions("myImageUploads", {
-  allowedFileTypes: ["image/png", "image/jpeg", "application/pdf"],
+  allowedFileTypes: ["image/png", "image/jpeg", "image/gif", "application/pdf"],
   maxSize: 2 * 1024 * 1024,
 });
 
