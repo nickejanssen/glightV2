@@ -23,7 +23,7 @@ Template.VerifyEmail.onRendered(() => {
 
 Template.VerifyEmail.events({
   "click .go-home": function (e, t) {
-    Router.go("/");
+    Router.go("/dash");
   }
 
 });

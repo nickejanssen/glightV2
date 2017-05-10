@@ -1,55 +1,38 @@
 <template name="VerifyEmail">
 	<div class="light-green-user">
-		<div class="dtable">
-			<div class="vTable">
-	<div class="page-container">
-
-  		<!-- Page content -->
-  		<div class="page-content">
-
-  			<!-- Main content -->
-  			<div class="content-wrapper">
-
-  				<!-- Content area -->
-  				<div class="content">
-
-  					<!-- Password recovery -->
-  					<form class="login-form">
-  						<div class="panel panel-body login-form">
-  							<div class="text-center">
-  								<img src="/login-logo.png" alt="" class="square responsive-img valign profile-image-login">
-  								<h5 class="content-group">Verify Email<small class="display-block">You can verify your email from here</small></h5>
-  							</div>
-								{{#if errorMessage}}
-							<div class="alert alert-warning err">
-						{{errorMessage}}
-						</div>
-						<div class="form-group">
-						<button type="button" class="btn bg-blue btn-block submit go-home">Verify <i class="icon-arrow-right14 position-right"></i></button>
+		<div class="page-container">
+			<!-- Page content -->
+			<div class="page-content">
+				<!-- Main content -->
+				<div class="content-wrapper">
+					<!-- Content area -->
+					<div class="content">
+						<!-- Verify Email -->
+						<form class="login-form">
+							<div class="panel panel-body login-form">
+								<div class="text-center">
+									<img src="/login-logo.png" alt="" class="square responsive-img valign profile-image-login">
+									<h5 class="content-group">Email Verified
+										<small class="display-block">Thank you for verifying your email!</small>
+									</h5>
+								</div>
+									{{#if errorMessage}}
+									<div class="alert alert-warning err">
+										{{errorMessage}}
+									</div>
+									<div class="form-group text-center">
+										<button type="button" class="btn-small btn-primary submit center go-home">Continue to your dashboard<i class="icon-arrow-right14 position-right"></i></button>
+									</div>
+									{{/if}}
+							</div>
+						</form>
+						<!-- /Verify Email -->
 					</div>
-
-				{{/if}}
-
-
-
-
-
-  						</div>
-  					</form>
-  					<!-- /password recovery -->
-
-
-  				</div>
-  				<!-- /content area -->
-
-  			</div>
-  			<!-- /main content -->
-
-  		</div>
-  		<!-- /page content -->
-
+					<!-- /content area -->
+				</div>
+				<!-- /main content -->
+			</div>
+			<!-- /page content -->
 		</div>
 	</div>
-</div>
-</div>
 </template>

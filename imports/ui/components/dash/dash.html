@@ -19,7 +19,7 @@
                         </ul>
 
                         <ul class="breadcrumb-elements">
-                            <li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+                            <li><a href="/help"><i class="icon-comment-discussion position-left"></i> Support</a></li>
                             <li class="dropdown">
                                 <a href="#settings" data-toggle="tab"><i class="icon-gear position-left"></i>Settings</a>
                             </li>
@@ -55,10 +55,10 @@
                                     <div class="panel no-border-top no-border-radius-top">
                                         <ul class="navigation">
                                             <li class="navigation-header">Navigation</li>
-                                            <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Profile</a></li>
+                                            <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-files-empty"></i> Account Summary</a></li>
                                             <li><a href="#companies" data-toggle="tab"><i class="icon-files-empty"></i> Company Overview</a></li>
                                             <li><a href="#policies" data-toggle="tab"><i class="icon-files-empty"></i> Policy Overview<span class="badge bg-warning">5 Pending</span></a></li>
-                                            <li class="settingsClick"><a href="#settings" data-toggle="tab"><i class="icon-files-empty"></i> Settings</a></li>
+                                            <li class="settingsClick"><a href="#settings" data-toggle="tab"><i class="icon-files-empty"></i> Account Settings</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                     <!-- Profile Info -->
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
-                                            <h6 class="panel-title">Profile Info</h6>
+                                            <h6 class="panel-title">Profile Summary</h6>
                                             <div class="heading-elements">
                                                 <ul class="icons-list">
                                                     <li><a data-action="collapse"></a></li>
@@ -167,31 +167,47 @@
                                         </div>
                                         <div class="panel-body">
                                             {{#with currentUser}}
-                                            <div class="form-group mt-5">
-                                                <label class="text-semibold">Full name:</label>
-                                                <span class="pull-right-sm">{{LoginUserName}}</span>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Name:</label>
+                                                    <span class="pull-right-sm">{{LoginUserName}}</span>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Company Name:</label>
+                                                    <span class="pull-right-sm">{{this.profile.cname}}</span>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label class="text-semibold">Company Name:</label>
-                                                <span class="pull-right-sm">{{this.profile.cname}}</span>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Phone number:</label>
+                                                    <span class="bfh-phone pull-right-sm" data-format="+1 (ddd) ddd-dddd" data-number="{{this.profile.phone}}">{{this.profile.phone}}</span>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Personal Email:</label>
+                                                    <span class="pull-right-sm"><a href="{{this.profile.email}}">{{this.profile.email}}</a></span>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label class="text-semibold">Phone number:</label>
-                                                <span class="bfh-phone pull-right-sm" data-format="+1 (ddd) ddd-dddd" data-number="{{this.profile.phone}}">{{this.profile.phone}}</span>
-                                            </div>
+                                            <div class="row no-margin-bottom">
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Agent Name:</label>
+                                                    <span class="pull-right-sm">{{this.profile.aname}}</span>
+                                                </div>
 
-                                            <div class="form-group no-margin-bottom">
-                                                <label class="text-semibold">Personal Email:</label>
-                                                <span class="pull-right-sm"><a href="{{this.profile.email}}">{{this.profile.email}}</a></span>
+                                                <div class="form-group col-md-6">
+                                                    <label class="text-bold">Agent Email:</label>
+                                                    <span class="pull-right-sm"><a href="{{this.profile.aemail}}">{{this.profile.aemail}}</a></span>
+                                                </div>
                                             </div>
                                             {{/with}}
                                         </div>
                                     </div>
                                     <!-- /Profile Info -->
 
-                                    <!-- Account Activity -->
+                                    <!-- Account Activity
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
                                             <h5 class="panel-title">Account Activity</h5>
@@ -227,7 +243,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <!-- /Account Activity-->
+                                    /Account Activity-->
                                 </div>
                                 <!-- /Profile Overview Tab -->
 
@@ -355,7 +371,7 @@
                                     <!-- Profile info -->
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
-                                            <h6 class="panel-title">Profile information</h6>
+                                            <h6 class="panel-title">Profile Information</h6>
                                             <div class="heading-elements">
                                                 <ul class="icons-list">
                                                     <li><a data-action="collapse"></a></li>
@@ -452,7 +468,22 @@
                                                   {{else}}
                                                     <img src="{{url}}" class="img-circle img-responsive" alt="" style="width: 110px; height: 110px;">
                                                   {{/if}}
+                                                </div>
 
+                                                <div class="form-group">
+                                                    <fieldset>
+                                                        <legend>Optional Agent Info</legend>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Agent Name:</label>
+                                                                <input type="text" name="aname" value="{{this.profile.aname}}" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>Agent Email</label>
+                                                                <input type="text" name="aemail" value="{{this.profile.aemail}}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
                                                 </div>
 
                                                 <div class="text-right">

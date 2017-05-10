@@ -44,26 +44,20 @@ Template.req_cert.events({
     e.preventDefault();
     const userId = Meteor.userId();
     const company = t.$('#certComp').val();
-    const coverage = t.$('#coverage').val();
-    //const email =  t.$("input#cemail").val();
+    const coverage = e.currentTarget.certCove.value.trim();
     const email = coEmail;
-    //console.log(company + " " + coverage);
-
-    //FIX THIS!!!
 
     Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, companyID: company, type: "New Upload" }, (error, result) => {
       if (error) {
         alert(error);
       } else {
-        //console.log(result);
         Meteor.call("sendMail", email, result);
-        //Materialize.toast("Request has been sent!", 8000, 'green');
         swal({
           title: "Your request has been sent!",
           text: "We will update you when your request has been fulfilled.",
           type: "success",
           timer: 4000,
-          showConfirmButton: false
+          showConfirmButton: true
         });
         document.getElementById("formValidate").reset();
       }

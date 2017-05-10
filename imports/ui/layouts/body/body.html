@@ -7,12 +7,15 @@
 			<a id="logo-container" class="navbar-brand text-semibold .text-size-large" href="/dash">
 				<i class="icon-traffic-lights position-left text-white"></i>GreenLight
 			</a>
+			{{#if currentUser}}
 			<ul class="nav navbar-nav visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
 				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
 			</ul>
+			{{/if}}
 		</div>
 
+		{{#if currentUser}}
 		<div class="navbar-collapse collapse" id="navbar-mobile">
 			<ul class="nav navbar-nav">
 				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
@@ -42,6 +45,7 @@
 				</li>
 			</ul>
 		</div>
+		{{/if}}
 	</div>
 	<!-- /main navbar -->
 
@@ -51,7 +55,8 @@
 		<!-- Page content -->
 		<div class="page-content">
 			<!-- Main sidebar -->
-			<div class="sidebar sidebar-main sidebar-fixed" style="height:940px;">
+		{{#if currentUser}}
+		<div class="sidebar sidebar-main sidebar-fixed" style="height:940px;">
 				<div class="sidebar-content">
 
 					<!-- User menu -->
@@ -79,6 +84,7 @@
 
 
 				<!-- Main navigation -->
+
 				<div class="sidebar-category sidebar-category-visible">
 					<div class="category-content no-padding">
 						<ul class="navigation navigation-main navigation-accordion">
@@ -94,9 +100,11 @@
 						</ul>
 					</div>
 				</div>
+
 				<!-- /main navigation -->
 			</div>
 		</div>
+		{{/if}}
 		<!-- /main sidebar -->
 
 		<!-- Main content -->

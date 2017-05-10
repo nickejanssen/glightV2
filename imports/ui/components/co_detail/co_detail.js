@@ -187,8 +187,6 @@ Template.co_detail.events({
     $(e.target).removeClass("btn-danger").addClass("btn-primary");
   },
 
-
-
   'click #btnUpload': (e, t) => {
     Session.set('compID', Router.current().params.companyId);
     Router.go('App.upload_cert');

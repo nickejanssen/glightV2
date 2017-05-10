@@ -47,7 +47,7 @@ Meteor.startup(() => {
     Accounts.validateLoginAttempt(info => { //console.log(info);
         // reject user without verified e-mail address
         if (verifyEmail && info.user && info.user.emails && info.user.emails.length && !info.user.emails[0].verified) {
-            throw new Meteor.Error(499, "E-mail not verified.");
+            throw new Meteor.Error(499, "Please proceed to your E-mail to verify your account.");
         }
         return true;
     });

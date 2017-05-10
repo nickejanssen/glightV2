@@ -70,7 +70,8 @@ const publicRouteNames = [
 	"App.user_login",
 	"App.contact",
 	"App.verify_email",
-	"App.upload_cert"
+	"App.upload_cert",
+	"App.upload_cert_pub"
 ];
 
 const privateRouteNames = [

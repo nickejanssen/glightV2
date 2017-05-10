@@ -124,6 +124,10 @@ Template.dash.events({
     profile.billzip = event.currentTarget.billzip.value.trim();
     profile.imageurl = imageurl.get();
 
+    //Agent Info
+    profile.aname = event.currentTarget.aname.value.trim();
+    profile.aemail = event.currentTarget.aemail.value.trim();
+
     const Id = Users.findOne()._id;
     Meteor.call("updateUserAccount", Id, profile, (error, result) => {
       if (error) {

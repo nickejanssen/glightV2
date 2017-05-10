@@ -58,9 +58,6 @@ Template.upload_cert.events({
           console.error('Error uploading');
           alert(error);
         } else {
-          //console.log("Success! ", downloadUrl);
-          //console.log('uploaded file available here: '+downloadUrl);
-
           let AddPolicy = {};
 
           AddPolicy.userId = Meteor.userId();
@@ -92,7 +89,6 @@ Template.upload_cert.events({
             if (error) {
               console.log(error.reason);
             } else {
-              //console.log("Policy Added");
               swal("Success!", "Your policy has been uploaded.", "success");
               document.getElementById("formAddCert").reset();
             }
