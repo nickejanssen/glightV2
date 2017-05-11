@@ -12,14 +12,14 @@ Meteor.methods({
     req_certData.createdAt = new Date();
 
     let existingUser = Meteor.users.findOne({ 'emails.address': req_certData.email });
-    if (existingUser) throw new Meteor.Error(499, "Unregistered users only!");
+    if (!existingUser) throw new Meteor.Error(499, "Unregistered users only!");
     // Meteor.call('insertHistory', req_certData.companyID, 'request', 'Requested for Document/Contract');
     return RequestCertificate.insert(req_certData);
   },
 
   'sendMail'(email, doc_id, isRemind) { //console.log(email, doc_id);
     this.unblock();
-    // let reqCertDetails = RequestCertificate.findOne({_id: doc_id});
+    let reqData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
     // if(reqCertDetails.policyID){
 
     // }
@@ -34,7 +34,9 @@ Meteor.methods({
       headers: {
         "X-SMTPAPI": {
           "sub": {
-            ":url": [uploadDocURL]
+            ":url": [uploadDocURL],
+            "-company-": [reqData.coName],
+            "-coverage-": [getCoverageVal(reqData.coverage)]
           },
           "filters": {
             "templates": {

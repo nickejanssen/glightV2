@@ -14,6 +14,9 @@ RequestCertificate.attachSchema(new SimpleSchema({
     companyID: {
         type: String,
     },
+    coName: {
+        type: String,
+    },
     policyID:{
         type: String,
         optional: true
