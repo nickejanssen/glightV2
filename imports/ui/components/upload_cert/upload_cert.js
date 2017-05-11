@@ -73,8 +73,7 @@ Template.upload_cert.events({
           AddPolicy.imageurl = downloadUrl;
           AddPolicy.uploadedBy = Meteor.userId();
           console.log(AddPolicy);
-          if (Router.current()
-            .route.getName() == "App.upload_cert_public") {
+          if (Router.current().route.getName() == "App.upload_cert_public") {
             let req_certData = RequestCertificate.findOne();
             AddPolicy.userId = req_certData.userId;
             AddPolicy.uploadedBy = req_certData.userId + "_req_cert";

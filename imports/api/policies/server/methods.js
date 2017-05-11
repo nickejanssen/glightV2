@@ -11,6 +11,12 @@ import { coverageType, getCoverageVal } from '/imports/api/constant.js'
 var Future = Npm.require('fibers/future');
 var Fiber = Npm.require('fibers');
 
+let policyUpdateReminderType = {
+  '30':'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
+  '15':'36cf4c99-ace1-4378-b933-bf42d8461cd8',
+  '3':'f20b8ef8-f941-4c29-a866-e708645d7a22'
+}
+
 Meteor.methods({
   AddNewPolicy(policyDetail) {
     //console.log('policyDetail',policyDetail, policyDetail.policyID);
@@ -56,14 +62,38 @@ Meteor.methods({
   'reminderMail'(reminderType, policyDetail) {
     this.unblock();
     let compDetail = Company.findOne({ _id: policyDetail.companyId });
-    let reminderMsg = "You may need to update your certificate as It's going to expire in " + reminderType + " days";
+    
+    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
+    requestDetails.userId = policyDetail.userId;
+    requestDetails.createdAt = new Date();
+    let reqID = RequestCertificate.insert(requestDetails);
+
+    let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + reqID);
+
     options = {
-      from: 'crew@getagreenlight.com',
+      from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
-      bcc: '',
       subject: 'Gentle Reminder',
-      html: reminderMsg
+      headers: {
+        "X-SMTPAPI": {
+          "sub": {
+            ":companyName": [compDetail.companyName],
+            ":requestedDocument": [compDetail.policyName],
+            ":url":[uploadDocURL]
+          },
+         // "category": ["Promotions"],
+          "filters": {
+            "templates": {
+              "settings": {
+                "enable": 1,
+                "template_id": policyUpdateReminderType[reminderType]
+              }
+            }
+          }
+        }
+      }
     };
+
     Email.send(options);
     Meteor.call('insertHistory', policyDetail.companyId, 'upload', 'Automatic reminder for ' + getCoverageVal(policyDetail.coverage));
   },

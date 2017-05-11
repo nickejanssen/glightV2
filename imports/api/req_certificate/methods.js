@@ -51,10 +51,10 @@ Meteor.methods({
     Email.send(options);
     let req_certData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
     if (isRemind) {
-      Meteor.call('insertHistory', req_certData.companyID, 'remind', 'Sent reminder for '+getCoverageVal(req_certData.coverage));
+      Meteor.call('insertHistory', req_certData.companyID, 'remind', 'Sent reminder for ' + getCoverageVal(req_certData.coverage));
     }
     else {
-      Meteor.call('insertHistory', req_certData.companyID, 'request', 'Sent request for '+getCoverageVal(req_certData.coverage));
+      Meteor.call('insertHistory', req_certData.companyID, 'request', 'Sent request for ' + getCoverageVal(req_certData.coverage));
     }
 
   },
@@ -97,7 +97,7 @@ Meteor.methods({
   'delReq'(reqID) {
     if (this.userId) {
       let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
-      Meteor.call('insertHistory', req_certData.companyID, 'delete', 'Deleted request for '+getCoverageVal(req_certData.coverage));
+      Meteor.call('insertHistory', req_certData.companyID, 'delete', 'Deleted request for ' + getCoverageVal(req_certData.coverage));
       return RequestCertificate.remove({ _id: reqID, userId: this.userId });
     }
   },
@@ -115,6 +115,9 @@ function sendReqReminder(reqCertDetail, currentDate) {
   //console.log('diffInDays', diffInDays);
   if (diffInDays >= 7) {
     RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
-    Meteor.call('reqRemindEmail', reqCertDetail);
+    // Meteor.call('reqRemindEmail', reqCertDetail);
+    let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
+    console.log(req_certData, this.userId, reqID);
+    Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
   }
 }
