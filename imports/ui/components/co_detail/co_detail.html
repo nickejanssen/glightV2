@@ -1,6 +1,5 @@
 <template name="co_detail">
   <div class="content">
-
     <!-- Detached sidebar -->
     <div class="sidebar-detached">
       <div class="sidebar sidebar-default sidebar-separate">
@@ -24,7 +23,9 @@
                 <li class="navigation-header">Navigation</li>
                 <li class="active"><a href="#overview" data-toggle="tab"><i class="icon-files-empty"></i>Company Overview</a></li>
                 <li><a href="#requested" data-toggle="tab"><i class="icon-files-empty text-blue-600"></i> Requested Policies</a></li>
-                <li><a href="#pending" data-toggle="tab"><i class="icon-files-empty text-orange-300"></i> Pending Policies<span class="badge bg-warning">5 Pending</span></a></li>
+                {{#with PendingPolicies}}
+                <li><a href="#pending" data-toggle="tab"><i class="icon-files-empty text-orange-300"></i> Pending Policies<span class="badge bg-orange-300">{{PendingPolicies.length}} Pending</span></a></li>
+                {{/with}}
                 <li><a href="#current" data-toggle="tab"><i class="icon-files-empty text-green-600"></i> Current Policies</a></li>
                 <li><a href="#past" data-toggle="tab"><i class="icon-files-empty text-danger-600"></i> Past Policies</a></li>
 
@@ -79,9 +80,9 @@
 
         <!-- Tab content -->
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="profile">
-
-            <!-- Simple text stats with icons -->
+          <!-- Overview -->
+          <div class="tab-pane fade in active" id="overview">
+            <!-- Policy Summary -->
             <div class="panel panel-flat">
               <div class="panel-heading">
                 <h6 class="panel-title">Policy Summary</h6>
@@ -91,56 +92,56 @@
                   </ul>
                 </div>
               </div>
-            <div class="panel-body">
-              <div class="row text-center">
-                {{#with CurrentPolicies}}
-                <div class="col-xs-4">
-                  <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
-                  <h5 class="text-semibold no-margin">{{CurrentPolicies.length}}</h5>
-                  <span class="text-muted text-size-small">Current</span>
+              <div class="panel-body">
+                <div class="row text-center">
+                  {{#with CurrentPolicies}}
+                  <div class="col-xs-4">
+                    <p><i class="icon-checkmark-circle icon-2x display-inline-block text-success"></i></p>
+                    <h5 class="text-semibold no-margin">{{CurrentPolicies.length}}</h5>
+                    <span class="text-muted text-size-small">Current</span>
+                  </div>
+                  {{/with}}
+                  {{#with PendingPolicies}}
+                  <div class="col-xs-4">
+                    <p><i class="icon-notification2 icon-2x display-inline-block text-orange-300"></i></p>
+                    <h5 class="text-semibold no-margin">{{PendingPolicies.length}}</h5>
+                    <span class="text-muted text-size-small">Pending</span>
+                  </div>
+                  {{/with}}
+                  {{#with PastPolicies}}
+                  <div class="col-xs-4">
+                    <p><i class=" icon-cancel-circle2 icon-2x display-inline-block text-danger"></i></p>
+                    <h5 class="text-semibold no-margin">{{PastPolicies.length}}</h5>
+                    <span class="text-muted text-size-small">Archived</span>
+                  </div>
+                  {{/with}}
                 </div>
-                {{/with}}
-                {{#with PendingPolicies}}
-                <div class="col-xs-4">
-                  <p><i class="icon-notification2 icon-2x display-inline-block text-warning"></i></p>
-                  <h5 class="text-semibold no-margin">{{PendingPolicies.length}}</h5>
-                  <span class="text-muted text-size-small">Pending</span>
-                </div>
-                {{/with}}
-                {{#with PastPolicies}}
-                <div class="col-xs-4">
-                  <p><i class=" icon-cancel-circle2 icon-2x display-inline-block text-danger"></i></p>
-                  <h5 class="text-semibold no-margin">{{PastPolicies.length}}</h5>
-                  <span class="text-muted text-size-small">Archived</span>
-                </div>
-                {{/with}}
-              </div>
-              <br/>
-              <div class="row text-center">
-                <div class="col-xs-4">
-                  <button id="btnUpload" class="btn-small btn-primary right submit" type="button" name="action">Upload Certificate</button>
-                </div>
+                <br/>
+                <div class="row text-center">
+                  <div class="col-xs-4">
+                    <button id="btnUpload" class="btn-small btn-primary right submit" type="button" name="action">Upload Certificate</button>
+                  </div>
 
-                <div class="col-xs-4">
-                  <button class="btn-small btn-primary right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a></button>
+                  <div class="col-xs-4">
+                    <button class="btn-small btn-primary right submit" type="submit" name="action"><a href="/req-cert" style="color:white;">Request Certificate</a></button>
+                  </div>
+                  {{#if AllCompanies.archived}}
+                  <div class="col-xs-4">
+                    <button class="btn-small btn-primary right submit co-un-archive" type="submit" name="action">Unarchive Company</button>
+                  </div>
+                  {{else}}
+                  <div class="col-xs-4">
+                    <button class="btn-small btn-primary right submit co-archive" type="submit" name="action">Archive Company</button>
+                  </div>
+                  {{/if}}
                 </div>
-                {{#if AllCompanies.archived}}
-                <div class="col-xs-4">
-                  <button class="btn-small btn-primary right submit co-un-archive" type="submit" name="action">Unarchive Company</button>
-                </div>
-                {{else}}
-                <div class="col-xs-4">
-                  <button class="btn-small btn-primary right submit co-archive" type="submit" name="action">Archive Company</button>
-                </div>
-                {{/if}}
               </div>
-            </div>
-          </div>
-            <!-- /simple text stats with icons -->
+           </div>
+            <!-- /Policy Summary -->
 
-        <!-- User details (with sample pattern) -->
-        <div class="panel panel-flat">
-          <div class="panel-heading">
+            <!-- Company Info -->
+            <div class="panel panel-flat">
+              <div class="panel-heading">
                 <h6 class="panel-title">Company Info</h6>
                 <div class="heading-elements">
                   <ul class="icons-list">
@@ -148,79 +149,83 @@
                   </ul>
                 </div>
               </div>
-          <div class="panel-body">
-            {{#with AllCompanies}}
-            <div class="form-group mt-5">
-              <label class="text-semibold">Company:</label>
-              <span class="pull-right-sm">{{this.companyName}}</span>
-            </div>
+              <div class="panel-body">
+                {{#with AllCompanies}}
+                <div class="form-group mt-5">
+                  <label class="text-semibold">Company:</label>
+                  <span class="pull-right-sm">{{this.companyName}}</span>
+                </div>
 
-            <div class="form-group mt-5">
-              <label class="text-semibold">Name:</label>
-              <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
-            </div>
+                <div class="form-group mt-5">
+                  <label class="text-semibold">Name:</label>
+                  <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
+                </div>
 
-            <div class="form-group">
-              <label class="text-semibold">Phone:</label>
-              <span class="pull-right-sm">{{this.companyPhone}}</span>
-            </div>
+                <div class="form-group">
+                  <label class="text-semibold">Phone:</label>
+                  <span class="pull-right-sm">{{this.companyPhone}}</span>
+                </div>
 
-            <div class="form-group no-margin-bottom">
-              <label class="text-semibold">Email:</label>
-              <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
-            </div>
-            {{/with}}
-        </div>
-        </div>
-        <!-- /user details (with sample pattern) -->
-            <div class="panel">
-						<div class="panel-heading bg-blue-600">
-							<h5 class="panel-title white-text">Requested Certificates</h5>
-							<div class="heading-elements">
-								<ul class="icons-list">
-                  <li><a data-action="collapse"></a></li>
-                  <li><a data-action="reload"></a></li>
-                </ul>
+                <div class="form-group no-margin-bottom">
+                  <label class="text-semibold">Email:</label>
+                  <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
+                </div>
+                {{/with}}
               </div>
-						</div>
-						<div class="table-responsive">
-							<table class="table">
-                <thead>
-                  <tr>
-                      <th data-field="status">Req. Type</th>
-                      <th data-field="status">Coverage</th>
-                      <th data-field="status">Requested On</th>
-                      <th data-field="id">Remind</th>
-                      <th data-field="active">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each requestedPolicies}}
-                  <tr>
-                      <td valign="bottom" text-align="center">{{this.type}}</td>
-                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
-                      <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
-                      <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
-                      <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
-                      <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
-                  </tr>
-                  {{/each}}
-                </tbody>
-							</table>
-						</div>
-					</div>
+            </div>
+            <!-- /Company Info -->
 
+            <!-- Requested -->
             <div class="panel">
-            <div class="panel-heading bg-orange-300">
-                <h5 class="panel-title">Pending Certificates</h5>
+              <div class="panel-heading bg-blue-600">
+                <h5 class="panel-title white-text">Requested Certificates</h5>
                 <div class="heading-elements">
                   <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
                   </ul>
                 </div>
-                    </div>
+              </div>
               <div class="table-responsive">
-  							<table class="table">
+                <table class="table">
+                  <thead>
+                    <tr>
+                        <th data-field="status">Req. Type</th>
+                        <th data-field="status">Coverage</th>
+                        <th data-field="status">Requested On</th>
+                        <th data-field="id">Remind</th>
+                        <th data-field="active">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each requestedPolicies}}
+                    <tr>
+                        <td valign="bottom" text-align="center">{{this.type}}</td>
+                        <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                        <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
+                        <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
+                        <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
+                        <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+					  </div>
+            <!-- /Requested -->
+
+            <!-- Pending -->
+            <div class="panel">
+              <div class="panel-heading bg-orange-300">
+                  <h5 class="panel-title">Pending Certificates</h5>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                    </ul>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
                   <thead>
                       <tr>
                           <th data-field="status">Status</th>
@@ -231,7 +236,6 @@
                           <!--<th data-field="expired">Company</th>-->
                       </tr>
                   </thead>
-
                   <tbody>
                       {{#with PendingPolicies}} {{#each this}}
                       <tr>
@@ -240,7 +244,7 @@
                                 Approve</a>
                               </p>
                               <div class="bdivider"></div>
-                              <p><a class="btn-danger btn-xs" id="unapprove" name="{{this._id}}">Reject</a></p>
+                              <p><a class="btn-danger btn-xs" id="reject" name="{{this._id}}">Reject</a></p>
                           </td>
                           <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
                           </td>
@@ -251,58 +255,66 @@
                       </tr>
                       {{/each}} {{/with}}
                   </tbody>
-  							</table>
-  						</div>
+                </table>
+              </div>
             </div>
-            <div class="panel">
-            <div class="panel-heading bg-green-600">
-                <h5 class="panel-title">Current Certificates</h5>
-                <div class="heading-elements">
-                  <ul class="icons-list">
-                    <li><a data-action="collapse"></a></li>
-                  </ul>
-                </div>
-                    </div>
-              <table class="table">
-                <thead>
-                <tr>
-                    <th data-field="status">Status</th>
-                    <th data-field="id">Policy Name</th>
-                    <th data-field="active">Coverage</th>
-                    <th data-field="waiting">Agent</th>
-                    <th data-field="expired">Expire</th>
-                    <th data-field="expired">Summary</th>
-                    <th data-field="update">Req/Update</th>
-                </tr>
-            </thead>
+            <!-- /Pending -->
 
-              <tbody>
-                  {{#each CurrentPolicies}} {{#unless isPendingPolicies}}
-                  <tr>
-                      <td valign="bottom" text-align="center">
-                          <a class="btn-xs btn-primary" id="approved"
-                          name="{{this._id}}">Approved</a>
-                      </td>
-                      <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
-                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
-                      <td valign="bottom" text-align="center">{{this.agentId}}</td>
-                      <td valign="bottom" text-align="center">{{formatDate this.expDate 'DD/MM/YYYY'}}</td>
-                      <td valign="bottom" text-align="center" class="viewPolicy">View</td>
-                      <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
-                  </tr>
-                  {{/unless}} {{/each}}
-              </tbody>
-              </table>
-            </div>
+            <!-- Current -->
             <div class="panel">
-            <div class="panel-heading bg-danger-600">
+              <div class="panel-heading bg-green-600">
+                  <h5 class="panel-title">Current Certificates</h5>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                    </ul>
+                  </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                        <th data-field="status">Status</th>
+                        <th data-field="id">Policy Name</th>
+                        <th data-field="active">Coverage</th>
+                        <th data-field="waiting">Agent</th>
+                        <th data-field="expired">Expire</th>
+                        <th data-field="expired">Summary</th>
+                        <th data-field="update">Req/Update</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {{#each CurrentPolicies}} {{#unless isPendingPolicies}}
+                    <tr>
+                        <td valign="bottom" text-align="center">
+                            <a class="btn-xs btn-primary" id="approved"
+                            name="{{this._id}}">Approved</a>
+                        </td>
+                        <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                        <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                        <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                        <td valign="bottom" text-align="center">{{formatDate this.expDate 'DD/MM/YYYY'}}</td>
+                        <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                        <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a> / <a href="#" class="linkUpdate">Update</a></td>
+                    </tr>
+                    {{/unless}} {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /Current -->
+
+            <!-- Past -->
+            <div class="panel">
+              <div class="panel-heading bg-danger-600">
                 <h5 class="panel-title">Past Certificates</h5>
                 <div class="heading-elements">
                   <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
                   </ul>
                 </div>
-                    </div>
+              </div>
               <table class="table">
                 <thead>
                   <tr>
@@ -313,9 +325,9 @@
                       <th data-field="expired">Summary</th>
                       <th data-field="update">Req/Update</th>
                   </tr>
-              </thead>
+                </thead>
 
-              <tbody>
+                <tbody>
                   {{#with PastPolicies}} {{#each this}}
                   <tr>
                       {{#if this.isPast}}
@@ -338,13 +350,196 @@
                       {{/if}}
                   </tr>
                   {{/each}} {{/with}}
-              </tbody>
+                </tbody>
+              </table>
+            </div>
+            <!-- /Past -->
+          </div>
+          <!-- Overview -->
+
+          <!-- Requested -->
+          <div class="tab-pane fade in active panel" id="requested">
+            <div class="panel-heading bg-blue-600">
+              <h5 class="panel-title white-text">Requested Certificates</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                      <th data-field="status">Req. Type</th>
+                      <th data-field="status">Coverage</th>
+                      <th data-field="status">Requested On</th>
+                      <th data-field="id">Remind</th>
+                      <th data-field="active">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each requestedPolicies}}
+                  <tr>
+                      <td valign="bottom" text-align="center">{{this.type}}</td>
+                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                      <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
+                      <td valign="bottom" text-align="center"><a href="#" class="remind">Remind Now</a></td>
+                      <td valign="bottom" text-align="center"><a href="#" class="delReq">Delete Request</a></td>
+                      <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
           </div>
+          <!-- /Requested -->
 
+          <!-- Pending -->
+          <div class="tab-pane fade in active panel" id="pending">
+            <div class="panel-heading bg-orange-300">
+                <h5 class="panel-title">Pending Certificates</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th data-field="status">Status</th>
+                        <th data-field="id">Policy Name</th>
+                        <th data-field="active">Coverage</th>
+                        <th data-field="waiting">Agent</th>
+                        <th data-field="expired">Summary</th>
+                        <!--<th data-field="expired">Company</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#with PendingPolicies}} {{#each this}}
+                    <tr>
+                        <td valign="bottom" text-align="center">
+                            <p><a class="btn-primary btn-xs btn-collapsible" id="approve" name="{{this._id}}">
+                              Approve</a>
+                            </p>
+                            <div class="bdivider"></div>
+                            <p><a class="btn-danger btn-xs" id="reject" name="{{this._id}}">Reject</a></p>
+                        </td>
+                        <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
+                        </td>
+                        <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                        <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                        <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                        <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                    </tr>
+                    {{/each}} {{/with}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /Pending -->
+
+          <!-- Current -->
+          <div class="tab-pane fade in active panel" id="current">
+            <div class="panel-heading bg-green-600">
+                <h5 class="panel-title">Current Certificates</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                      <th data-field="status">Status</th>
+                      <th data-field="id">Policy Name</th>
+                      <th data-field="active">Coverage</th>
+                      <th data-field="waiting">Agent</th>
+                      <th data-field="expired">Expire</th>
+                      <th data-field="expired">Summary</th>
+                      <th data-field="update">Req/Update</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {{#each CurrentPolicies}} {{#unless isPendingPolicies}}
+                  <tr>
+                      <td valign="bottom" text-align="center">
+                          <a class="btn-xs btn-primary" id="approved"
+                          name="{{this._id}}">Approved</a>
+                      </td>
+                      <td valign="bottom" text-align="center"><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                      <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                      <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                      <td valign="bottom" text-align="center">{{formatDate this.expDate 'DD/MM/YYYY'}}</td>
+                      <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                      <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a> / <a href="#" class="linkUpdate">Update</a></td>
+                  </tr>
+                  {{/unless}} {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /Current -->
+
+          <!-- Past -->
+          <div class="tab-pane fade in active panel" id="past">
+            <div class="panel-heading bg-danger-600">
+              <h5 class="panel-title">Past Certificates</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                </ul>
+              </div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                    <th data-field="status">Status</th>
+                    <th data-field="id">Policy Name</th>
+                    <th data-field="active">Coverage</th>
+                    <th data-field="waiting">Agent</th>
+                    <th data-field="expired">Summary</th>
+                    <th data-field="update">Req/Update</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {{#with PastPolicies}} {{#each this}}
+                <tr>
+                    {{#if this.isPast}}
+                    <td valign="bottom" text-align="center">
+                        <p><a class="btn-small waves-effect waves-light green">Updated</a></p>
+                    </td>
+                    {{else}}
+                    <td valign="bottom" text-align="center">
+                        <p><a class="btn-small waves-effect waves-light red">Expired</a></p>
+                    </td>
+                    {{/if}}
+                    <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                    <td>{{getCoverageValue this.coverage}}</td>
+                    <td>{{this.agentId}}</td>
+                    <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                    {{#if this.isPast}}
+                    <td valign="bottom" text-align="center"><a href="#">N/A</a></td>
+                    {{else}}
+                    <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
+                    {{/if}}
+                </tr>
+                {{/each}} {{/with}}
+              </tbody>
+            </table>
+          </div>
+          <!-- /Past -->
         </div>
-      </div><!-- /tab content -->
+        <!-- /tab content -->
+      </div>
+
 
     </div>
   </div>

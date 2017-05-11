@@ -70,7 +70,7 @@ TabularTables.policyList = new Tabular.Table({
     },
     {
       data: "policyName",
-      title: "Polciy Name",
+      title: "Policy Name",
       render(data, type, row) {
         var policy = row;
         var currentPolicy = policy._id;
@@ -108,6 +108,24 @@ TabularTables.policyList = new Tabular.Table({
         }
       }
     }
+    /*{
+      data: "policyStatus",
+      title: "Status",
+      render(data, type, row) {
+        let status = data;
+        var pid = policy._id;
+        var cpolicy = Policies.find({ policyName: pid }).fetch();
+          //If the user hasnt approved it
+          if (cpolicy.uApproved === false) status = "Pending";
+          //If it has been received and the start date is after today
+          if (cpolicy.policyStatus == "received" && cpolicy.startDate > new Date()) status = "Pending";
+          //If it is approved, and not expired
+          if (cpolicy.uApproved === true && cpolicy.startDate <= new Date() && new Date() <= cpolicy.expDate) status = "Current";
+          //If it is expired
+          if (new Date() > cpolicy.expDate) status = "Past";
+        return status;
+      }
+    }*/
   ],
   extraFields: ['_id', 'alias', 'isAliasUpdatedByAgent', 'dealerId'],
 

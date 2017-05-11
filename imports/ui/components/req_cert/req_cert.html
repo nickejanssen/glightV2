@@ -26,31 +26,41 @@
     <!-- /Page header -->
     <div class="content">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <!-- Basic layout-->
+        <div class="col-md-12">
+          <!-- Basic layout-->
           <form class="form-horizontal formValidate" id="formValidate" method="get" action="">
-              <div class="panel panel-flat">
-                <div class="panel-heading">
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+								<h5 class="panel-title">Request Certificate</h5>
+								<div class="heading-elements">
+									<ul class="icons-list">
+										<li><a data-action="collapse"></a></li>
+										<li><a data-action="reload"></a></li>
+										<li><a data-action="close"></a></li>
+									</ul>
+								</div>
+							</div>
 
-                <div class="panel-body">
+              <div class="panel-body">
+                <div class = "row">
+                  <div class="col-md-6">
                     <fieldset class="content-group">
+                      <legend class="text-semibold"><i class="icon-home5 position-left"></i> Basic Info</legend>
                       <div class="form-group">
                         <label class="control-label col-md-3">Choose company*</label>
                         <div class="col-md-6">
-
-                      <select class="select browser-default" id="certComp" required name="certComp" data-error=".errorTxt6">
-                        <option value="" disabled selected>Choose company to request from</option>
-                          {{#with AllCompanies}}
+                          <select class="select browser-default" id="certComp" required name="certComp" data-error=".errorTxt6">
+                              <option value="" disabled selected>Choose company to request from</option>
+                            {{#with AllCompanies}}
                               {{#each this}}
                               <option value="{{this._id}}" class="company" id="company">{{this.companyName}}</option>
                               {{/each}}
-                          {{/with}}
+                            {{/with}}
                           </select>
-
-                    </div>
-                    <div class="col-md-3">
-                      <button type="button" href="/add-co" id="btnAddCo" class="btn-small btn-primary right submit" name="action">Add New <i class="icon-plus3 position-right"></i></button>
-                    </div>
+                        </div>
+                        <div class="col-md-3">
+                          <button type="button" href="/add-co" id="btnAddCo" class="btn-small btn-primary right submit" name="action">Add New <i class="icon-plus3 position-right"></i></button>
+                        </div>
                       </div>
 
                       <div class="form-group">
@@ -63,7 +73,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3">Select Coverage</label>
                         <div class="col-md-9 multi-select-full">
-                          <select class="multiselect" multiple="multiple" id="coverage" placeholder="Coverage" required name="certCove">
+                          <select class="select error browser-default" id="certCov" required name="certCove">
                             {{#each getCoverageType}}
                               <option value="{{this.key}}">{{this.value}}</option>
                             {{/each}}
@@ -84,17 +94,27 @@
                       </div>
                     </fieldset>
                     <br/>
-
-                  <div class="text-right">
-                      <button type="submit" class="btn-small btn-primary center submit" name="action">Submit<i class="icon-arrow-right14 position-right"></i></button>
-                      <button class="btn-small btn-primary center submit" type="reset" value="Reset" name="action">Reset<i class="icon-reset position-right"></i></button>
-                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <fieldset>
+                      <legend class="text-semibold"><i class="icon-certificate position-left"></i> Coverage Details</legend>
+                      {{#with chooseCov name}}
+                        {{> template}}
+                      {{/with}}
+                    </fieldset>
+                  </div>
+                  <div class="text-right col-md-12">
+                    <button type="submit" class="btn-small btn-primary center submit" name="action">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                    <button class="btn-small btn-primary center submit" type="reset" value="Reset" name="action">Reset<i class="icon-reset position-right"></i></button>
+                  </div>
                 </div>
               </div>
-                </div>
-            </form>
+            </div>
+          </form>
             <!-- /basic layout -->
         </div>
+
+
       </div>
     </div>
   </div>

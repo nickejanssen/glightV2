@@ -25,9 +25,18 @@ Template.req_cert.helpers({
     let _CompanyDetail = Template.instance().companyDetail.get("AllCompanies");
     return _CompanyDetail;
   },
-
   getCoverageType: function () {
     return coverageType;
+  },
+  chooseCov: function () {
+    var name = Session.get('currentCov');
+    console.log(name);
+    Meteor.setTimeout(function () {}, 20);
+    if (name) {
+      return { template: Template[name] };
+    } else {
+      return;
+    }
   }
 });
 
@@ -48,8 +57,9 @@ Template.req_cert.events({
     const company = selectedCo;
     const cname = reqCompany.companyName;
     const coverage = e.currentTarget.certCove.value.trim();
-    const email = coEmail;
-    console.log(cname);
+    const email = coEmail
+    const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
+    console.log(coverageInfo);
     Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
       if (error) {
         alert(error);
@@ -69,6 +79,24 @@ Template.req_cert.events({
 
   'click #btnAddCo'(e, t) {
     Router.go('/add-co');
+  },
+
+  "change #certCov": function (event) {
+    let selectedCov = $(event.target).val();
+    console.log("Triggered");
+    if (selectedCov == "autoLiability") {
+      Session.set('currentCov', "autoLiability");
+    } else if (selectedCov == "evidProp") {
+      Session.set('currentCov', "epc");
+    } else if (selectedCov == "umbrella") {
+      Session.set('currentCov', "umbrella");
+    } else if (selectedCov == "genLiability") {
+      Session.set('currentCov', "genLiability");
+    } else if (selectedCov == "workComp") {
+      Session.set('currentCov', "workComp");
+    } else {
+      Session.set('currentCov', "blank");
+    }
   }
 });
 

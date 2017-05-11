@@ -99,10 +99,10 @@ Template.co_detail.helpers({
 
 Template.co_detail.onCreated(function () {
   let _self = this;
-  Session.set('historyCount', 10);
+  Session.set('historyCount', 5);
   Session.set('compID', '');
   Session.set('policyID', '');
-  Session.set('policyDetail', [])
+  Session.set('policyDetail', []);
   _self.companyDetail = new ReactiveDict();
   _self.policyDetail = new ReactiveDict();
 
@@ -157,11 +157,29 @@ Template.co_detail.events({
     let policy = { _id: pid };
     Meteor.call('approvePolicy', policy, (error) => {
       if (error) {
-        Materialize.toast(error.reason, 3000, 'red');
+        swal("Uh Oh!", error.reason, "error");
       } else {
-        Materialize.toast("Policy Approved", 3000, 'green');
+        swal("Policy Approved!", "You can now view the policy in Current Certificates.", "success");
       }
     });
+  },
+
+  'click #reject': (e, t) => {
+    let pid = $(e.currentTarget).attr("name");
+
+    let policy = { _id: pid };
+    let reason = "I want to";
+    if (confirm('Are you sure you want to reject this request')) {
+      Meteor.call('rejectPolicy', reason, policy, (error) => {
+        if (error) {
+          swal("Uh Oh!", error.reason, "error");
+        } else {
+          swal("Policy Rejected", "Your Reasoning: ", "success");
+        }
+      });
+    }
+
+
   },
 
   'click #unapprove': (e, t) => {
@@ -170,9 +188,9 @@ Template.co_detail.events({
     let policy = { _id: pid };
     Meteor.call('unapprovePolicy', policy, (error) => {
       if (error) {
-        Materialize.toast(error.reason, 3000, 'red');
+        swal("Uh Oh!", error.reason, "error");
       } else {
-        Materialize.toast("Policy Unapproved", 3000, 'red');
+        swal("Policy Unapproved!", "You can now reject the policy in Pending Certificates.", "warning");
       }
     });
   },
@@ -209,7 +227,7 @@ Template.co_detail.events({
           Materialize.toast(err.reason, 3000, 'red');
         }
         else {
-          swal("Your request has been deleted!");
+          swal("Your request has been deleted!", "info");
         }
       });
     }
@@ -239,15 +257,5 @@ Template.co_detail.events({
 });
 
 Template.co_detail.onRendered(() => {
-  // $('.modal').modal({
-  //   dismissible: true, // Modal can be dismissed by clicking outside of the modal
-  //   inDuration: 300, // Transition in duration
-  //   outDuration: 300, // Transition out duration
-  //   startingTop: '5%', // Starting top style attribute
-  //   endingTop: '15%' // Ending top style attribute
-  // }
-  // );
-  // $('#modal1').modal('open');
-  // $('select').not('.disabled').material_select();
   $('body').addClass('has-detached-left');
 });

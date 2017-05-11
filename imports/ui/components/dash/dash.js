@@ -13,10 +13,11 @@ var imageurl = new ReactiveVar();
 Template.dash.onCreated(function () {
   Session.set('activeCompany',undefined);
   Session.set('dashboardCount',undefined);
-  Session.set('historyCount', 10);
+  Session.set('historyCount', 5);
+  Session.set('AuditConfig', undefined);
   Tracker.autorun(() => {
     //console.log('getHistory');
-    Meteor.subscribe("dashboardHistory", Session.get('historyCount'))
+    Meteor.subscribe("dashboardHistory", Session.get('historyCount'));
   });
 
   Meteor.call('dashboardCount',function(error,result){
@@ -74,6 +75,18 @@ Template.dash.helpers({
   },
   activeCompany(){
     return Session.get('activeCompany');
+  }
+
+});
+
+Template.policySummary.helpers({
+  selector: function () {
+    if (Session.get('AuditConfig')) {
+      return { userId: Meteor.userId(), createdAt: { $gte: new Date(Session.get('AuditConfig').strDate), $lt: new Date(Session.get('AuditConfig').endDate) }, coverage: Session.get('AuditConfig').coverage };
+    }
+    else {
+      return { userId: Meteor.userId() };
+    }
   }
 });
 
@@ -178,7 +191,7 @@ Template.dash.events({
   },
   'click #btnLoadMore': function (e, t) {
     e.preventDefault();
-    Session.set('historyCount', Session.get('historyCount') + 10); //inc count
+    Session.set('historyCount', Session.get('historyCount') + 5); //inc count
   },
 
 });

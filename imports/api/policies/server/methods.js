@@ -51,6 +51,51 @@ Meteor.methods({
     Meteor.call('insertHistory', policy.companyId, 'upload', getCoverageVal(policy.coverage) + ' unapproved');
   },
 
+  'rejectPolicy'(rejReason, policyDetail) {
+    this.unblock();
+    let compDetail = Company.findOne({ _id: policyDetail.companyId });
+
+    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
+    console.log(rejReason);
+    console.log(policyDetail);
+    console.log(compDetail);
+    console.log(compDetail.companyEmail);
+
+    requestDetails.userId = policyDetail.userId;
+    requestDetails.createdAt = new Date();
+    let reqID = RequestCertificate.insert(requestDetails);
+    let reason = rejReason;
+    let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + reqID);
+
+    options = {
+      from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
+      to: compDetail.companyEmail,
+      subject: 'Policy Rejected',
+      headers: {
+        "X-SMTPAPI": {
+          "sub": {
+            ":companyName": [compDetail.companyName],
+            ":requestedDocument": [compDetail.policyName],
+            ":url": [uploadDocURL],
+            ":reason": reason
+          },
+         // "category": ["Promotions"],
+          "filters": {
+            "templates": {
+              "settings": {
+                "enable": 1,
+                "template_id": ''
+              }
+            }
+          }
+        }
+      }
+    };
+
+    Email.send(options);
+    Meteor.call('insertHistory', policyDetail.companyId, 'reject', 'Rejected policy for ' + getCoverageVal(policyDetail.coverage));
+  },
+
   'processPolicies'() {
     let allApprovedPolicies = Policies.find({ uApproved: true, isPast: false }).fetch();
     let currentDate = new Date();
@@ -62,7 +107,7 @@ Meteor.methods({
   'reminderMail'(reminderType, policyDetail) {
     this.unblock();
     let compDetail = Company.findOne({ _id: policyDetail.companyId });
-    
+
     let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
     requestDetails.userId = policyDetail.userId;
     requestDetails.createdAt = new Date();
