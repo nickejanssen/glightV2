@@ -12,9 +12,9 @@ var Future = Npm.require('fibers/future');
 var Fiber = Npm.require('fibers');
 
 let policyUpdateReminderType = {
-  '30':'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
-  '15':'36cf4c99-ace1-4378-b933-bf42d8461cd8',
-  '3':'f20b8ef8-f941-4c29-a866-e708645d7a22'
+  '30': 'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
+  '15': '36cf4c99-ace1-4378-b933-bf42d8461cd8',
+  '3': 'f20b8ef8-f941-4c29-a866-e708645d7a22'
 }
 
 Meteor.methods({
@@ -71,6 +71,8 @@ Meteor.methods({
       from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Policy Rejected',
+      text: '',
+      html: '',
       headers: {
         "X-SMTPAPI": {
           "sub": {
@@ -79,7 +81,7 @@ Meteor.methods({
             ":url": [uploadDocURL],
             ":reason": reason
           },
-         // "category": ["Promotions"],
+          // "category": ["Promotions"],
           "filters": {
             "templates": {
               "settings": {
@@ -119,14 +121,16 @@ Meteor.methods({
       from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Gentle Reminder',
+      text: '',
+      html: '',
       headers: {
         "X-SMTPAPI": {
           "sub": {
-            ":companyName": [compDetail.companyName],
-            ":requestedDocument": [compDetail.policyName],
-            ":url":[uploadDocURL]
+            "-companyName-": [compDetail.companyName],
+            "-requestedDocument-": [compDetail.policyName],
+            ":url": [uploadDocURL]
           },
-         // "category": ["Promotions"],
+          // "category": ["Promotions"],
           "filters": {
             "templates": {
               "settings": {
@@ -143,14 +147,19 @@ Meteor.methods({
     Meteor.call('insertHistory', policyDetail.companyId, 'upload', 'Automatic reminder for ' + getCoverageVal(policyDetail.coverage));
   },
 
-  audit(startDate, endDate, coverageType) {
+  audit(startDate, endDate, coverageType, isEmailSend, companyID) {
     //console.log(startDate, endDate, coverageType);
     var fs = Npm.require("fs");
     var waitonmethod = new Future();
     var response = {};
     response.code = 400;
     response.fileName = 'auditData_' + (+new Date()) + '.csv';
-    let allPolicies = Policies.find({ userId:this.userId, createdAt: {$gte:new Date(startDate), $lt:new Date(endDate)}, coverage:coverageType }).fetch();
+    let selector = { userId: this.userId, createdAt: { $gte: new Date(startDate), $lt: new Date(endDate) }, coverage: coverageType };
+    if (companyID && companyID != "-1") {
+      selector.companyId = companyID;
+    }
+    let allPolicies = Policies.find(selector).fetch();
+    console.log('allPolicies', allPolicies, coverageType);
     //let allPolicies = Policies.find({}).fetch();
     let formatedData = allPolicies.map(function (d, i) {
       let certStartDate = moment(d.startDate).format('DD/MM/YYYY');
@@ -163,22 +172,70 @@ Meteor.methods({
     let rootDir = process.cwd();
     console.log("Root: " + rootDir);
 
-    let base = process.env.PWD +"/";
+    let base = process.env.PWD + "/";
     console.log("PWD: " + base);
 
-    //let fileDownloadPath = 'F:/glight_audit/'
-    fs.writeFile(base + response.fileName, csv, function (err) {
+    let fileDownloadPath = Meteor.settings.fileDownloadPath;
+    fs.writeFile(fileDownloadPath + response.fileName, csv, Meteor.bindEnvironment(function (err) {
       //console.log(response);
       console.log("Root: " + rootDir);
       console.log("PWD: " + base);
       if (err) {
         waitonmethod.return(err);
       } else {
+        if (isEmailSend) {
+          let options = {
+            from: 'greenlightrequests@getagreenlight.com',
+            to: Meteor.user().emails[0].address,
+            subject: getCoverageVal(coverageType) + ' Audit',
+            attachments: [{   // file on disk as an attachment
+              fileName: response.fileName,
+              filePath: fileDownloadPath + response.fileName // stream this file
+            }]
+          };
+
+          Email.send(options);
+        }
         response.code = 200;
         waitonmethod.return(response);
       }
-    });
+    }));
     return waitonmethod.wait();
+  },
+
+  certUploaded(policyID) {
+    const policyDetail = Policies.findOne({ _id: policyID });
+
+    if (policyDetail) {
+      const userDetails = Meteor.users.findOne({ _id: policyDetail.userId });
+      const companyDetails = Company.findOne({ _id: policyDetail.companyId });
+
+      const options = {
+        from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
+        to: userDetails.emails[0]['address'],
+        subject: 'Certificate Uploaded',
+        text: 'text',
+        html: 'html',
+        headers: {
+          "X-SMTPAPI": {
+            "sub": {
+              "-companyName-": [companyDetails.companyName],
+              "-uploadedDocument-": [getCoverageVal(policyDetail.coverage)],
+            },
+            "filters": {
+              "templates": {
+                "settings": {
+                  "enable": 1,
+                  "template_id": '4827275d-57dc-4a3c-94f1-b7b7657a2486'
+                }
+              }
+            }
+          }
+        }
+      };
+
+      Email.send(options);
+    }
   }
 
 });

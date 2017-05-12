@@ -24,7 +24,7 @@ Meteor.methods({
 
     // }
     let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + doc_id);
-    options = {
+    let options = {
       from: 'greenlightrequests@getagreenlight.com',
       to: email,
       bcc: '',

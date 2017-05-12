@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Company } from '/imports/api/company/company.js';
 import { Policies } from '/imports/api/policies/policies.js';
 import Tabular from 'meteor/aldeed:tabular';
-
+import { coverageType, getCoverageVal } from '/imports/api/constant.js';
 TabularTables = {};
 //registerHelper
 Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
@@ -84,7 +84,10 @@ TabularTables.policyList = new Tabular.Table({
     },
     {
       data: "coverage",
-      title: "Coverage"
+      title: "Coverage",
+      render: function (val, type, doc) {
+        return getCoverageVal(val);
+      }
     },
     {
       data: "startDate",
@@ -128,7 +131,7 @@ TabularTables.policyList = new Tabular.Table({
     }*/
   ],
   extraFields: ['_id', 'alias', 'isAliasUpdatedByAgent', 'dealerId'],
-
+  order:[[0,'asc']],
   responsive: true,
   autoWidth: false,
   "fnDrawCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {

@@ -100,8 +100,8 @@ Meteor.startup(() => {
             var self = this;
             var fs = Npm.require("fs");
             let base = process.env.PWD +"/";
-            //let fileDownloadPath = 'F:/glight_audit/'
-            var file = fs.readFileSync(base + this.params.fileName);
+            let fileDownloadPath = Meteor.settings.fileDownloadPath;
+            var file = fs.readFileSync(fileDownloadPath + this.params.fileName);
             var headers = {
                 'Content-Disposition': "attachment; filename=auditData.csv"
             };

@@ -90,6 +90,7 @@ Template.upload_cert.events({
             } else {
               swal("Success!", "Your policy has been uploaded.", "success");
               document.getElementById("formAddCert").reset();
+              Meteor.call('certUploaded',result);
             }
           });
         }

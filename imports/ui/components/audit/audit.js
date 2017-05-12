@@ -10,34 +10,44 @@ import './audit.html';
 Template.audit.onCreated(function () {
   let _self = this;
   Session.set('AuditConfig', undefined);
+  Session.set('selectedComp', undefined);
 });
 
 Template.audit.helpers({
   getCoverageType: function () {
     return coverageType;
+  },
+  allCompany: function () {
+    return Company.find();
   }
 });
 
 Template.policyTable.helpers({
   selector: function () {
+    let auditCondition = { userId: Meteor.userId() };
     if (Session.get('AuditConfig')) {
-      return { userId: Meteor.userId(), createdAt: { $gte: new Date(Session.get('AuditConfig').strDate), $lt: new Date(Session.get('AuditConfig').endDate) }, coverage: Session.get('AuditConfig').coverage };
+      auditCondition.userId = Meteor.userId();
+      auditCondition.createdAt = { $gte: new Date(Session.get('AuditConfig').strDate), $lt: new Date(Session.get('AuditConfig').endDate) };
+      auditCondition.coverage = Session.get('AuditConfig').coverage;
     }
-    else {
-      return { userId: Meteor.userId() };
+    if (Session.get('selectedComp') && Session.get('selectedComp') != "-1") {
+      auditCondition.companyId = Session.get('selectedComp');
     }
+    return auditCondition;
   }
 });
 
 Template.audit.events({
   'submit #formAudit'(e, t) {
     e.preventDefault();
-    let coverageType = t.$('#coverageType').val();
+    let coverageType = t.$('#coverage').val();
     let startDate = e.currentTarget.startDate.valueAsDate;
     let endDate = e.currentTarget.endDate.valueAsDate;
+    let isEmailSend = $('#email').prop('checked');
+    let selectedCompany = $('#company').val();
     Session.set('AuditConfig', { strDate: startDate, endDate: endDate, coverage: coverageType });
 
-    Meteor.call('audit', startDate, endDate, coverageType, function (err, res) {
+    Meteor.call('audit', startDate, endDate, coverageType, isEmailSend, selectedCompany, function (err, res) {
       if (res.code == 400) {
 
       }
@@ -53,19 +63,29 @@ Template.audit.events({
           function () {
             //console.log(res.fileName);
             setTimeout(function () {
-            swal("All done!", "Select your location for download.");
-            window.open('http://greenlight.meteorapp.com/downloadAudit/' + res.fileName, '_blank');
-            //window.open('http://localhost:3000/downloadAudit/' + res.fileName, '_blank');
-          }, 3000);
-        });
+              if (!isEmailSend) {
+                swal("All done!", "Audit file will be downloaded...");
+              }
+              else {
+                swal("All done!", "Sent an Audit file to your mail.");
+              }
+              if (!isEmailSend) {
+                window.open(Meteor.absoluteUrl() + 'downloadAudit/' + res.fileName, '_blank');
+              }
+            }, 2000);
+          });
         //HERE
       }
     });
 
+  },
+
+  'change #company'(e, t) {
+    Session.set('selectedComp', $('#company').val());
   }
 });
 
-Template.audit.onRendered(function(){
+Template.audit.onRendered(function () {
   $('.select').select2();
 });
 
