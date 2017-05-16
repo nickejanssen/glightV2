@@ -358,7 +358,7 @@
           <!-- Overview -->
 
           <!-- Requested -->
-          <div class="tab-pane fade in active panel" id="requested">
+          <div class="tab-pane fade in panel" id="requested">
             <div class="panel-heading bg-blue-600">
               <h5 class="panel-title white-text">Requested Certificates</h5>
               <div class="heading-elements">
@@ -397,7 +397,7 @@
           <!-- /Requested -->
 
           <!-- Pending -->
-          <div class="tab-pane fade in active panel" id="pending">
+          <div class="tab-pane fade in panel" id="pending">
             <div class="panel-heading bg-orange-300">
                 <h5 class="panel-title">Pending Certificates</h5>
                 <div class="heading-elements">
@@ -443,7 +443,7 @@
           <!-- /Pending -->
 
           <!-- Current -->
-          <div class="tab-pane fade in active panel" id="current">
+          <div class="tab-pane fade in panel" id="current">
             <div class="panel-heading bg-green-600">
                 <h5 class="panel-title">Current Certificates</h5>
                 <div class="heading-elements">
@@ -488,7 +488,7 @@
           <!-- /Current -->
 
           <!-- Past -->
-          <div class="tab-pane fade in active panel" id="past">
+          <div class="tab-pane fade in panel" id="past">
             <div class="panel-heading bg-danger-600">
               <h5 class="panel-title">Past Certificates</h5>
               <div class="heading-elements">
@@ -544,63 +544,62 @@
     </div>
   </div>
 
-  <div id="modal1" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        {{#each policyDetail}}
-        <div class="modal-header panel-heading">
-          <h3 class="panel-title text-bold">{{this.policyName}} Details</h3>
-          <div class="heading-elements">
-            {{#if this.uApproved}}
-              <div class="heading-text">
-                <span class="status-mark border-success position-left"></span>
-                <b>Status:</b> Approved
-              </div>
-            {{else}}
-              <div class="heading-text">
-                <span class="status-mark border-danger position-left"></span>
-                <b>Status:</b> Not Approved
-              </div>
-            {{/if}}
-          </div>
-        </div>
-
-        <div class="modal-body panel-body">
-          <fieldset class="form-group">
-            <legend class="text-green-600"><b>Basic Coverage Info</b></legend>
-            <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
-            <!--<p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>-->
-            <div class="row">
-              <div class="col-md-6">
-                <p><b>Date Uploaded:</b> {{formatDate this.uploadDate 'MM/DD/YYYY'}}</p>
-              </div>
-              <div class="col-md-6">
-                <p><b>Uploaded By:</b> {{this.agentId}}</p>
-              </div>
+<div id="modal1" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {{#each policyDetail}}
+      <div class="modal-header panel-heading">
+        <h3 class="panel-title text-bold">{{this.policyName}} Details</h3>
+        <div class="heading-elements">
+          {{#if this.uApproved}}
+            <div class="heading-text">
+              <span class="status-mark border-success position-left"></span>
+              <b>Status:</b> Approved
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <p><b>Start Date:</b> {{formatDate this.startDate 'MM/DD/YYYY'}}</p>
-              </div>
-              <div class="col-md-6">
-                <p><b>Expiration Date:</b> {{formatDate this.expDate 'MM/DD/YYYY'}}</p>
-              </div>
+          {{else}}
+            <div class="heading-text">
+              <span class="status-mark border-danger position-left"></span>
+              <b>Status:</b> Not Approved
             </div>
-          </fieldset>
-
-          <fieldset class="form-group">
-            <legend class="text-green-600"><b>Coverage Limits</b></legend>
-            <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
-            {{{coverageInfo this.coverage}}}
-          </fieldset>
+          {{/if}}
         </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn-small btn-primary btn-link" data-dismiss="modal">Close</button>
-        </div>
-        {{/each}}
       </div>
+
+      <div class="modal-body panel-body">
+        <fieldset class="form-group">
+          <legend class="text-green-600"><b>Basic Coverage Info</b></legend>
+          <p><a href="{{this.imageurl}}" target="_blank">View Certificate</a></p>
+          <!--<p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>-->
+          <div class="row">
+            <div class="col-md-6">
+              <p><b>Date Uploaded:</b> {{formatDate this.uploadDate 'MM/DD/YYYY'}}</p>
+            </div>
+            <div class="col-md-6">
+              <p><b>Uploaded By:</b> {{this.agentId}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p><b>Start Date:</b> {{formatDate this.startDate 'MM/DD/YYYY'}}</p>
+            </div>
+            <div class="col-md-6">
+              <p><b>Expiration Date:</b> {{formatDate this.expDate 'MM/DD/YYYY'}}</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <legend class="text-green-600"><b>Coverage Limits</b></legend>
+          <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
+          {{{coverageInfo this.coverage}}}
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-small btn-primary btn-link" data-dismiss="modal">Close</button>
+      </div>
+      {{/each}}
     </div>
   </div>
-
+</div>
 </template>
