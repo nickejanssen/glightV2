@@ -42,6 +42,7 @@ Template.req_cert.helpers({
 
 Template.req_cert.events({
   "change #certComp": function (event) {
+    debugger;
     let selectedCo = $(event.target).val();
     let reqCompany = Company.findOne({ _id: selectedCo });
     coEmail = reqCompany.companyEmail;

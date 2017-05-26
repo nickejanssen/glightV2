@@ -240,7 +240,7 @@
                       {{#with PendingPolicies}} {{#each this}}
                       <tr>
                           <td valign="bottom" text-align="center">
-                              <p><a class="btn-primary btn-xs btn-collapsible" id="approve" name="{{this._id}}">
+                              <p><a class="btn-primary btn-xs btn-collapsible approve" id="approve" name="{{this._id}}">
                                 Approve</a>
                               </p>
                               <div class="bdivider"></div>
@@ -599,6 +599,36 @@
         <button type="button" class="btn-small btn-primary btn-link" data-dismiss="modal">Close</button>
       </div>
       {{/each}}
+    </div>
+  </div>
+</div>
+
+<div id="reject-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header panel-heading">
+        <h3 class="panel-title text-bold">Are you sure you want to reject this Certificate</h3>
+        <div class="heading-elements">
+        </div>
+      </div>
+
+      <div class="modal-body panel-body">
+        <fieldset class="form-group">
+          <legend class="text-green-600"><b>Reason</b></legend>
+          <!--<p><b>Status:</b> {{#if this.uApproved}}Approved{{else}}Not Approved{{/if}} </p>-->
+          <div class="row">
+            <div class="col-md-6">
+              <textarea id="reason-text" class="form-control"></textarea>
+            </div>
+            
+          </div>
+        
+        </fieldset>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="btnRejectConfirm" class="btn-small btn-primary btn-link">Reject Certificate</button>
+      </div>
     </div>
   </div>
 </div>

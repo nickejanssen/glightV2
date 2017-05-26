@@ -51,11 +51,13 @@ Meteor.methods({
     Meteor.call('insertHistory', policy.companyId, 'upload', getCoverageVal(policy.coverage) + ' unapproved');
   },
 
-  'rejectPolicy'(rejReason, policyDetail) {
+  'rejectPolicy'(rejReason, policyID) {
     this.unblock();
+    Policies.update({_id:policyID}, {$set: {policyStatus:"rejected"}});
+    let policyDetail = Policies.findOne({_id:policyID});
     let compDetail = Company.findOne({ _id: policyDetail.companyId });
 
-    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
+    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, coName:compDetail.companyName, policyID: policyDetail._id, type: "Update" }
     console.log(rejReason);
     console.log(policyDetail);
     console.log(compDetail);
@@ -71,27 +73,27 @@ Meteor.methods({
       from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Policy Rejected',
-      text: '',
-      html: '',
-      headers: {
-        "X-SMTPAPI": {
-          "sub": {
-            ":companyName": [compDetail.companyName],
-            ":requestedDocument": [compDetail.policyName],
-            ":url": [uploadDocURL],
-            ":reason": reason
-          },
-          // "category": ["Promotions"],
-          "filters": {
-            "templates": {
-              "settings": {
-                "enable": 1,
-                "template_id": ''
-              }
-            }
-          }
-        }
-      }
+      text: reason,
+      html: reason,
+      // headers: {
+      //   "X-SMTPAPI": {
+      //     "sub": {
+      //       ":companyName": [compDetail.companyName],
+      //       ":requestedDocument": [compDetail.policyName],
+      //       ":url": [uploadDocURL],
+      //       ":reason": reason
+      //     },
+      //     // "category": ["Promotions"],
+      //     "filters": {
+      //       "templates": {
+      //         "settings": {
+      //           "enable": 1,
+      //           "template_id": ''
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
     };
 
     Email.send(options);
@@ -121,8 +123,8 @@ Meteor.methods({
       from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Gentle Reminder',
-      text: '',
-      html: '',
+      text: 'text',
+      html: 'html',
       headers: {
         "X-SMTPAPI": {
           "sub": {

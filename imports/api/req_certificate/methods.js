@@ -10,9 +10,8 @@ Meteor.methods({
   'req_certificate.insert'(req_certData) {
     req_certData.userId = this.userId;
     req_certData.createdAt = new Date();
-
     let existingUser = Meteor.users.findOne({ 'emails.address': req_certData.email });
-    if (!existingUser) throw new Meteor.Error(499, "Unregistered users only!");
+    if (existingUser) throw new Meteor.Error(499, "Unregistered users only!");
     // Meteor.call('insertHistory', req_certData.companyID, 'request', 'Requested for Document/Contract');
     return RequestCertificate.insert(req_certData);
   },

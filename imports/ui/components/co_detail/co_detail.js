@@ -30,7 +30,7 @@ Template.co_detail.helpers({
     var _PolicyDetail = Template.instance().policyDetail.get("AllPolicies");
     let pending = _.filter(_PolicyDetail, (elem) => {
       if (elem.policyStatus == "not-received") return true;
-      if (elem.uApproved === false) return true;
+      if (elem.policyStatus != "rejected" && elem.uApproved === false) return true;
       if (elem.policyStatus == "received" && elem.startDate > new Date()) return true;
     });
 
@@ -39,7 +39,7 @@ Template.co_detail.helpers({
 
   isPendingPolicies: function () {
     if (this.policyStatus == "not-received") return true;
-    if (this.uApproved === false) return true;
+    if (this.policyStatus != "rejected" && this.uApproved === false) return true;
     if (this.policyStatus == "received" && this.startDate > new Date()) return true;
   },
 
@@ -84,13 +84,13 @@ Template.co_detail.helpers({
   Userrole() {
     return "Administrator";
   },
-  coverageInfo(coverage){
+  coverageInfo(coverage) {
     let CoverageLabels = getCoverageLabels(coverage);
     let Labels = Object.keys(CoverageLabels);
     let policyDetail = Session.get('policyDetail');
     let html = '';
-    Labels.forEach(function(d,i){
-       html +=  "<p><b>"+CoverageLabels[d]+":</b> "+policyDetail[0].coverageInfo[d]+"</p>"
+    Labels.forEach(function (d, i) {
+      html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
     });
     return html;
   }
@@ -151,7 +151,7 @@ Template.co_detail.events({
     });
   },
 
-  'click #approve': (e, t) => {
+  'click .approve': (e, t) => {
     let pid = $(e.currentTarget).attr("name");
 
     let policy = { _id: pid };
@@ -165,24 +165,13 @@ Template.co_detail.events({
   },
 
   'click #reject': (e, t) => {
-    let pid = $(e.currentTarget).attr("name");
-
-    let policy = { _id: pid };
-    let reason = "I want to";
-    if (confirm('Are you sure you want to reject this request')) {
-      Meteor.call('rejectPolicy', reason, policy, (error) => {
-        if (error) {
-          swal("Uh Oh!", error.reason, "error");
-        } else {
-          swal("Policy Rejected", "Your Reasoning: ", "success");
-        }
-      });
-    }
-
+    
+    $('#reject-modal').attr('data-policyID', $(e.currentTarget).attr("name"));
+    $('#reject-modal').modal('show');
 
   },
 
-  'click #unapprove': (e, t) => {
+  'click .unapprove': (e, t) => {
     let pid = $(e.currentTarget).attr("name");
 
     let policy = { _id: pid };
@@ -197,12 +186,12 @@ Template.co_detail.events({
 
   'mouseover #approved': (e, t) => {
     $(e.target).html("Unapprove");
-    $(e.target).removeClass("btn-primary").addClass("btn-danger");
+    $(e.target).removeClass("btn-primary").addClass("btn-danger").addClass("unapprove");
   },
 
   'mouseout #approved': (e, t) => {
     $(e.target).html("Approved");
-    $(e.target).removeClass("btn-danger").addClass("btn-primary");
+    $(e.target).removeClass("btn-danger").addClass("btn-primary").removeClass("unapprove");
   },
 
   'click #btnUpload': (e, t) => {
@@ -253,6 +242,22 @@ Template.co_detail.events({
   'click .viewPolicy': function (e, t) {
     Session.set('policyDetail', [Policies.findOne({ _id: this._id })]);
     $('#modal1').modal('show');
+  },
+
+  'click #btnRejectConfirm': (e, t) => {
+    if (confirm('Are you sure you want to reject this request')) {
+      Meteor.call('rejectPolicy', $('#reason-text').val(), $('#reject-modal').attr('data-policyID'), (error) => {
+        $('#reject-modal').modal('hide');
+        if (error) {
+          swal("Uh Oh!", error.reason, "error");
+        } else {
+          swal("Policy Rejected", "Your Reasoning: ", "success");
+        }
+      });
+    }
+    else {
+      $('#reject-modal').modal('hide');
+    }
   }
 });
 
