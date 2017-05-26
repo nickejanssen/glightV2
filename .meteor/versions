@@ -47,6 +47,7 @@ ddp-rate-limiter@1.0.7
 ddp-server@1.3.14
 deps@1.0.12
 derekmartin1:tablesorter@0.0.1
+dfischer:phantomjs@1.0.4
 diff-sequence@1.0.7
 ecmascript@0.7.3
 ecmascript-runtime@0.3.15

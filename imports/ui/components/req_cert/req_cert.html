@@ -74,6 +74,7 @@
                         <label class="control-label col-md-3">Select Coverage</label>
                         <div class="col-md-9 multi-select-full">
                           <select class="select error browser-default" id="certCov" required name="certCove">
+                              <option value="Select Coverage" selected>Select Coverage</option>
                             {{#each getCoverageType}}
                               <option value="{{this.key}}">{{this.value}}</option>
                             {{/each}}
