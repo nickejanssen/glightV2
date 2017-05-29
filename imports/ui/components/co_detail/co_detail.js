@@ -90,10 +90,43 @@ Template.co_detail.helpers({
     let policyDetail = Session.get('policyDetail');
     let html = '';
     Labels.forEach(function (d, i) {
-      html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
+      if (policyDetail[0].coverageInfo[d] != undefined) {
+        html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
+      }
+      else {
+        html += "<p><b>" + CoverageLabels[d] + ":</b> N/A</p>"
+      }
     });
     return html;
-  }
+  },
+
+  reqCoverage() {
+    let policyDetail = Session.get('policyDetail');
+    if (policyDetail[0].reqCertID) {
+      let reqDetails = RequestCertificate.findOne({ _id: policyDetail[0].reqCertID });
+      return reqDetails.coverage;
+    }
+    else {
+      return false;
+    }
+  },
+  reqCoverageInfo() {
+    let policyDetail = Session.get('policyDetail');
+    let reqDetails = RequestCertificate.findOne({ _id: policyDetail[0].reqCertID });
+    let CoverageLabels = getCoverageLabels(reqDetails.coverage);
+    let Labels = Object.keys(CoverageLabels);
+
+    let html = '';
+    Labels.forEach(function (d, i) {
+      if (reqDetails.coverageInfo[d] != undefined) {
+        html += "<p><b>" + CoverageLabels[d] + ":</b> " + reqDetails.coverageInfo[d] + "</p>"
+      }
+      else {
+        html += "<p><b>" + CoverageLabels[d] + ":</b> N/A</p>"
+      }
+    });
+    return html;
+  },
 
 });
 
@@ -165,7 +198,7 @@ Template.co_detail.events({
   },
 
   'click #reject': (e, t) => {
-    
+
     $('#reject-modal').attr('data-policyID', $(e.currentTarget).attr("name"));
     $('#reject-modal').modal('show');
 
@@ -200,7 +233,6 @@ Template.co_detail.events({
   },
 
   'click .remind': function (e, t) {
-    debugger;
     let req_certID = this._id;
     Meteor.call('remindReq', req_certID, function (err, res) {
 
@@ -209,7 +241,6 @@ Template.co_detail.events({
   },
 
   'click .delReq': function (e, t) {
-    debugger;
     if (confirm('Are you sure you want to delete this request')) {
       Meteor.call('delReq', this._id, function (err, res) {
         if (err) {

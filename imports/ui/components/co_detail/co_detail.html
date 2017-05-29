@@ -199,7 +199,7 @@
                   </thead>
                   <tbody>
                     {{#each requestedPolicies}}
-                    <tr>
+                    <tr data-id={{this._id}}>
                         <td valign="bottom" text-align="center">{{this.type}}</td>
                         <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
                         <td valign="bottom" text-align="center">{{formatDate this.createdAt 'DD/MM/YYYY'}}</td>
@@ -587,12 +587,26 @@
             </div>
           </div>
         </fieldset>
-
+         <div class="row">
+           
+        {{#if reqCoverage}}
+        <div class="col-md-6">
         <fieldset class="form-group">
-          <legend class="text-green-600"><b>Coverage Limits</b></legend>
+          <legend class="text-green-600"><b>Coverage Limits(Requested)</b></legend>
+          <p><b>Coverage Type:</b> {{getCoverageValue reqCoverage}}</p>
+          {{{reqCoverageInfo}}}
+        </fieldset>
+        </div>
+        {{/if}}
+        
+        <div class="col-md-6">
+        <fieldset class="form-group">
+          <legend class="text-green-600"><b>Coverage Limits(Uploaded)</b></legend>
           <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
           {{{coverageInfo this.coverage}}}
         </fieldset>
+        </div>
+         </div>
       </div>
 
       <div class="modal-footer">

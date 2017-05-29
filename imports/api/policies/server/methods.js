@@ -75,25 +75,27 @@ Meteor.methods({
       subject: 'Policy Rejected',
       text: reason,
       html: reason,
-      // headers: {
-      //   "X-SMTPAPI": {
-      //     "sub": {
-      //       ":companyName": [compDetail.companyName],
-      //       ":requestedDocument": [compDetail.policyName],
-      //       ":url": [uploadDocURL],
-      //       ":reason": reason
-      //     },
-      //     // "category": ["Promotions"],
-      //     "filters": {
-      //       "templates": {
-      //         "settings": {
-      //           "enable": 1,
-      //           "template_id": ''
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
+      headers: {
+        "X-SMTPAPI": {
+          "sub": {
+            ":companyName": [compDetail.companyName],
+            ":requestedDocument": [compDetail.policyName],
+            ":url": [uploadDocURL],
+            "-reason-": [reason],
+            "-coverage-": [getCoverageVal(policyDetail.coverage)],
+            "-company-": [compDetail.companyName]
+          },
+          // "category": ["Promotions"],
+          "filters": {
+            "templates": {
+              "settings": {
+                "enable": 1,
+                "template_id": 'cc4a5338-dd62-4531-a2ca-cd84bee0d4cc'
+              }
+            }
+          }
+        }
+      }
     };
 
     Email.send(options);

@@ -74,6 +74,10 @@ Policies.attachSchema(new SimpleSchema({
         type: Boolean,
         defaultValue: false
     },
+    reqCertID:{
+        type: String,
+        optional:true
+    },
     createdBy: {
         type: String,
         autoValue: function () {

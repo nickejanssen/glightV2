@@ -2,7 +2,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { RequestCertificate } from './req_certificate.js';
-import { coverageType, getCoverageVal } from '/imports/api/constant.js'
+import { coverageType, getCoverageVal, getCoverageLabels } from '/imports/api/constant.js';
 import { Email } from 'meteor/email';
 import moment from 'moment';
 
@@ -16,48 +16,87 @@ Meteor.methods({
     return RequestCertificate.insert(req_certData);
   },
 
-  'sendMail'(email, doc_id, isRemind) { //console.log(email, doc_id);
+  'sendMail'(email, doc_id, isRemind) {
     this.unblock();
+    let fileName = Meteor.settings.fileDownloadPath + this.userId + "/" + doc_id + "/coverage_info.pdf"
+    let webshot = Npm.require('webshot');
+    let fs = Npm.require('fs');
+    let Future = Npm.require('fibers/future');
+
+    let fut = new Future();
     let reqData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
     // if(reqCertDetails.policyID){
 
     // }
-    let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + doc_id);
-    let options = {
-      from: 'greenlightrequests@getagreenlight.com',
-      to: email,
-      bcc: '',
-      subject: 'Certificate Upload',
-      text: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
-      html: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
-      headers: {
-        "X-SMTPAPI": {
-          "sub": {
-            ":url": [uploadDocURL],
-            "-company-": [reqData.coName],
-            "-coverage-": [getCoverageVal(reqData.coverage)]
-          },
-          "filters": {
-            "templates": {
-              "settings": {
-                "enable": 1,
-                "template_id": "a7593107-c56e-4e80-9777-40af3b5153b5"
+
+    SSR.compileTemplate('emailCoverageInfo', Assets.getText('coverage_info.html'));
+
+    Template.emailCoverageInfo.helpers({
+      coverageInfo: function () {
+        let CoverageLabels = getCoverageLabels(reqData.coverage);
+        let Labels = Object.keys(CoverageLabels);
+        let html = '';
+        Labels.forEach(function (d, i) {
+          html += "<p><b>" + CoverageLabels[d] + ":</b> " + reqData.coverageInfo[d] + "</p>"
+        });
+        return html;
+      }
+    });
+
+    let html_string = SSR.render('emailCoverageInfo');
+
+    // Setup Webshot options
+    let webshotOptions = {
+      "paperSize": {
+        "format": "Letter",
+        "orientation": "portrait",
+        "margin": "1cm"
+      },
+      siteType: 'html'
+    };
+
+    // Commence Webshot
+    console.log("Commencing webshot...");
+    webshot(html_string, fileName, webshotOptions, Meteor.bindEnvironment(function (err) {
+      let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + doc_id);
+      let options = {
+        from: 'greenlightrequests@getagreenlight.com',
+        to: email,
+        bcc: '',
+        subject: 'Certificate Upload',
+        text: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
+        html: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
+        attachments: [{   // file on disk as an attachment
+              fileName: "coverage_info.pdf",
+              filePath: fileName // stream this file
+            }],
+        headers: {
+          "X-SMTPAPI": {
+            "sub": {
+              ":url": [uploadDocURL],
+              "-company-": [reqData.coName],
+              "-coverage-": [getCoverageVal(reqData.coverage)]
+            },
+            "filters": {
+              "templates": {
+                "settings": {
+                  "enable": 1,
+                  "template_id": "a7593107-c56e-4e80-9777-40af3b5153b5"
+                }
               }
             }
           }
         }
+      };
+
+      Email.send(options);
+      if (isRemind) {
+        Meteor.call('insertHistory', reqData.companyID, 'remind', 'Sent reminder for ' + getCoverageVal(reqData.coverage));
       }
-    };
-
-    Email.send(options);
-    let req_certData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
-    if (isRemind) {
-      Meteor.call('insertHistory', req_certData.companyID, 'remind', 'Sent reminder for ' + getCoverageVal(req_certData.coverage));
-    }
-    else {
-      Meteor.call('insertHistory', req_certData.companyID, 'request', 'Sent request for ' + getCoverageVal(req_certData.coverage));
-    }
-
+      else {
+        Meteor.call('insertHistory', reqData.companyID, 'request', 'Sent request for ' + getCoverageVal(reqData.coverage));
+      }
+    }));
   },
   testEmailSend() {
     options = {

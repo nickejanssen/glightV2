@@ -24,6 +24,11 @@ RequestCertificate.attachSchema(new SimpleSchema({
     coverage: {
         type: String,
     },
+    coverageInfo: {
+        type: Object,
+        label: "coverage",
+        blackbox: true
+    },
     type: {
         type: String,
     },

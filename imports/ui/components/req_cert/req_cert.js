@@ -61,7 +61,7 @@ Template.req_cert.events({
     const email = coEmail
     const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
     console.log(coverageInfo);
-    Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
+    Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
       if (error) {
         alert(error);
       } else {
