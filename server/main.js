@@ -1,10 +1,34 @@
 // Server entry point, imports all server code
 import { Meteor } from 'meteor/meteor';
 import { Users } from "meteor/perak:user-roles";
+import { Stripe } from 'meteor/mrgalaxy:stripe';
 import '/imports/startup/server';
 import '/imports/startup/both';
 
 Meteor.startup(() => {
+    //Begin Stripe Billing Logic//
+ /*
+    var stripeKey = Meteor.settings.private.stripe.publish;
+    Stripe.setPublishableKey(stripeKey);
+
+   STRIPE = {
+        getToken: function( domElement, card, callback ) {
+        Stripe.card.createToken( card, function( status, response ) {
+            if ( response.error ) {
+            Bert.alert( response.error.message, "danger" );
+            } else {
+            STRIPE.setToken( response.id, domElement, callback );
+            }
+        });
+        },
+        setToken: function( token, domElement, callback ) {
+        $( domElement ).append( $( "<input type='hidden' name='stripeToken' />" ).val( token ) );
+        callback();
+        }
+    };*/
+
+    //End Stripe Billing Logic//
+
     const verifyEmail = true;
     Accounts.config({
         sendVerificationEmail: verifyEmail,

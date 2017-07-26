@@ -151,6 +151,7 @@ Meteor.methods({
     Meteor.call('insertHistory', policyDetail.companyId, 'upload', 'Automatic reminder for ' + getCoverageVal(policyDetail.coverage));
   },
 
+
   audit(startDate, endDate, coverageType, isEmailSend, companyID) {
     //console.log(startDate, endDate, coverageType);
     var fs = Npm.require("fs");

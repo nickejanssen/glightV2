@@ -75,6 +75,12 @@ Template.dash.helpers({
   },
   activeCompany(){
     return Session.get('activeCompany');
+  },
+  plans: function(){
+    var getPlans = Meteor.settings.public.plans;
+    if (getPlans) {
+      return getPlans;
+    }
   }
 
 });
@@ -97,7 +103,14 @@ Template.companyTable.helpers({
 });
 
 Template.dash.events({
-  'change #profilePic': function(event, template){
+  'click .list-group-item': function(e){
+    var parent = $(e.target).closest('.list-group-item');
+    parent.addClass("active");
+    $('.list-group-item').not(parent).removeClass("active");
+    parent.find('input[type="radio"]').prop("checked", true);
+  },
+
+  'change #profilePic': function (event, template) {
     $('.showImage').show();
     var metaContext = {
       userId: Meteor.userId()
@@ -198,4 +211,66 @@ Template.dash.events({
 
 Template.companyTable.onRendered(function(){
   initDataTableComponents();
+  var firstPlanItem = $('.select-plan a:first-child');
+  firstPlanItem.addClass('active');
+  firstPlanItem.find('input').prop("checked", true);
+
+  $('#updateBilling').validate({
+    submitHandler: function(){
+      // Take our card data and create a Stripe token from the client. This
+      // ensures that our code is PCI compliant to keep the man from knocking
+      // on our door.
+      STRIPE.getToken( '#updateBilling', {
+        number: $('[data-stripe="cardNumber"]').val(),
+        exp_month: $('[data-stripe="expMo"]').val(),
+        exp_year: $('[data-stripe="expYr"]').val(),
+        cvc: $('[data-stripe="cvc"]').val()
+      }, function() {
+
+        // Grab the customer's details.
+        var customer = {
+          name: $('[name="fullName"]').val(),
+          emailAddress: $('[name="emailAddress"]').val(),
+          plan: $('[name="selectPlan"]:checked').val(),
+          token: $('[name="stripeToken"]').val()
+        };
+
+        var submitButton = $('input[type="submit"]').button('loading');
+
+        Meteor.call('createTrialCustomer', customer, function(error, response){
+          if (error) {
+            alert(error.reason);
+            // If creation fails, make sure to "reset" our signup interface.
+            submitButton.button('reset');
+          } else {
+            // Note: because we're using a Future to return a value, even if an error
+            // occurs on the server, it will be passed back to the client as the
+            // response argument. Here, we test to make sure we didn't receive an error
+            // in our response before continuing.
+            if ( response.error ) {
+              alert(response.message);
+              // If creation fails, make sure to "reset" our signup interface.
+              submitButton.button('reset');
+            } else {
+              // Our user exists, so now we can log them in! Note: because we know
+              // that we created our user using the emailAddress and password values
+              // above, we can simply login with these :) Hot dog, indeed.
+              Meteor.loginWithPassword(customer.emailAddress, customer.password, function(error){
+                if (error) {
+                  alert(error.reason);
+                  // If login fails, make sure to "reset" our signup interface.
+                  submitButton.button('reset');
+                } else {
+                  Router.go('/lists');
+                  // If creation fails, make sure to "reset" our signup interface.
+                  submitButton.button('reset');
+                }
+              });
+            }
+          }
+        });
+
+      }); // end STRIPE.getToken();
+    }
+  });
 });
