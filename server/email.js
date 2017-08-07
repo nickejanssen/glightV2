@@ -25,7 +25,7 @@ Meteor.methods({
         this.unblock();
 
         options = {
-        from: 'supportrequests@getagreenlight.com',
+        from: 'supportrequests@thecertcollector.com',
         to: 'nickejanssen@gmail.com',
         bcc: '',
         subject: 'Support Request!',

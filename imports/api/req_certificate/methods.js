@@ -60,7 +60,7 @@ Meteor.methods({
     webshot(html_string, fileName, webshotOptions, Meteor.bindEnvironment(function (err) {
       let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + doc_id);
       let options = {
-        from: 'greenlightrequests@getagreenlight.com',
+        from: 'thecertcollectorrequests@getathecertcollector.com',
         to: email,
         bcc: '',
         subject: 'Certificate Upload',
@@ -100,7 +100,7 @@ Meteor.methods({
   },
   testEmailSend() {
     options = {
-      from: 'greenlightrequests@getagreenlight.com',
+      from: 'thecertcollectorrequests@getathecertcollector.com',
       to: 'piyushapex94@gmail.com',
       bcc: '',
       subject: 'Certificate Upload',

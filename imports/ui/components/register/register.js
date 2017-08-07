@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import '../../stylesheets/user/user.css';
 import './register.html';
+//import { Stripe } from 'meteor/mrgalaxy:stripe';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
 
@@ -29,23 +30,31 @@ Template.register.events({
 			profile.phone = event.currentTarget.phone.value.trim();
 
 			//Billing Info
+			/*profile.plan = $('input[name=plan]:checked', '#register-form').val();
+			profile.object = 'card';
+			profile.exp_month = event.currentTarget.exp_month.value.trim();
+			profile.exp_year = event.currentTarget.exp_year.value.trim();
+			profile.number = event.currentTarget.number.value.trim();
+			profile.cvc = event.currentTarget.cvc.value.trim();
+			console.log(profile.plan + profile.object + profile.exp_month + profile.exp_year + profile.number + profile.cvc);
 			profile.billaddress = event.currentTarget.billaddress.value.trim();
 			profile.addline2 = event.currentTarget.addline2.value.trim() ;
 			profile.billcity = event.currentTarget.billcity.value.trim();
 			profile.billstate = event.currentTarget.billstate.value.trim();
 			profile.billzip = event.currentTarget.billzip.value.trim();
-
+			*/
 			if(template.pageSession.get("userCreated")) {
 				const Id = Users.findOne()._id;
 
-			   Meteor.call("updateUserAccount", Id, profile, (error, result) => {
-              if(error){
-                 console.log(error.reason);
-                 template.pageSession.set("errorMessage", error.reason);
-              } else {
-				     Router.go("/dash");
-              }
-           });
+				Meteor.call("updateUserAccount", Id, profile, (error, result) => {
+					if(error){
+						console.log(error.reason);
+						template.pageSession.set("errorMessage", error.reason);
+					} else {
+							Router.go("/dash");
+					}
+				});
+
 			} else {
 
 				//Registration Info
@@ -62,8 +71,8 @@ Template.register.events({
 			 		if (err) {
 						console.log(err.reason); // Output error if registration fails
 						template.pageSession.set("errorMessage", err.reason);
-					} else {
-						Router.go("/dash"); // Redirect user if registration succeeds
+						} else {
+							Router.go("/dash"); // Redirect user if registration succeeds
 					}
 				});
 			};
@@ -80,3 +89,44 @@ Template.register.onRendered(() => { //console.log(Users.findOne());
 	// })
 
 });
+
+//stripe-checkout.js
+if (Meteor.isClient) {
+  Template.hello.events({
+    'click #pro': function(e) {
+      e.preventDefault();
+			let stripePK = Meteor.settings.public.stripe.pk;
+
+			StripeCheckout.open({
+        key: stripePK,
+        amount: 1250,
+        name: 'Pro Subscription',
+        description: 'Unlimited Companies!',
+        panelLabel: 'Subscribe',
+        token: function(res) {
+          stripeToken = res.id;
+					let uEmail = res.email;
+          Meteor.call('subscribePro', stripeToken, uEmail);
+        }
+      });
+		},
+
+		'click #free': function(e) {
+      e.preventDefault();
+			let stripePK = Meteor.settings.public.stripe.pk;
+
+			StripeCheckout.open({
+        key: stripePK,
+        amount: 0,
+        name: 'Free Subscription',
+        description: 'We will not be charged!',
+        panelLabel: 'Subscribe',
+        token: function(res) {
+          stripeToken = res.id;
+					let uEmail = res.email;
+          Meteor.call('subscribeFree', stripeToken, uEmail);
+        }
+      });
+    }
+  });
+}

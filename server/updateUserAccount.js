@@ -15,6 +15,56 @@ Meteor.methods({
 		Users.update(userId, { $set: { profile } });
 	},
 
+  'subscribePro': function(stripeToken, uEmail) {
+    check(stripeToken, String);
+    let stripeSK = Meteor.settings.private.stripe.sk;
+    var Stripe = StripeAPI(stripeSK);
+    console.log(stripeToken);
+    console.log("User email: " + stripeToken.email);
+
+    Stripe.customers.create({
+      email: uEmail,
+      source: stripeToken,
+      plan: 'standardpricing'
+    }, function(err, charge) {
+      console.log(err, charge);
+    });
+
+    /*Stripe.charges.create({
+      source: stripeToken,
+      amount: 100,
+      plan: 'standardpricing',
+      currency: 'usd'
+    }, function(err, charge) {
+      console.log(err, charge);
+    });*/
+  },
+
+  'subscribeFree': function(stripeToken, uEmail) {
+    check(stripeToken, String);
+    let stripeSK = Meteor.settings.private.stripe.sk;
+    var Stripe = StripeAPI(stripeSK);
+    console.log(stripeToken);
+    console.log("User email: " + stripeToken.email);
+
+    Stripe.customers.create({
+      email: uEmail,
+      source: stripeToken,
+      plan: 'freePricing'
+    }, function(err, charge) {
+      console.log(err, charge);
+    });
+
+    /*Stripe.charges.create({
+      source: stripeToken,
+      amount: 100,
+      plan: 'standardpricing',
+      currency: 'usd'
+    }, function(err, charge) {
+      console.log(err, charge);
+    });*/
+  },
+
 	checkPassword: function(digest) {
     check(digest, String);
 

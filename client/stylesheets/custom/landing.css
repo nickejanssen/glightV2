@@ -106,6 +106,26 @@ a.btn-cta {
   color: #fff;
   border: 1px solid #86D292;
 }
+
+.btn-pro:hover,
+.btn-pro:focus,
+.btn-pro:active,
+.btn-pro.active,
+.btn-pro.hover {
+  background: #4CAF50;
+  color: #fff;
+  border: 1px solid #4CAF50;
+}
+
+.btn-free:hover,
+.btn-free:focus,
+.btn-free:active,
+.btn-free.active,
+.btn-free.hover {
+  background: #F44336;
+  color: #fff;
+  border: 1px solid #F44336;
+}
 /* ======= Header ======= */
 .header {
   background: #75c181;

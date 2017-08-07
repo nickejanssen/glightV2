@@ -84,7 +84,7 @@
 
 								<div class="col-md-6">
 									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="phone" class="input-medium bfh-phone form-control" data-format="+1 (ddd) ddd-dddd" placeholder="Phone">
+										<input type="tel" name="phone" class="input-medium bfh-phone form-control" data-format="+1 (ddd) ddd-dddd" placeholder="Phone">
 										<div class="form-control-feedback">
 											<i class="icon-user-check text-muted"></i>
 										</div>
@@ -92,23 +92,26 @@
 								</div>
 							</div>
 
-							<div class="content-divider text-muted form-group"><span>Billing Information</span></div>
+							<div class="content-divider text-muted form-group"><span>Select a Plan</span></div>
+
+							{{> hello}}
+
+							<!--
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group has-feedback has-feedback-left">
+										<input type="text" name="billaddress" class="form-control" placeholder="Billing Address" maxlength="30">
+										<div class="form-control-feedback">
+											<i class="icon-office text-muted"></i>
+										</div>
+									</div>
+								</div>
+							</div>
 
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="billaddress" class="form-control" placeholder="Billing Address">
-										<div class="form-control-feedback">
-											<i class="icon-office text-muted"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="addline2" class="form-control" placeholder="Line 2">
+										<input type="text" name="addline2" class="form-control" placeholder="Line 2" maxlength="25">
 										<div class="form-control-feedback">
 											<i class="icon-office text-muted"></i>
 										</div>
@@ -119,7 +122,7 @@
 							<div class="row">
 								<div class="col-md-4">
 									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="billcity" class="form-control" placeholder="City">
+										<input type="text" name="billcity" class="form-control" placeholder="City" maxlength="20">
 										<div class="form-control-feedback">
 											<i class="icon-office text-muted"></i>
 										</div>
@@ -128,7 +131,7 @@
 
 								<div class="col-md-4">
 									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="billstate" class="form-control" placeholder="State">
+										<input type="text" name="billstate" class="form-control" placeholder="State" maxlength="2">
 										<div class="form-control-feedback">
 											<i class="icon-office text-muted"></i>
 										</div>
@@ -137,13 +140,14 @@
 
 								<div class="col-md-4">
 									<div class="form-group has-feedback has-feedback-left">
-										<input type="text" name="billzip" class="form-control" placeholder="Zipcode">
+										<input type="text" name="billzip" class="form-control" placeholder="Zipcode" maxlength="10">
 										<div class="form-control-feedback">
 											<i class="icon-office text-muted"></i>
 										</div>
 									</div>
 								</div>
 							</div>
+						-->
 
 							<div class="row">
 								<div class="col-md-12">
@@ -171,4 +175,38 @@
 		<!-- /page content -->
 
 	</div>
+</template>
+
+<template name="hello">
+		<div class="row">
+				<div class="col-md-6">
+					<div class="form-group has-feedback has-feedback-left">
+						<button type="button" id="free" class="btn-free bg-danger-400 btn-float btn-float-lg">
+							<i class="icon-person"></i>
+							<span>
+									<center><b>Free Plan</b>
+										<hr>
+										<p>Only 5 Companies</p>
+										<p>Completely Free</p>
+									</center>
+								</span>
+						</button>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group has-feedback has-feedback-left">
+						<button type="button" id="pro" class="btn-pro bg-success-400 btn-float btn-float-lg">
+							<i class="icon-office"></i>
+							<span>
+								<center><b>Pro Plan</b>
+									<hr>
+									<p>Unlimited Companies</p>
+									<p>Only $12.50/Month</p>
+								</center>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
 </template>

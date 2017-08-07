@@ -5,6 +5,8 @@ accounts-oauth@1.1.15
 accounts-password@1.3.4
 aldeed:autoform@6.0.0
 aldeed:collection2-core@2.0.0
+aldeed:plans@0.0.2
+aldeed:plans-stripe@0.0.5
 aldeed:tabular@2.1.1
 allow-deny@1.0.5
 andrei:tablesorter@0.0.1
