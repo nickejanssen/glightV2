@@ -10,7 +10,7 @@ Template.add_co.helpers({
 });
 
 Template.add_co.onCreated(function () {
- 
+
 });
 
 Template.add_co.onRendered(() => {
@@ -38,9 +38,41 @@ Template.add_co.events({
       if(error){
         console.log(error.reason);
       } else {
-        swal("Success!", "Your company has been added.", "success");
-        document.getElementById("formAddCompany").reset();
-        Meteor.call('addCompanyEmail', result);
+        swal({
+          title: "Company Added!",
+          text: "Would you like to add another or go to your active companies?",
+          type: "success",
+          showCancelButton: true,
+          confirmButtonColor: "#66BB6A",
+          confirmButtonText: "Go to Active Companies",
+          cancelButtonText: "Add Another",
+          cancelButtonColor: "#26C6DA",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            document.getElementById("formAddCompany").reset();
+            Meteor.call('addCompanyEmail', result);
+            swal({
+              title: "Going to Active Companies",
+              text: "",
+              type: "success",
+              timer: 2000,
+              showConfirmButton: false
+            });
+            Router.go('/active');
+          } else {
+            document.getElementById("formAddCompany").reset();
+            Meteor.call('addCompanyEmail', result);
+            swal({
+              title: "Awesome!",
+              text: "Continue adding companies.",
+              timer: 1500,
+              showConfirmButton: false
+            });
+          }
+        });
       }
     });
   }

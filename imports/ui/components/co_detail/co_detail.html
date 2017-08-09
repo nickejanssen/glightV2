@@ -34,6 +34,42 @@
           </div>
           <!-- /user details -->
 
+          <!-- Company Info -->
+          <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h6 class="panel-title">Company Info</h6>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel-body">
+                {{#with AllCompanies}}
+                <div class="form-group mt-5">
+                  <label class="text-semibold">Company:</label>
+                  <span class="pull-right-sm">{{this.companyName}}</span>
+                </div>
+
+                <div class="form-group mt-5">
+                  <label class="text-semibold">Name:</label>
+                  <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-semibold">Phone:</label>
+                  <span class="pull-right-sm">{{this.companyPhone}}</span>
+                </div>
+
+                <div class="form-group no-margin-bottom">
+                  <label class="text-semibold">Email:</label>
+                  <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
+                </div>
+                {{/with}}
+              </div>
+            </div>
+            <!-- /Company Info -->
+
           <!-- Latest Events -->
           <div class="sidebar-category">
             <div class="category-title">
@@ -139,41 +175,51 @@
            </div>
             <!-- /Policy Summary -->
 
-            <!-- Company Info -->
-            <div class="panel panel-flat">
-              <div class="panel-heading">
-                <h6 class="panel-title">Company Info</h6>
-                <div class="heading-elements">
-                  <ul class="icons-list">
-                    <li><a data-action="collapse"></a></li>
-                  </ul>
+            <!-- Pending -->
+            <div class="panel">
+                <div class="panel-heading bg-orange-300">
+                    <h5 class="panel-title">Pending Certificates</h5>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                      </ul>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                        <tr>
+                            <th data-field="status">Status</th>
+                            <th data-field="id">Policy Name</th>
+                            <th data-field="active">Coverage</th>
+                            <th data-field="waiting">Agent</th>
+                            <th data-field="expired">Summary</th>
+                            <!--<th data-field="expired">Company</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#with PendingPolicies}} {{#each this}}
+                        <tr>
+                            <td valign="bottom" text-align="center">
+                                <p><a class="btn-primary btn-xs btn-collapsible approve" id="approve" name="{{this._id}}">
+                                  Approve</a>
+                                </p>
+                                <div class="bdivider"></div>
+                                <p><a class="btn-danger btn-xs" id="reject" name="{{this._id}}">Reject</a></p>
+                            </td>
+                            <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
+                            </td>
+                            <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
+                            <td valign="bottom" text-align="center">{{this.agentId}}</td>
+                            <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                            <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
+                        </tr>
+                        {{/each}} {{/with}}
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <div class="panel-body">
-                {{#with AllCompanies}}
-                <div class="form-group mt-5">
-                  <label class="text-semibold">Company:</label>
-                  <span class="pull-right-sm">{{this.companyName}}</span>
-                </div>
-
-                <div class="form-group mt-5">
-                  <label class="text-semibold">Name:</label>
-                  <span class="pull-right-sm">{{this.firstName}} {{this.lastName}}</span>
-                </div>
-
-                <div class="form-group">
-                  <label class="text-semibold">Phone:</label>
-                  <span class="pull-right-sm">{{this.companyPhone}}</span>
-                </div>
-
-                <div class="form-group no-margin-bottom">
-                  <label class="text-semibold">Email:</label>
-                  <span class="pull-right-sm"><a href="#">{{this.companyEmail}}</a></span>
-                </div>
-                {{/with}}
-              </div>
-            </div>
-            <!-- /Company Info -->
+              <!-- /Pending -->
 
             <!-- Requested -->
             <div class="panel">
@@ -213,52 +259,6 @@
               </div>
 					  </div>
             <!-- /Requested -->
-
-            <!-- Pending -->
-            <div class="panel">
-              <div class="panel-heading bg-orange-300">
-                  <h5 class="panel-title">Pending Certificates</h5>
-                  <div class="heading-elements">
-                    <ul class="icons-list">
-                      <li><a data-action="collapse"></a></li>
-                    </ul>
-                  </div>
-              </div>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                      <tr>
-                          <th data-field="status">Status</th>
-                          <th data-field="id">Policy Name</th>
-                          <th data-field="active">Coverage</th>
-                          <th data-field="waiting">Agent</th>
-                          <th data-field="expired">Summary</th>
-                          <!--<th data-field="expired">Company</th>-->
-                      </tr>
-                  </thead>
-                  <tbody>
-                      {{#with PendingPolicies}} {{#each this}}
-                      <tr>
-                          <td valign="bottom" text-align="center">
-                              <p><a class="btn-primary btn-xs btn-collapsible approve" id="approve" name="{{this._id}}">
-                                Approve</a>
-                              </p>
-                              <div class="bdivider"></div>
-                              <p><a class="btn-danger btn-xs" id="reject" name="{{this._id}}">Reject</a></p>
-                          </td>
-                          <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a>
-                          </td>
-                          <td valign="bottom" text-align="center">{{getCoverageValue this.coverage}}</td>
-                          <td valign="bottom" text-align="center">{{this.agentId}}</td>
-                          <td valign="bottom" text-align="center" class="viewPolicy">View</td>
-                          <!--<td valign="bottom" text-align="center">{{CompanyName}}</td>-->
-                      </tr>
-                      {{/each}} {{/with}}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- /Pending -->
 
             <!-- Current -->
             <div class="panel">

@@ -67,11 +67,36 @@ Template.req_cert.events({
       } else {
         Meteor.call("sendMail", email, result);
         swal({
-          title: "Your request has been sent!",
-          text: "We will update you when your request has been fulfilled.",
+          title: "Request Sent!",
+          text: "Would you like to request another or go to your review your policies on the audit page?",
           type: "success",
-          timer: 4000,
-          showConfirmButton: true
+          showCancelButton: true,
+          confirmButtonColor: "#66BB6A",
+          confirmButtonText: "Go to Policies",
+          cancelButtonText: "Request Another",
+          cancelButtonColor: "#26C6DA",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm){
+          if (isConfirm) {
+            document.getElementById("formAddCompany").reset();
+            swal({
+              title: "Going to Policies",
+              text: "",
+              type: "success",
+              timer: 2000,
+              showConfirmButton: false
+            });
+            Router.go('/audit');
+          } else {
+            swal({
+              title: "Awesome!",
+              text: "Continue requesting",
+              timer: 1500,
+              showConfirmButton: false
+            });
+          }
         });
         document.getElementById("formValidate").reset();
       }

@@ -51,7 +51,7 @@ Template.register.events({
 						console.log(error.reason);
 						template.pageSession.set("errorMessage", error.reason);
 					} else {
-							Router.go("/dash");
+							Router.go('/login');
 					}
 				});
 
@@ -72,7 +72,7 @@ Template.register.events({
 						console.log(err.reason); // Output error if registration fails
 						template.pageSession.set("errorMessage", err.reason);
 						} else {
-							Router.go("/dash"); // Redirect user if registration succeeds
+							Router.go("/login"); // Redirect user if registration succeeds
 					}
 				});
 			};
