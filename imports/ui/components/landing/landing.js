@@ -13,11 +13,11 @@ Template.landing.events({
     const uEmail = t.$('#email').val();
     const message = t.$('#message').val();
 
-    Meteor.call('contactEmailSend', { email: uEmail, name: uName, mess: message }, (error, result) => {
+    Meteor.call('contactEmailSend', { email: uEmail, name: uName, message: message }, (error, result) => {
       if (error) {
         swal("Uh Oh!", error, "error");
       } else {
-        Meteor.call("contactEmailSend", email, result);
+        //Meteor.call("contactEmailSend", email, result);
         swal({
           title: "Your  message has been sent!",
           text: "We will email you to follow up on your message.",
@@ -25,7 +25,7 @@ Template.landing.events({
           timer: 4000,
           showConfirmButton: true
         });
-        document.getElementById("formValidate").reset();
+        document.getElementById("contact-us").reset();
       }
     });
   }

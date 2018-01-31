@@ -8,21 +8,25 @@ import moment from 'moment';
 
 Meteor.methods({
   contactEmailSend(email, name, message) {
+    let email2 = JSON.stringify(email);
+    //console.log("Send Email Method: " + email + " " + name + " " + message);
     // Make sure that all arguments are strings.
-    check([email, name, message], [String]);
+    //check([email, name, message], [String]);
 
     // Let other method calls from the same client start running, without
     // waiting for the email sending to complete.
     this.unblock();
 
     options = {
-      from: email,
-      to: 'niconitis@gmail.com',
-      bcc: '',
-      subject: 'Contact Us Message',
-      text: message
+      from: email.email,
+      to: 'thecertcollector@gmail.com',
+      bcc: 'nickejanssen@gmail.com',
+      subject: 'Contact Us Message from: ' + email.name,
+      text: "Message:" + "\n" + email.message
     };
-
+    let options2 = JSON.stringify(options);
+    console.log(options);
+    //console.log(JSON.stringify(options));
     Email.send(options);
   },
 
