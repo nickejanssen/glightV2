@@ -7,6 +7,25 @@ import { Email } from 'meteor/email';
 import moment from 'moment';
 
 Meteor.methods({
+  contactEmailSend(email, name, message) {
+    // Make sure that all arguments are strings.
+    check([email, name, message], [String]);
+
+    // Let other method calls from the same client start running, without
+    // waiting for the email sending to complete.
+    this.unblock();
+
+    options = {
+      from: email,
+      to: 'niconitis@gmail.com',
+      bcc: '',
+      subject: 'Contact Us Message',
+      text: message
+    };
+
+    Email.send(options);
+  },
+
   'req_certificate.insert'(req_certData) {
     req_certData.userId = this.userId;
     req_certData.createdAt = new Date();

@@ -274,3 +274,26 @@ Template.companyTable.onRendered(function(){
     }
   });
 });
+
+//stripe-checkout.js
+if (Meteor.isClient) {
+  Template.dash.events({
+    'click #update': function(e) {
+      e.preventDefault();
+			let stripePK = Meteor.settings.public.stripe.pk;
+
+			StripeCheckout.open({
+        key: stripePK,
+        amount: 1250,
+        name: 'Pro Subscription',
+        description: 'Unlimited Companies!',
+        panelLabel: 'Subscribe',
+        token: function(res) {
+          stripeToken = res.id;
+					let uEmail = res.email;
+          Meteor.call('subscribePro', stripeToken, uEmail);
+        }
+      });
+		}
+  });
+}

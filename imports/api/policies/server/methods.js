@@ -70,7 +70,7 @@ Meteor.methods({
     let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + reqID);
 
     options = {
-      from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
+      from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Policy Rejected',
       text: reason,
@@ -122,7 +122,7 @@ Meteor.methods({
     let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + reqID);
 
     options = {
-      from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
+      from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Gentle Reminder',
       text: 'text',
@@ -190,7 +190,7 @@ Meteor.methods({
       } else {
         if (isEmailSend) {
           let options = {
-            from: 'greenlightrequests@getagreenlight.com',
+            from: 'thecertcollectorrequests@thecertcollector.com',
             to: Meteor.user().emails[0].address,
             subject: getCoverageVal(coverageType) + ' Audit',
             attachments: [{   // file on disk as an attachment
@@ -216,7 +216,7 @@ Meteor.methods({
       const companyDetails = Company.findOne({ _id: policyDetail.companyId });
 
       const options = {
-        from: 'greenlightrequests@getagreenlight.com', //'crew@getagreenlight.com'
+        from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
         to: userDetails.emails[0]['address'],
         subject: 'Certificate Uploaded',
         text: 'text',
