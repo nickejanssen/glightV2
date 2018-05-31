@@ -29,7 +29,14 @@ Template.forgetPassword.events({
                   template.pageSession.set("errorMessage", "We are sorry but something went wrong.");
                 }
             } else {
-                Materialize.toast("Email Sent. Check your mailbox.", 8000, 'green');
+                swal({
+                    title: "Your request has been sent!",
+                    text: "Please check your email for a link to reset your password.",
+                    type: "success",
+                    timer: 4000,
+                    showConfirmButton: true
+                });
+                setTimeout(Router.go('/login'),5000);
             }
         });
 
