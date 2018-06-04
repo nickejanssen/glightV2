@@ -280,20 +280,20 @@
                                 <!-- /Policy Overview Tab -->
 
                                 <!-- Account Settings Tab -->
-                                <div class="tab-pane fade" id="settings">
+                                <div class="tab-pane fade" id="settings" name="settings">
                                     <!-- Profile info -->
                                     <div class="panel panel-flat">
                                         <div class="panel-heading">
                                             <h6 class="panel-title">Profile Information</h6>
                                             <div class="heading-elements">
                                                 <ul class="icons-list">
-                                                    <li><a data-action="collapse"></a></li>
+                                                    <li><a data-action="collapse" href="#profile-body"></a></li>
                                                     <li><a data-action="reload"></a></li>
-                                                    <li><a data-action="close"></a></li>
+                                                    <!--<li><a data-action="close"></a></li>-->
                                                 </ul>
                                             </div>
                                         </div>
-
+                                        <div class="" id="profile-body">
                                         <div class="panel-body">
                                             <form id="updateProfile" method="POST" autocomplete="false">
                                                 {{#with currentUser}}
@@ -405,6 +405,7 @@
                                                 {{/with}}
                                             </form>
                                         </div>
+                                    </div>
                                     </div>
                                     <!-- /profile info -->
 

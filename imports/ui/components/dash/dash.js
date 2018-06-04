@@ -48,6 +48,7 @@ Template.dash.onCreated(function () {
 
 Template.dash.onRendered(function(){
   $('body').addClass('has-detached-left');
+  //$('.collapse').collapse(show);
 });
 
 Template.dash.helpers({

@@ -25,7 +25,13 @@ Template.navmenu.events({
         event.preventDefault();
         Meteor.logout();
         Router.go('/login');
-    }
+    },
+
+    'click #acctSettings': (event) => {
+      event.preventDefault();
+  }
+
+
 });
 
 Template.navmenu.helpers({

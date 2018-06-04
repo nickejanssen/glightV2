@@ -18,7 +18,7 @@ Meteor.startup(() => {
     SSR.compileTemplate('verifyEmailTemplate', Assets.getText('verification_email.html'));
     Accounts.emailTemplates.verifyEmail = {
       subject() {
-        return 'greenlight verification email';
+        return 'The Cert Collector Verification Eail';
       },
       html(user, url) {
         const html = SSR.render('verifyEmailTemplate', {
