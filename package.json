@@ -6,6 +6,7 @@
     "start": "meteor --settings settings.json"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.49",
     "babel-runtime": "^6.22.0",
     "bcrypt": "^0.8.7",
     "card": "^2.3.0",
