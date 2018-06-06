@@ -12,7 +12,7 @@
 	                <div class="form-group">
 	                  <label class="control-label col-lg-3">Policy Type</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error validate" id="covType" name="covType">
+	                    <select class="select error validate" required id="covType" name="covType">
 												<option value="" disabled selected>Policy Type</option>
 												<option value="Any Auto">Any Auto</option>
 												<option value="Hired/Non-Owned">Hired/Non-Owned</option>
@@ -27,7 +27,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Limit Types</label>
 	                  <div class="col-lg-9">
-	                    <select multiple class="select error validate" id="limType" name="limType[]">
+	                    <select multiple class="select error validate" required id="limType" name="limType[]">
 												<option value="" disabled>Limits Types</option>
 												<option value="Combined Single">Combined Single</option>
 												<option value="Split">Split</option>
@@ -37,7 +37,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Combined Single Limits</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error validate" id="combLim" name="combLim">
+	                    <select class="select error validate" required id="combLim" name="combLim">
 												<option value="" disabled selected>Combined Single Limits</option>
 												<option value="$1,000,000">$1,000,000</option>
 												<option value="$100,000">$100,000</option>
@@ -52,7 +52,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Medical Payments</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error validate" id="medPay" name="medPay">
+	                    <select class="select error validate" required id="medPay" name="medPay">
 												<option value="" disabled selected>Medical Payments</option>
 					              <option value="$5,000">$5,000</option>
 					              <option value="$250">$250</option>
@@ -70,7 +70,7 @@
 														<div class="form-group">
 															<label class="control-label col-lg-3">Per Person</label>
 														<div class="col-lg-9">
-															<select class="select error validate" id="perPer" name="perPer">
+															<select class="select error validate" required id="perPer" name="perPer">
 																<option value="" disabled selected>Per Person</option>
 																<option value="$25,000">$25,000</option>
 																<option value="$50,000">$50,000</option>
@@ -84,7 +84,7 @@
 												<div class="form-group">
 													<label class="control-label col-lg-3">Per Accident</label>
 												<div class="col-lg-9">
-													<select class="select error validate" id="perAcc" name="perAcc">
+													<select class="select error validate" required id="perAcc" name="perAcc">
 														<option value="" disabled selected>Per Accident</option>
 														<option value="$50,000">$50,000</option>
 														<option value="$100,000">$100,000</option>
@@ -99,7 +99,7 @@
 												<div class="form-group">
 				                  <label class="control-label col-lg-3">Damage to Rented Premise</label>
 												<div class="col-lg-9">
-													<select class="select error validate" id="dmgPremise" name="dmgPremise">
+													<select class="select error validate" required id="dmgPremise" name="dmgPremise">
 														<option value="" disabled selected>Damage to Rented Premise</option>
 														<option value=">$100,000">$100,000</option>
 														<option value="$50,000">$50,000</option>
@@ -114,7 +114,7 @@
 										<div class="form-group">
 											<label class="control-label col-lg-3">Medical Payments</label>
 										<div class="col-lg-9">
-											<select class="select error validate browser-default" id="medPay" name="medPay">
+											<select class="select error validate browser-default" required id="medPay" name="medPay">
 												<option value="" disabled selected>Medical Payments</option>
 												<option value="$5,000">$5,000</option>
 												<option value="$1,000">$1,000</option>

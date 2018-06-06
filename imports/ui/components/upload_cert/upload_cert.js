@@ -91,6 +91,7 @@ Template.upload_cert.events({
               swal("Success!", "Your policy has been uploaded.", "success");
               document.getElementById("formAddCert").reset();
               Meteor.call('certUploaded',result);
+              Router.go('/co-detail/' + AddPolicy.companyId);
             }
           });
         }
