@@ -52,13 +52,21 @@ Template.req_cert.events({
 
   'submit #formValidate'(e, t) {
     e.preventDefault();
+    let formEmail = t.$('#cemail').val();
+    var email;
+    if (coEmail !== formEmail) {
+      email = formEmail
+    } else {
+      email = coEmail
+    }
+
     let selectedCo = t.$('#certComp').val();
     let reqCompany = Company.findOne({ _id: selectedCo });
     const userId = Meteor.userId();
     const company = selectedCo;
     const cname = reqCompany.companyName;
     const coverage = e.currentTarget.certCove.value.trim();
-    const email = coEmail
+
     const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
     console.log(coverageInfo);
     Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {

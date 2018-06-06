@@ -127,7 +127,6 @@ Template.co_detail.helpers({
     });
     return html;
   },
-
 });
 
 Template.co_detail.onCreated(function () {
