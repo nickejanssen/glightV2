@@ -24,7 +24,8 @@ Template.resetPassword.events({
            if (err) {
                template.pageSession.set("errorMessage", "We are sorry but something went wrong.");
            } else {
-             Materialize.toast("Your password has been changed. Welcome back!", 8000, 'green');
+               Materialize.toast("Your password has been changed. Welcome back!", 8000, 'green');
+               Router.go('/login');
            }
        });
     }
