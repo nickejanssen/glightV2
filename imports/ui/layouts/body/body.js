@@ -17,7 +17,10 @@ Template.App_body.helpers({
   },
   Userrole() {
     return "Administrator";
-  }
+  },
+  year() {
+    return new Date().getFullYear();
+  },
 
 });
 

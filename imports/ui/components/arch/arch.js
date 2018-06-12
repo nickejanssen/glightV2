@@ -9,6 +9,16 @@ Template.arch.helpers({
 
 });
 
+Template.arch.events({
+  'click #accSettings'(event) {
+    event.preventDefault();
+      Router.go('/dash');
+      setTimeout(() => {
+        $('.breadcrumb-elements li a.accSettings').trigger('click');
+      }, 200)
+  },
+});
+
 Template.arch.onCreated(function () {
 
 });

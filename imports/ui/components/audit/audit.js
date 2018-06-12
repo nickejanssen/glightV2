@@ -13,6 +13,16 @@ Template.audit.onCreated(function () {
   Session.set('selectedComp', undefined);
 });
 
+Template.audit.events({
+  'click #accSettings'(event) {
+    event.preventDefault();
+      Router.go('/dash');
+      setTimeout(() => {
+        $('.breadcrumb-elements li a.accSettings').trigger('click');
+      }, 200)
+  },
+});
+
 Template.audit.helpers({
   getCoverageType: function () {
     return coverageType;

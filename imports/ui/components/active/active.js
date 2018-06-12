@@ -9,6 +9,16 @@ Template.active.helpers({
 
 });
 
+Template.active.events({
+  'click #settingsTab'(event) {
+    event.preventDefault();
+      Router.go('/dash');
+      setTimeout(() => {
+        $('.breadcrumb-elements li a.accSettings').trigger('click');
+      }, 200)
+  },
+});
+
 Template.active.onCreated(function () {
 
 });

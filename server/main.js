@@ -18,7 +18,7 @@ Meteor.startup(() => {
     SSR.compileTemplate('verifyEmailTemplate', Assets.getText('verification_email.html'));
     Accounts.emailTemplates.verifyEmail = {
       subject() {
-        return 'The Cert Collector Verification Eail';
+        return 'The Cert Collector Verification Email';
       },
       html(user, url) {
         const html = SSR.render('verifyEmailTemplate', {
@@ -32,6 +32,21 @@ Meteor.startup(() => {
 
     Accounts.urls.resetPassword = (token) => {
         return Meteor.absoluteUrl('reset-password/' + token);
+    };
+
+    SSR.compileTemplate('verifyEmailTemplate', Assets.getText('resetPassword.html'));
+    Accounts.emailTemplates.resetPassword = {
+      subject() {
+        return 'The Cert Collector Verification Email';
+      },
+      html(user, url) {
+        const html = SSR.render('verifyEmailTemplate', {
+          user,
+          url,
+        });
+        return html;
+      },
+
     };
 
     Accounts.onCreateUser((options, user) => {

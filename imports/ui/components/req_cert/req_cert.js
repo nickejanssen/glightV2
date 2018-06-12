@@ -41,6 +41,13 @@ Template.req_cert.helpers({
 });
 
 Template.req_cert.events({
+  'click #settingsTab'(event) {
+    event.preventDefault();
+      Router.go('/dash');
+      setTimeout(() => {
+        $('.breadcrumb-elements li a.accSettings').trigger('click');
+      }, 200)
+  },
   "change #certComp": function (event) {
     debugger;
     let selectedCo = $(event.target).val();
@@ -66,7 +73,7 @@ Template.req_cert.events({
     const company = selectedCo;
     const cname = reqCompany.companyName;
     const coverage = e.currentTarget.certCove.value.trim();
-
+    debugger
     const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
     console.log(coverageInfo);
     Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {

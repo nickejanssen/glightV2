@@ -9,6 +9,15 @@ Template.add_co.helpers({
 
 });
 
+Template.add_co.events({
+  'click #accSettings'(event) {
+    event.preventDefault();
+      Router.go('/dash');
+      setTimeout(() => {
+        $('.breadcrumb-elements li a.accSettings').trigger('click');
+      }, 200)
+  },
+});
 Template.add_co.onCreated(function () {
 
 });

@@ -8,6 +8,7 @@ Template.forgetPassword.onCreated(function () {
 
 Template.forgetPassword.onRendered(function(){
   $('body').addClass("login-container");
+  $('body').css("margin",'0');
 });
 Template.forgetPassword.helpers({
     errorMessage() {

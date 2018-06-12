@@ -320,6 +320,7 @@ Router.map(function () {
 		path: '/reset-password/:resetPassToken',
 		template: 'reset-password',
 		fastRender: true,
+		layoutTemplate : false,
 		waitOn: function () {
 
 		},
