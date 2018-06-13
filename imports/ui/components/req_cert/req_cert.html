@@ -1,123 +1,129 @@
 <template name="req_cert">
-  <!-- Main content -->
-  <div class="content-wrapper">
-    <!-- Page header -->
-    <div class="page-header page-header-default">
-        <div class="page-header-content">
-            <div class="page-title">
-                <h4><span class="text-semibold">Request Certificate</span></h4>
-            </div>
-        </div>
-
-        <div class="breadcrumb-line">
-            <ol class="breadcrumb">
-                <li><a href="/dash"><i class="icon-home2 position-left"></i> Home</a></li>
-                <li class="active">Request Certificate</li>
-            </ol>
-
-            <ul class="breadcrumb-elements">
-              <li><a href="/help"><i class="icon-comment-discussion position-left"></i> Support</a></li>
-              <li class="dropdown">
-                  <a id="settingsTab" href="" data-toggle="tab"><i class="icon-gear position-left"></i>Settings</a>
-              </li>
-          </ul>
-        </div>
-    </div>
-    <!-- /Page header -->
-    <div class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Basic layout-->
-          <form class="form-horizontal formValidate" id="formValidate" method="get" action="">
-            <div class="panel panel-flat">
-              <div class="panel-heading">
-								<h5 class="panel-title">Request Certificate</h5>
-								<div class="heading-elements">
-									<ul class="icons-list">
-										<li><a data-action="collapse"></a></li>
-										<li><a data-action="reload"></a></li>
-										<li><a data-action="close"></a></li>
-									</ul>
-								</div>
-							</div>
-
-              <div class="panel-body">
-                <div class = "row">
-                  <div class="col-md-6">
-                    <fieldset class="content-group">
-                      <legend class="text-semibold"><i class="icon-home5 position-left"></i> Basic Info</legend>
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Choose company*</label>
-                        <div class="col-md-6">
-                          <select class="select browser-default" id="certComp" required name="certComp" data-error=".errorTxt6">
-                              <option value="" disabled selected>Choose company to request from</option>
-                            {{#with AllCompanies}}
-                              {{#each this}}
-                              <option value="{{this._id}}" class="company" id="company">{{this.companyName}}</option>
-                              {{/each}}
-                            {{/with}}
-                          </select>
-                        </div>
-                        <div class="col-md-3">
-                          <button type="button" href="/add-co" id="btnAddCo" class="btn-small btn-primary right submit" name="action">Add New <i class="icon-plus3 position-right"></i></button>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Company's Email*</label>
-                        <div class="col-md-9">
-                            <input id="cemail" type="email" required class="form-control" name="cemail" data-error=".errorTxt2" placeholder="Company's Email">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3">Select Coverage</label>
-                        <div class="col-md-9 multi-select-full">
-                          <select class="select error browser-default" id="certCov" required name="certCove">
-                              <option value="Select Coverage" selected>Select Coverage</option>
-                            {{#each getCoverageType}}
-                              <option value="{{this.key}}">{{this.value}}</option>
-                            {{/each}}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                          <div class="col-md-12">
-                              <p><b>Note:</b></p>
-                              <p>Please verify that the above information is correct. Once the upload
-                                  button is clicked, the file will be uploaded and notified. If the
-                                  coverage values are too low, you may adjust the values to reflect
-                                  the needed coverage limits. If such a change is made, the requestor
-                                  will be notified.
-                              </p>
-                          </div>
-                      </div>
-                    </fieldset>
-                    <br/>
+  <div class="page-container">
+      <!-- Page content -->
+      <div class="page-content sidebar-xs has-detached-left">
+          <!-- Main content -->  <!-- Main content -->
+        <div class="content-wrapper">
+          <!-- Page header -->
+          <div class="page-header page-header-default">
+              <div class="page-header-content">
+                  <div class="page-title">
+                      <h4><span class="text-semibold">Request Certificate</span></h4>
                   </div>
-                  <div class="col-md-6">
-                    <fieldset>
-                      <legend class="text-semibold"><i class="icon-certificate position-left"></i> Coverage Details</legend>
-                      {{#with chooseCov name}}
-                        {{> template}}
-                      {{/with}}
-                    </fieldset>
-                  </div>
-                  <div class="text-right col-md-12">
-                    <button type="submit" class="btn-small btn-primary center submit" name="action">Submit<i class="icon-arrow-right14 position-right"></i></button>
-                    <button class="btn-small btn-primary center submit" type="reset" value="Reset" name="action">Reset<i class="icon-reset position-right"></i></button>
-                  </div>
-                </div>
               </div>
+
+              <div class="breadcrumb-line">
+                  <ol class="breadcrumb">
+                      <li><a href="/dash"><i class="icon-home2 position-left"></i> Home</a></li>
+                      <li class="active">Request Certificate</li>
+                  </ol>
+
+                  <ul class="breadcrumb-elements">
+                    <li><a href="/help"><i class="icon-comment-discussion position-left"></i> Support</a></li>
+                    <li class="dropdown">
+                        <a id="settingsTab" href="" data-toggle="tab"><i class="icon-gear position-left"></i>Settings</a>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <!-- /Page header -->
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Basic layout-->
+                <form class="form-horizontal" id="formRequestCertificte" name="formValidate" autocomplete="false">
+                  <div class="panel panel-flat">
+                    <div class="panel-heading">
+      								<h5 class="panel-title">Request Certificate</h5>
+      								<div class="heading-elements">
+      									<ul class="icons-list">
+      										<li><a data-action="collapse"></a></li>
+      										<li><a data-action="reload"></a></li>
+      										<li><a data-action="close"></a></li>
+      									</ul>
+      								</div>
+      							</div>
+
+                    <div class="panel-body">
+                      <div class = "row">
+                        <div class="col-md-6">
+                          <fieldset class="content-group">
+                            <legend class="text-semibold"><i class="icon-home5 position-left"></i> Basic Info</legend>
+                            <div class="form-group">
+                              <label class="control-label col-md-3">Choose company*</label>
+                              <div class="col-md-6">
+                                <select class="select browser-default" id="certComp"  name="certComp">
+                                    <option value="" disabled selected>Choose company to request from</option>
+                                  {{#with AllCompanies}}
+                                    {{#each this}}
+                                    <option value="{{this._id}}" class="company" id="company">{{this.companyName}}</option>
+                                    {{/each}}
+                                  {{/with}}
+                                </select>
+                              </div>
+                              <div class="col-md-3">
+                                <button type="button" href="/add-co" id="btnAddCo" class="btn-small btn-primary right submit" name="action">Add New <i class="icon-plus3 position-right"></i></button>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3">Company's Email*</label>
+                              <div class="col-md-9">
+                                  <input id="cemail" type="email" class="form-control" name="cemail" placeholder="Company's Email">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3">Select Coverage</label>
+                              <div class="col-md-9 multi-select-full">
+                                <select class="select error browser-default" id="certCov" name="certCove">
+                                    <option value="" selected>Select Coverage</option>
+                                  {{#each getCoverageType}}
+                                    <option value="{{this.key}}">{{this.value}}</option>
+                                  {{/each}}
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <p><b>Note:</b></p>
+                                    <p>Please verify that the above information is correct. Once the upload
+                                        button is clicked, the file will be uploaded and notified. If the
+                                        coverage values are too low, you may adjust the values to reflect
+                                        the needed coverage limits. If such a change is made, the requestor
+                                        will be notified.
+                                    </p>
+                                </div>
+                            </div>
+                          </fieldset>
+                          <br/>
+                        </div>
+                        <div class="col-md-6">
+                          <fieldset>
+                            <legend class="text-semibold"><i class="icon-certificate position-left"></i> Coverage Details</legend>
+                            {{#with chooseCov name}}
+                              {{> template}}
+                            {{/with}}
+                          </fieldset>
+                        </div>
+                        <div class="text-right col-md-12">
+
+                          <button class="btn-small btn-primary submit" type="submit" name="action">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                          <button class="btn-small btn-primary center submit" type="reset" value="Reset" name="action">Reset<i class="icon-reset position-right"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                  <!-- /basic layout -->
+              </div>
+
+
             </div>
-          </form>
-            <!-- /basic layout -->
+          </div>
         </div>
-
-
       </div>
-    </div>
   </div>
   <!-- Main content -->
 </template>

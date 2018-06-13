@@ -40,6 +40,186 @@ Template.req_cert.helpers({
   }
 });
 
+Template.req_cert.onRendered(()=>{
+  //formValidate ....
+  $("#formRequestCertificte").bootstrapValidator({
+    feedbackIcons: {
+         valid: 'fa fa-check',
+         invalid: 'fa fa-times',
+         validating: 'fa fa-refresh'
+     },
+     fields: {
+       certComp: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose company to request from'
+            },
+           notEmpty: {
+             message: 'Company to request is required and can\'t be empty'
+           },
+         }
+       },
+       certCove: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Coverage'
+            },
+           notEmpty: {
+             message: 'Coverage is required and can\'t be empty'
+           },
+         }
+       },
+       covType: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Policy Type'
+            },
+           notEmpty: {
+             message: 'Policy Type is required and can\'t be empty'
+           },
+         }
+       },
+       limType: {
+         validators: {
+           choice: {
+                min: 1,
+                message: 'Please choose Limits Types'
+            },
+           notEmpty: {
+             message: 'Limits Types is required and can\'t be empty'
+           },
+         }
+       },
+       combLim: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Combined Single Limits'
+            },
+           notEmpty: {
+             message: 'Combined Single Limits is required and can\'t be empty'
+           },
+         }
+       },
+       medPay: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Medical Payments'
+            },
+           notEmpty: {
+             message: 'Medical Payments is required and can\'t be empty'
+           },
+         }
+       },
+       perPer: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Per Person'
+            },
+           notEmpty: {
+             message: 'Per Person is required and can\'t be empty'
+           },
+         }
+       },
+       perAcc: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Per Accident'
+            },
+           notEmpty: {
+             message: 'Per Accident is required and can\'t be empty'
+           },
+         }
+       },
+       dmgPremise: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Damage to Rented Premise'
+            },
+           notEmpty: {
+             message: 'Damage to Rented Premise is required and can\'t be empty'
+           },
+         }
+       },
+
+
+     }
+   }).on('success.form.bv', (e,t) => {
+     debugger
+     e.preventDefault();
+     let formEmail = t.$('#cemail').val();
+       var email;
+       if (coEmail !== formEmail) {
+         email = formEmail
+       } else {
+         email = coEmail
+       }
+
+       let selectedCo = t.$('#certComp').val();
+       let reqCompany = Company.findOne({ _id: selectedCo });
+       const userId = Meteor.userId();
+       const company = selectedCo;
+       const cname = reqCompany.companyName;
+       const coverage = e.currentTarget.certCove.value.trim();
+       const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
+       console.log(coverageInfo);
+       Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
+         if (error) {
+           alert(error);
+         } else {
+           Meteor.call("sendMail", email, result);
+           swal({
+             title: "Request Sent!",
+             text: "Would you like to request another or go to your review your policies on the audit page?",
+             type: "success",
+             showCancelButton: true,
+             confirmButtonColor: "#66BB6A",
+             confirmButtonText: "Go to Policies",
+             cancelButtonText: "Request Another",
+             cancelButtonColor: "#26C6DA",
+             closeOnConfirm: false,
+             closeOnCancel: false
+           },
+           function(isConfirm){
+             if (isConfirm) {
+               document.getElementById("formRequestCertificte").reset();
+               swal({
+                 title: "Going to Policies",
+                 text: "",
+                 type: "success",
+                 timer: 2000,
+                 showConfirmButton: false
+               });
+               Router.go('/audit');
+             } else {
+               swal({
+                 title: "Awesome!",
+                 text: "Continue requesting",
+                 timer: 1500,
+                 showConfirmButton: false
+               });
+             }
+           });
+           document.getElementById("formRequestCertificte").reset();
+         }
+       });
+   });
+})
 Template.req_cert.events({
   'click #settingsTab'(event) {
     event.preventDefault();
@@ -141,8 +321,109 @@ Template.req_cert.events({
   }
 });
 
+
+
 Template.req_cert.onRendered(() => {
   //$('.multiselect').select2();
+  $('.panel [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+
+  // Sidebar categories
+  $('.category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#000',
+              opacity: 0.5,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #000'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none',
+              color: '#fff'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+  $('.sidebar-default .category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+  $('.category-collapsed').children('.category-content').hide();
+  $('.category-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.category-title [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $categoryCollapse = $(this).parent().parent().parent().nextAll();
+      $(this).parents('.category-title').toggleClass('category-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // adjust page height
+
+      $categoryCollapse.slideToggle(150);
+  });
+  $('.panel-collapsed').children('.panel-heading').nextAll().hide();
+  $('.panel-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.panel [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $panelCollapse = $(this).parent().parent().parent().parent().nextAll();
+      $(this).parents('.panel').toggleClass('panel-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // recalculate page height
+
+      $panelCollapse.slideToggle(150);
+  });
+
   $('.select').select2();
   $(".multiselect").select2({
       placeholder: "Click here to select coverages."

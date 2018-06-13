@@ -38,7 +38,7 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <!-- Add Co Form-->
-        <form class="form-horizontal formValidate" id="formAddCompany"  method="POST" autocomplete="false">
+        <form class="form-horizontal" id="formAddCompany" name="formAddCompany" method="POST" autocomplete="false">
           <div class="panel panel-flat">
             <div class="panel-heading">
               <!-- <center><h5 class="panel-title">Add Company</h5></center> -->
@@ -49,32 +49,32 @@
                  <div class="form-group">
                     <label class="control-label col-md-4">Company Name</label>
                     <div class="col-md-8">
-                        <input id="uname" name="Cname" required class="form-control" placeholder="Company Name" type="text" data-error=".errorTxt1" tabindex=1>
+                        <input id="uname" name="Cname"  class="form-control" placeholder="Company Name" type="text" tabindex=1>
                     </div>
                   </div>
 
                  <div class="form-group">
                     <label class="control-label col-md-4">First Name</label>
                     <div class="col-md-8">
-                      <input id="curl" type="text" name="cfName"  class="form-control" placeholder="First Name" required data-error=".errorTxt5" tabindex=2>
+                      <input id="curl" type="text" name="cfName"  class="form-control" placeholder="First Name"  data-error=".errorTxt5" tabindex=2>
                   </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-4">Last Name</label>
                     <div class="col-md-8">
-                    <input id="curl" type="text" name="clName" class="form-control" placeholder="Last Name" required data-error=".errorTxt5" tabindex=3>
+                    <input id="curl" type="text" name="clName" class="form-control" placeholder="Last Name"  tabindex=3>
                   </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-4">E-Mail</label>
                     <div class="col-md-8">
-                    <input id="cemail" type="email" required class="form-control" placeholder="Primary Name" name="cemail" data-error=".errorTxt2" tabindex=4>
+                    <input id="cemail" type="email" class="form-control" placeholder="Primary Name" name="cemail" tabindex=4>
                   </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-4">Phone</label>
                     <div class="col-md-8">
-                    <input id="cphone" type="text" required class="form-control" placeholder="Phone" name="cphone" data-error=".errorTxt2" tabindex=5>
+                    <input id="cphone" type="text" class="form-control" placeholder="Phone" name="cphone" tabindex=5>
                   </div>
                   </div>
 

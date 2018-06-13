@@ -293,4 +293,102 @@ Template.co_detail.events({
 
 Template.co_detail.onRendered(() => {
   $('body').addClass('has-detached-left');
+  $('.panel [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+
+  // Sidebar categories
+  $('.category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#000',
+              opacity: 0.5,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #000'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none',
+              color: '#fff'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+  $('.sidebar-default .category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+  $('.category-collapsed').children('.category-content').hide();
+  $('.category-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.category-title [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $categoryCollapse = $(this).parent().parent().parent().nextAll();
+      $(this).parents('.category-title').toggleClass('category-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // adjust page height
+
+      $categoryCollapse.slideToggle(150);
+  });
+  $('.panel-collapsed').children('.panel-heading').nextAll().hide();
+  $('.panel-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.panel [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $panelCollapse = $(this).parent().parent().parent().parent().nextAll();
+      $(this).parents('.panel').toggleClass('panel-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // recalculate page height
+
+      $panelCollapse.slideToggle(150);
+  });
 });

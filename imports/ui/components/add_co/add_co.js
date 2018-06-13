@@ -23,13 +23,69 @@ Template.add_co.onCreated(function () {
 });
 
 Template.add_co.onRendered(() => {
-  $('select').not('.disabled').material_select();
-});
+  // $('select').not('.disabled').material_select();
 
-Template.add_co.events({
-  'submit #formAddCompany'(event, template) {
+  $("form[name='formAddCompany']").bootstrapValidator({
+    feedbackIcons: {
+         valid: 'fa fa-check',
+         invalid: 'fa fa-times',
+         validating: 'fa fa-refresh'
+     },
+     fields: {
+      Cname: {
+        validators: {
+          notEmpty: {
+            message: 'The company name is required and can\'t be empty'
+          },
+        }
+      },
+      cfName: {
+        validators: {
+          notEmpty: {
+            message: 'The First Name is required and can\'t be empty'
+          },
+        }
+      },
+      clName: {
+        validators: {
+          notEmpty: {
+            message: 'The Last Name is required and can\'t be empty'
+          },
+        }
+      },
+      cphone: {
+        validators: {
+          integer: {
+            message: 'The value is not an Number'
+          },
+          notEmpty: {
+            message: 'The Phone Number is required and can\'t be empty'
+          },
+          stringLength: {
+            message: 'Cell Phone must be 10 characters',
+            min: 10,
+            max: 10,
+          },
+          // regexp: {
+          //   regexp: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
+          //   message: 'Enter valid phone number'
+          // }
+        }
+      },
+      cemail: {
+        validators: {
+          notEmpty: {
+            message: 'The email address is required and can\'t be empty'
+          },
+          regexp: {
+            regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+            message: 'Enter valid email id'
+          },
+        }
+      },
+    }
+  }).on('success.form.bv', (event) => {
     event.preventDefault();
-
     let AddCompany = {};
 
     AddCompany.companyName = event.currentTarget.Cname.value.trim();
@@ -84,5 +140,5 @@ Template.add_co.events({
         });
       }
     });
-  }
+  });
 });

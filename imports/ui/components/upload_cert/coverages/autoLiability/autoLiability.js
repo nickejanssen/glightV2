@@ -57,9 +57,9 @@ Template.autoLiability.events({
       $('#txtdmgPremise').attr('name','').css('display','none');
     }
   },
-  'change #medPay'(event) {
+  'change #med1Pay'(event) {
     event.preventDefault();
-    if ($('#medPay').val() === 'Other') {
+    if ($('#med1Pay').val() === 'Other') {
       $('#txt1medPay').attr('name','medPay').css('display','block');
     }else {
       $('#txt1medPay').attr('name','').css('display','none');

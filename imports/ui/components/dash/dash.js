@@ -48,7 +48,298 @@ Template.dash.onCreated(function () {
 
 Template.dash.onRendered(function(){
   $('body').addClass('has-detached-left');
-  //$('.collapse').collapse(show);
+  $('.panel [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+
+  // Sidebar categories
+  $('.category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#000',
+              opacity: 0.5,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #000'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none',
+              color: '#fff'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+  $('.sidebar-default .category-title [data-action=reload]').click(function (e) {
+      e.preventDefault();
+      var block = $(this).parent().parent().parent().parent();
+      $(block).block({
+          message: '<i class="icon-spinner2 spinner"></i>',
+          overlayCSS: {
+              backgroundColor: '#fff',
+              opacity: 0.8,
+              cursor: 'wait',
+              'box-shadow': '0 0 0 1px #ddd'
+          },
+          css: {
+              border: 0,
+              padding: 0,
+              backgroundColor: 'none'
+          }
+      });
+
+      // For demo purposes
+      window.setTimeout(function () {
+         $(block).unblock();
+      }, 2000);
+  });
+
+  $('.category-collapsed').children('.category-content').hide();
+  $('.category-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.category-title [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $categoryCollapse = $(this).parent().parent().parent().nextAll();
+      $(this).parents('.category-title').toggleClass('category-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // adjust page height
+
+      $categoryCollapse.slideToggle(150);
+  });
+  $('.panel-collapsed').children('.panel-heading').nextAll().hide();
+  $('.panel-collapsed').find('[data-action=collapse]').addClass('rotate-180');
+  $('.panel [data-action=collapse]').click(function (e) {
+      e.preventDefault();
+      var $panelCollapse = $(this).parent().parent().parent().parent().nextAll();
+      $(this).parents('.panel').toggleClass('panel-collapsed');
+      $(this).toggleClass('rotate-180');
+
+      containerHeight(); // recalculate page height
+
+      $panelCollapse.slideToggle(150);
+  });
+
+//form validation start....
+ $("form[name='frmchangePassword']").bootstrapValidator({
+   feedbackIcons: {
+        valid: 'fa fa-check',
+        invalid: 'fa fa-times',
+        validating: 'fa fa-refresh'
+    },
+    fields: {
+      currentPass: {
+        validators: {
+          notEmpty: {
+            message: 'The Current Password required and can\'t be empty'
+          },
+        }
+      },
+      newPassword: {
+        validators: {
+          notEmpty: {
+            message: 'This field is required'
+          },
+        }
+      },
+      confirmPassword: {
+        validators: {
+          notEmpty: {
+            message: 'This field is required'
+          },
+          identical: {
+            field: 'newPassword',
+            message: 'The password and its Repeat are not the same'
+          }
+        }
+      },
+    }
+  }).on('success.form.bv', function (event) {
+    event.preventDefault();
+    const Id = Users.findOne()._id;
+
+      //Update Password
+      currentPass = event.currentTarget.currentPass.value.trim();
+      newPass = event.currentTarget.newPass.value.trim();
+      newPassAgain = event.currentTarget.newPassAgain.value.trim();
+
+      swal({
+        title: "Are you sure you want to change your password?",
+        text: "Make sure you remember your new password.",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, change it!",
+        closeOnConfirm: false
+      },
+
+      function () {
+        if (newPass !== newPassAgain) {
+        console.log("Passwords Match!");
+        swal("Uh Oh!", "Your new password's do not match.", "error");
+        } else {
+          Accounts.changePassword(currentPass, newPass, function(err){
+            if(err){
+              console.log(err);
+              swal("Uh Oh!", err, "error");
+            } else {
+              console.log("Password Changed");
+              swal("Success!", "Your password has been changed!", "success");
+            }
+          });
+        }
+      });
+  });
+  $("form[name='frmUpdateProfile']").bootstrapValidator({
+    feedbackIcons: {
+         valid: 'fa fa-check',
+         invalid: 'fa fa-times',
+         validating: 'fa fa-refresh'
+     },
+     fields: {
+      cname: {
+        validators: {
+          notEmpty: {
+            message: 'The company name is required and can\'t be empty'
+          },
+        }
+      },
+      fname: {
+        validators: {
+          notEmpty: {
+            message: 'The First Name is required and can\'t be empty'
+          },
+        }
+      },
+      lname: {
+        validators: {
+          notEmpty: {
+            message: 'The Last Name is required and can\'t be empty'
+          },
+        }
+      },
+      billaddress: {
+        validators: {
+          notEmpty: {
+            message: 'The Bill Address is required and can\'t be empty'
+          },
+        }
+      },
+      billcity: {
+        validators: {
+          notEmpty: {
+            message: 'The City is required and can\'t be empty'
+          },
+        }
+      },
+      billstate: {
+        validators: {
+          notEmpty: {
+            message: 'The State is required and can\'t be empty'
+          },
+        }
+      },
+      billzip: {
+        validators: {
+          integer: {
+            message: 'The value is not an Number'
+          },
+          notEmpty: {
+            message: 'The Zip is required and can\'t be empty'
+          },
+        }
+      },
+      phone: {
+        validators: {
+          integer: {
+            message: 'The value is not an Number'
+          },
+          notEmpty: {
+            message: 'The Phone Number is required and can\'t be empty'
+          },
+          stringLength: {
+            message: 'Cell Phone must be 10 characters',
+            min: 10,
+            max: 10,
+          },
+          // regexp: {
+          //   regexp: /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
+          //   message: 'Enter valid phone number'
+          // }
+        }
+      },
+      email: {
+        validators: {
+          notEmpty: {
+            message: 'The email address is required and can\'t be empty'
+          },
+          regexp: {
+            regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+            message: 'Enter valid email id'
+          },
+        }
+      },
+    }
+  }).on('success.form.bv', (event) => {
+      event.preventDefault();
+      let profile = {};
+
+      //Basic Profile Info
+      profile.cname = event.currentTarget.cname.value.trim();
+      profile.fname = event.currentTarget.fname.value.trim();
+      profile.lname = event.currentTarget.lname.value.trim();
+      profile.phone = event.currentTarget.phone.value.trim();
+
+      //Billing Info
+      profile.billaddress = event.currentTarget.billaddress.value.trim();
+      profile.addline2 = event.currentTarget.addline2.value.trim();
+      profile.billcity = event.currentTarget.billcity.value.trim();
+      profile.billstate = event.currentTarget.billstate.value.trim();
+      profile.billzip = event.currentTarget.billzip.value.trim();
+      profile.imageurl = imageurl.get();
+
+      //Agent Info
+      profile.aname = event.currentTarget.aname.value.trim();
+      profile.aemail = event.currentTarget.aemail.value.trim();
+
+      const Id = Users.findOne()._id;
+      Meteor.call("updateUserAccount", Id, profile, (error, result) => {
+        if (error) {
+          console.log(error.reason);
+          template.pageSession.set("errorMessage", error.reason);
+        } else {
+          swal("Success!", "Your profile has been updated!", "success");
+        }
+      });
+  });
+
 });
 
 Template.dash.helpers({
@@ -133,73 +424,39 @@ Template.dash.events({
       });
     uploader.set(upload);
   },
-  'submit #updateProfile': function (event, template) {
-    event.preventDefault();
-    let profile = {};
+  // 'submit #updateProfile': function (event, template) {
+  //   event.preventDefault();
+  //   let profile = {};
+  //
+  //   //Basic Profile Info
+  //   profile.cname = event.currentTarget.cname.value.trim();
+  //   profile.fname = event.currentTarget.fname.value.trim();
+  //   profile.lname = event.currentTarget.lname.value.trim();
+  //   profile.phone = event.currentTarget.phone.value.trim();
+  //
+  //   //Billing Info
+  //   profile.billaddress = event.currentTarget.billaddress.value.trim();
+  //   profile.addline2 = event.currentTarget.addline2.value.trim();
+  //   profile.billcity = event.currentTarget.billcity.value.trim();
+  //   profile.billstate = event.currentTarget.billstate.value.trim();
+  //   profile.billzip = event.currentTarget.billzip.value.trim();
+  //   profile.imageurl = imageurl.get();
+  //
+  //   //Agent Info
+  //   profile.aname = event.currentTarget.aname.value.trim();
+  //   profile.aemail = event.currentTarget.aemail.value.trim();
+  //
+  //   const Id = Users.findOne()._id;
+  //   Meteor.call("updateUserAccount", Id, profile, (error, result) => {
+  //     if (error) {
+  //       console.log(error.reason);
+  //       template.pageSession.set("errorMessage", error.reason);
+  //     } else {
+  //       swal("Success!", "Your profile has been updated!", "success");
+  //     }
+  //   });
+  // },
 
-    //Basic Profile Info
-    profile.cname = event.currentTarget.cname.value.trim();
-    profile.fname = event.currentTarget.fname.value.trim();
-    profile.lname = event.currentTarget.lname.value.trim();
-    profile.phone = event.currentTarget.phone.value.trim();
-
-    //Billing Info
-    profile.billaddress = event.currentTarget.billaddress.value.trim();
-    profile.addline2 = event.currentTarget.addline2.value.trim();
-    profile.billcity = event.currentTarget.billcity.value.trim();
-    profile.billstate = event.currentTarget.billstate.value.trim();
-    profile.billzip = event.currentTarget.billzip.value.trim();
-    profile.imageurl = imageurl.get();
-
-    //Agent Info
-    profile.aname = event.currentTarget.aname.value.trim();
-    profile.aemail = event.currentTarget.aemail.value.trim();
-
-    const Id = Users.findOne()._id;
-    Meteor.call("updateUserAccount", Id, profile, (error, result) => {
-      if (error) {
-        console.log(error.reason);
-        template.pageSession.set("errorMessage", error.reason);
-      } else {
-        swal("Success!", "Your profile has been updated!", "success");
-      }
-    });
-  },
-
-  'submit #updateAccount': function (event, template) {
-    event.preventDefault();
-    const Id = Users.findOne()._id;
-
-    //Update Password
-    currentPass = event.currentTarget.currentPass.value.trim();
-    newPass = event.currentTarget.newPass.value.trim();
-    newPassAgain = event.currentTarget.newPassAgain.value.trim();
-    swal({
-      title: "Are you sure you want to change your password?",
-      text: "Make sure you remember your new password.",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Yes, change it!",
-      closeOnConfirm: false
-    },
-    function () {
-      if (newPass !== newPassAgain) {
-      console.log("Passwords Match!");
-      swal("Uh Oh!", "Your new password's do not match.", "error");
-      } else {
-        Accounts.changePassword(currentPass, newPass, function(err){
-          if(err){
-            console.log(err);
-            swal("Uh Oh!", err, "error");
-          } else {
-            console.log("Password Changed");
-            swal("Success!", "Your password has been changed!", "success");
-          }
-        });
-      }
-    });
-  },
   'click .settingsClick': function (event, template){
     $('.showImage').hide();
   },

@@ -294,65 +294,78 @@
                                         </div>
                                         <div class="" id="profile-body">
                                         <div class="panel-body">
-                                            <form id="updateProfile" method="POST" autocomplete="false">
+                                            <form id="updateProfile" name="frmUpdateProfile" method="POST" autocomplete="false">
                                                 {{#with currentUser}}
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Company Name</label>
-                                                            <input type="text" name="cname" value="{{this.profile.cname}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>First Name</label>
-                                                            <input type="text" name="fname" value="{{this.profile.fname}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>Last Name</label>
-                                                            <input type="text" name="lname" value="{{this.profile.lname}}" class="form-control">
-                                                        </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>Company Name</label>
+                                                        <input type="text" name="cname" value="{{this.profile.cname}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="fname" value="{{this.profile.fname}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="lname" value="{{this.profile.lname}}" class="form-control">
+                                                      </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Email</label>
-                                                            <input type="text" name="email" value="{{this.profile.email}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Phone #</label>
-                                                            <input type="text" name="phone" value="{{this.profile.phone}}" class="form-control input-medium" data-country="US">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="text" name="email" value="{{this.profile.email}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label>Phone #</label>
+                                                        <input type="text" name="phone" value="{{this.profile.phone}}" class="form-control input-medium" data-country="US">
+                                                      </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Address line 1</label>
-                                                            <input type="text" name="billaddress" value="{{this.profile.billaddress}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label>Address line 2</label>
-                                                            <input type="text" name="addline2" value="{{this.profile.addline2}}" class="form-control">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label>Address line 1</label>
+                                                        <input type="text" name="billaddress" value="{{this.profile.billaddress}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <div class="form-group">
+                                                        <label>Address line 2</label>
+                                                        <input type="text" name="addline2" value="{{this.profile.addline2}}" class="form-control">
+                                                      </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>City</label>
-                                                            <input type="text" name="billcity" value="{{this.profile.billcity}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>State/Province</label>
-                                                            <input type="text" name="billstate" value="{{this.profile.billstate}}" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label>ZIP code</label>
-                                                            <input type="text" name="billzip" value="{{this.profile.billzip}}" class="form-control">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>City</label>
+                                                        <input type="text" name="billcity" value="{{this.profile.billcity}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>State/Province</label>
+                                                        <input type="text" name="billstate" value="{{this.profile.billstate}}" class="form-control">
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                      <div class="form-group">
+                                                        <label>ZIP code</label>
+                                                        <input type="text" name="billzip" value="{{this.profile.billzip}}" class="form-control">
+                                                      </div>
                                                     </div>
                                                 </div>
 
@@ -382,21 +395,23 @@
                                                   {{/if}}
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <fieldset>
-                                                        <legend>Optional Agent Info</legend>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label>Agent Name:</label>
-                                                                <input type="text" name="aname" value="{{this.profile.aname}}" class="form-control">
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label>Agent Email</label>
-                                                                <input type="text" name="aemail" value="{{this.profile.aemail}}" class="form-control">
-                                                            </div>
+                                                <fieldset>
+                                                    <legend>Optional Agent Info</legend>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                          <div class="form-group">
+                                                            <label>Agent Name:</label>
+                                                            <input type="text" name="aname" value="{{this.profile.aname}}" class="form-control">
+                                                          </div>
                                                         </div>
-                                                    </fieldset>
-                                                </div>
+                                                        <div class="col-md-6">
+                                                          <div class="form-group">
+                                                            <label>Agent Email</label>
+                                                            <input type="text" name="aemail" value="{{this.profile.aemail}}" class="form-control">
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
 
                                                 <div class="text-right">
                                                     <button type="submit" name="submit" class="btn-small btn-primary">Save<i class="icon-arrow-right14 position-right"></i></button>
@@ -421,40 +436,40 @@
                                         </div>
 
                                         <div class="panel-body">
-                                            <form id="updateAccount" method="POST" autocomplete="false">
-                                                {{#with currentUser}}
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label>Email</label>
-                                                            <input type="email" value="{{this.profile.email}}" readonly="readonly" class="form-control">
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <label>Current password</label>
-                                                            <input type="password" name="currentPass" id="currentPass" placeholder="password" class="form-control">
+                                              {{#with currentUser}}
+                                                    <div class="col-md-6 leftP0">
+                                                        <label>Email</label>
+                                                        <input type="email" value="{{this.profile.email}}" name="email" readonly="readonly" class="form-control">
+                                                    </div>
+                                              {{/with}}
+                                            <form id="updateAccount" name="frmchangePassword" method="POST" autocomplete="false">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Current password</label>
+                                                                <input type="password" name="currentPass" id="currentPass" placeholder="password" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-6">
+                                                          <div class="form-group">
                                                             <label>New password</label>
-                                                            <input type="password" id="newPass" placeholder="Enter new password" class="form-control">
+                                                            <input type="password" id="newPass" name="newPassword" placeholder="Enter new password" class="form-control">
+                                                          </div>
                                                         </div>
-
                                                         <div class="col-md-6">
-                                                            <label>Repeat password</label>
-                                                            <input type="password" id="newPassAgain" placeholder="Repeat new password" class="form-control">
+                                                            <div class="form-group">
+                                                                <label>Repeat password</label>
+                                                                <input type="password" id="newPassAgain" name="confirmPassword" placeholder="Repeat new password" class="form-control">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="text-right">
-                                                    <button type="submit" class="btn-small btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
-                                                </div>
-                                                {{/with}}
+                                                    <div class="text-right">
+                                                        <button type="submit" class="btn-small btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                                                    </div>
                                             </form>
                                         </div>
                                     </div>
