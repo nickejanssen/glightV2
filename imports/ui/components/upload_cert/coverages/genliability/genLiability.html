@@ -1,11 +1,11 @@
 <template name = "genLiability">
-	<form class="form-horizontal" id="genLiability">
+	<!-- <form class="form-horizontal" id="formRequestCertificte"> -->
 		<div class="panel panel-flat">
 			<div class="panel-heading">
 				<div class="form-group">
 					<label class="control-label col-lg-3">Policy Type</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="polType" name="polType">
+						<select class="select error browser-default ddlvalidation"  id="polType" name="polType">
 							<option value="" disabled selected>Policy Type</option>
               <option value="Occurence">Occurence</option>
               <option value="Claims Made">Claims Made</option>
@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Aggregate Applied Per</label>
 					<div class="col-lg-9">
-						<select multiple class="select error browser-default" required id="aggrApplPer" name="aggrApplPer[]">
+						<select multiple class="select error browser-default ddlvalidation"  id="aggrApplPer" name="aggrApplPer">
 							<option value="" disabled>Aggregate Applied Per</option>
               <option value="Policy">Policy</option>
               <option value="Project">Project</option>
@@ -27,7 +27,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">General Aggregate</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="genAgg" name="genAgg">
+						<select class="select error browser-default ddlvalidation"  id="genAgg" name="genAgg">
 							<option value="" disabled selected>General Aggregate</option>
               <option value="$2,000,000">$2,000,000</option>
               <option value="$100,000">$100,000</option>
@@ -49,7 +49,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Products Aggregate</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="proAgg" name="proAgg">
+						<select class="select error browser-default ddlvalidation"  id="proAgg" name="proAgg">
 							<option value="" disabled selected>Products Aggregate</option>
               <option value="$2,000,000">$2,000,000</option>
               <option value="$100,000">$100,000</option>
@@ -71,7 +71,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Occurence</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="Occurence" name="Occurence">
+						<select class="select error browser-default ddlvalidation"  id="Occurence" name="Occurence">
 							<option value="" disabled selected>Occurence</option>
               <option value="$1,000,000">$1,000,000</option>
               <option value="$100,000">$100,000</option>
@@ -90,7 +90,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Personal Advertising</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="perAdvert" name="perAdvert">
+						<select class="select error browser-default ddlvalidation"  id="perAdvert" name="perAdvert">
 							<option value="" disabled selected>Personal Advertising</option>
               <option value="$1,000,000">$1,000,000</option>
               <option value="$100,000">$100,000</option>
@@ -109,7 +109,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Damage to Rented Premise</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="dmgPremise" name="dmgPremise">
+						<select class="select error browser-default ddlvalidation"  id="dmgPremise" name="dmgPremise">
 							<option value="" disabled selected>Damage to Rented Premise</option>
               <option value="$100,000">$100,000</option>
               <option value="$50,000">$50,000</option>
@@ -128,7 +128,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Medical Payments</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="medPay" name="medPay">
+						<select class="select error browser-default ddlvalidation"  id="medPay" name="medPay">
 							<option value="" disabled selected>Medical Payments</option>
               <option value="$5,000">$5,000</option>
               <option value="$1,000">$1,000</option>
@@ -146,7 +146,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Deductible</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="deductible" name="deductible">
+						<select class="select error browser-default ddlvalidation"  id="deductible" name="deductible">
 							<option value="" disabled selected>Deductible</option>
               <option value="None">None</option>
               <option value="$250">$250</option>
@@ -165,7 +165,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Ded. Applies To</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="dedAppTo" name="dedAppTo">
+						<select class="select error browser-default ddlvalidation"  id="dedAppTo" name="dedAppTo">
 							<option value="" disabled selected>Ded. Applies To</option>
 							<option value="N/A">N/A</option>
 							<option value="Property Damage">Property Damage</option>
@@ -178,7 +178,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Ded. Applies To</label>
 					<div class="col-lg-9">
-						<select class="select error browser-default" required id="appPer" name="appPer">
+						<select class="select error browser-default ddlvalidation"  id="appPer" name="appPer">
 							<option value="" disabled selected>Applied Per</option>
               <option value="N/A">N/A</option>
               <option value="Occurence">Occurence</option>
@@ -196,5 +196,5 @@
 		</div>
 	</div>
 
-	</form>
+	<!-- </form> -->
 </template>

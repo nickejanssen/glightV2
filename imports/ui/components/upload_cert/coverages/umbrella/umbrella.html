@@ -1,11 +1,11 @@
 <template name = "umbrella">
-	<form class="form-horizontal" id="umbrella">
+	<!-- <form class="form-horizontal" id="formRequestCertificte"> -->
 		<div class="panel panel-flat">
 			<div class="panel-heading">
 				<div class="form-group">
 					<label class="control-label col-lg-3">Policy Type</label>
 					<div class="col-lg-9">
-						<select class="select validate error" required id="polType" name="polType">
+						<select class="select ddlvalidation error"  id="polType" name="polType">
 							<option value="" disabled selected>Policy Type</option>
 							<option value="Occurence">Occurence</option>
 							<option value="Claims Made">Claims Made</option>
@@ -16,7 +16,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Occurence</label>
 					<div class="col-lg-9">
-						<select class="select validate error" required id="occur" name="occur">
+						<select class="select ddlvalidation error"  id="occur" name="occur">
 							<option value="" disabled selected>Occurence</option>
 							<option value="None">None</option>
 							<option value="$1,000,000">$1,000,000</option>
@@ -35,7 +35,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Aggregate</label>
 					<div class="col-lg-9">
-						<select class="select validate error" required id="agg" name="agg">
+						<select class="select ddlvalidation error"  id="agg" name="agg">
 							<option value="" disabled selected>Aggregate</option>
 							<option value="None">None</option>
 							<option value="$1,000,000">$1,000,000</option>
@@ -54,7 +54,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Deductible</label>
 					<div class="col-lg-9">
-						<select class="select validate error" required id="deduct" name="deduct">
+						<select class="select ddlvalidation error"  id="deduct" name="deduct">
 							<option value="" disabled selected>Deductible</option>
               <option value="None">None</option>
               <option value="$10,000">$10,000</option>
@@ -72,5 +72,5 @@
 		</div>
 			</div>
 
-	</form>
+	<!-- </form> -->
 </template>

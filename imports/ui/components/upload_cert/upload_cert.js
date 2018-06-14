@@ -191,6 +191,486 @@ $('.select').select2();
   drEvent.on('dropify.afterClear', function (event, element) {
     alert('File deleted');
   });
+
+  $("#formAddCert").bootstrapValidator({
+    feedbackIcons: {
+         valid: 'fa fa-check',
+         invalid: 'fa fa-times',
+         validating: 'fa fa-refresh'
+     },
+     fields: {
+       pname: {
+         validators: {
+           notEmpty: {
+             message: 'Policy Name is required and can\'t be empty'
+           },
+         }
+       },
+       certAgent: {
+         validators: {
+           notEmpty: {
+             message: 'Uploading Agent is required and can\'t be empty'
+           },
+         }
+       },
+       startDate: {
+            validators: {
+                date: {
+                    format: 'DD/MM/YYYY',
+                    message: 'The value is not a valid date'
+                },
+                notEmpty: {
+                  message: 'startDate is required and can\'t be empty'
+                },
+            }
+        },
+        expiryDate: {
+            validators: {
+                date: {
+                    format: 'DD/MM/YYYY',
+                    message: 'The value is not a valid date'
+                },
+                notEmpty: {
+                  message: 'expiryDate is required and can\'t be empty'
+                },
+            }
+        },
+       certComp: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose company to request from'
+            },
+           notEmpty: {
+             message: 'Company to request is required and can\'t be empty'
+           },
+         }
+       },
+       certCove: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Coverage'
+            },
+           notEmpty: {
+             message: 'Coverage is required and can\'t be empty'
+           },
+         }
+       },
+       covType: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Policy Type'
+            },
+           notEmpty: {
+             message: 'Policy Type is required and can\'t be empty'
+           },
+         }
+       },
+       limType: {
+         validators: {
+           choice: {
+                min: 1,
+                message: 'Please choose Limits Types'
+            },
+           notEmpty: {
+             message: 'Limits Types is required and can\'t be empty'
+           },
+         }
+       },
+       combLim: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Combined Single Limits'
+            },
+           notEmpty: {
+             message: 'Combined Single Limits is required and can\'t be empty'
+           },
+         }
+       },
+       medPay: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Medical Payments'
+            },
+           notEmpty: {
+             message: 'Medical Payments is required and can\'t be empty'
+           },
+         }
+       },
+       medPay1: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Medical Payments'
+            },
+           notEmpty: {
+             message: 'Medical Payments is required and can\'t be empty'
+           },
+         }
+       },
+       perPer: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Per Person'
+            },
+           notEmpty: {
+             message: 'Per Person is required and can\'t be empty'
+           },
+         }
+       },
+       perAcc: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Per Accident'
+            },
+           notEmpty: {
+             message: 'Per Accident is required and can\'t be empty'
+           },
+         }
+       },
+       dmgPremise: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Damage to Rented Premise'
+            },
+           notEmpty: {
+             message: 'Damage to Rented Premise is required and can\'t be empty'
+           },
+         }
+       },
+       covAmt: {
+         validators: {
+           notEmpty: {
+             message: 'Coverage Amount is required and can\'t be empty'
+           },
+         }
+       },
+       val: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Damage to Rented Premise'
+            },
+           notEmpty: {
+             message: 'Valuation is required and can\'t be empty'
+           },
+         }
+       },
+       coIns: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Co-Insurance'
+            },
+           notEmpty: {
+             message: 'Co-Insurance is required and can\'t be empty'
+           },
+         }
+       },
+       perils: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Perils'
+            },
+           notEmpty: {
+             message: 'Perils is required and can\'t be empty'
+           },
+         }
+       },
+       av: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Agreed Value'
+            },
+           notEmpty: {
+             message: 'Agreed Value is required and can\'t be empty'
+           },
+         }
+       },
+       blanket: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Blanket'
+            },
+           notEmpty: {
+             message: 'Blanket is required and can\'t be empty'
+           },
+         }
+       },
+       flood: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Flood'
+            },
+           notEmpty: {
+             message: 'Flood is required and can\'t be empty'
+           },
+         }
+       },
+       earth: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Earthquake'
+            },
+           notEmpty: {
+             message: 'Earthquake is required and can\'t be empty'
+           },
+         }
+       },
+       eqpBreak: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Equipment Breakdown'
+            },
+           notEmpty: {
+             message: 'Equipment Breakdown is required and can\'t be empty'
+           },
+         }
+       },
+       deduct: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Deductible'
+            },
+           notEmpty: {
+             message: 'Deductible is required and can\'t be empty'
+           },
+         }
+       },
+       end: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Endorsements'
+            },
+           notEmpty: {
+             message: 'Endorsements is required and can\'t be empty'
+           },
+         }
+       },
+       polType: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Policy Type'
+            },
+           notEmpty: {
+             message: 'Policy Type is required and can\'t be empty'
+           },
+         }
+       },
+       aggrApplPer: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Aggregate Applied Per'
+            },
+           notEmpty: {
+             message: 'Aggregate Applied Per is required and can\'t be empty'
+           },
+         }
+       },
+       genAgg: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose General Aggregate'
+            },
+           notEmpty: {
+             message: 'General Aggregate is required and can\'t be empty'
+           },
+         }
+       },
+       proAgg: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Products Aggregate'
+            },
+           notEmpty: {
+             message: 'Products Aggregate is required and can\'t be empty'
+           },
+         }
+       },
+       Occurence: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Occurence'
+            },
+           notEmpty: {
+             message: 'Occurence is required and can\'t be empty'
+           },
+         }
+       },
+       perAdvert: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Personal Advertising'
+            },
+           notEmpty: {
+             message: 'Personal Advertising is required and can\'t be empty'
+           },
+         }
+       },
+       deductible: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Deductible'
+            },
+           notEmpty: {
+             message: 'Deductible is required and can\'t be empty'
+           },
+         }
+       },
+       dedAppTo: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose  Ded. Applies To'
+            },
+           notEmpty: {
+             message: ' Ded. Applies To is required and can\'t be empty'
+           },
+         }
+       },
+       appPer: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Applied Per'
+            },
+           notEmpty: {
+             message: 'Applied Per is required and can\'t be empty'
+           },
+         }
+       },
+       occur: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Occurence'
+            },
+           notEmpty: {
+             message: 'Occurence is required and can\'t be empty'
+           },
+         }
+       },
+       agg: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Aggregate'
+            },
+           notEmpty: {
+             message: 'Aggregate is required and can\'t be empty'
+           },
+         }
+       },
+       empLiLim: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Employer\'s Liability Limit'
+            },
+           notEmpty: {
+             message: 'Employer\'s Liability Limit is required and can\'t be empty'
+           },
+         }
+       },
+       aggDeduct: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Aggregate Deductible'
+            },
+           notEmpty: {
+             message: 'Aggregate Deductible is required and can\'t be empty'
+           },
+         }
+       },
+       appTo: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Applies To'
+            },
+           notEmpty: {
+             message: 'Applies To is required and can\'t be empty'
+           },
+         }
+       },
+       stat: {
+         validators: {
+           choice: {
+                min: 1,
+                max: 1,
+                message: 'Please choose Statutory'
+            },
+           notEmpty: {
+             message: 'Statutory is required and can\'t be empty'
+           },
+         }
+       },
+       other: {
+         validators: {
+           notEmpty: {
+             message: 'Other is required and can\'t be empty'
+           },
+         }
+       },
+
+     }
+   });
 });
 
 Template.upload_cert.onDestroyed(() => { });

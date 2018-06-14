@@ -45,7 +45,7 @@ Template.login.events({
 
 		Meteor.loginWithFacebook(
 			{
-				requestPermissions: ['email'],
+				requestPermissions: ['email', 'public_profile'],
 				forceApprovalPrompt: true
 			},
 			function(err){

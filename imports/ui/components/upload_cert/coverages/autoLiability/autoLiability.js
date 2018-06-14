@@ -60,7 +60,7 @@ Template.autoLiability.events({
   'change #med1Pay'(event) {
     event.preventDefault();
     if ($('#med1Pay').val() === 'Other') {
-      $('#txt1medPay').attr('name','medPay').css('display','block');
+      $('#txt1medPay').attr('name','medPay1').css('display','block');
     }else {
       $('#txt1medPay').attr('name','').css('display','none');
     }
