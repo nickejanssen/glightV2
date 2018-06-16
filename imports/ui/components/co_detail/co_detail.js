@@ -89,14 +89,29 @@ Template.co_detail.helpers({
     let Labels = Object.keys(CoverageLabels);
     let policyDetail = Session.get('policyDetail');
     let html = '';
-    Labels.forEach(function (d, i) {
-      if (policyDetail[0].coverageInfo[d] != undefined) {
-        html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
-      }
-      else {
-        html += "<p><b>" + CoverageLabels[d] + ":</b> N/A</p>"
-      }
-    });
+    if ($('#reqCovType').text() === $('#CovType').text()) {
+      Labels.forEach(function (d, i) {
+        if (policyDetail[0].coverageInfo[d] != undefined) {
+          if (policyDetail[0].coverageInfo[d] === Session.get('reqCoverageInfo')[d]) {
+            html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
+          }else {
+            html += "<p class='redcolor'><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
+          }
+        }
+        else {
+          html += "<p><b>" + CoverageLabels[d] + ":</b> N/A</p>"
+        }
+      });
+    } else {
+      Labels.forEach(function (d, i) {
+        if (policyDetail[0].coverageInfo[d] != undefined) {
+          html += "<p><b>" + CoverageLabels[d] + ":</b> " + policyDetail[0].coverageInfo[d] + "</p>"
+        }
+        else {
+          html += "<p><b>" + CoverageLabels[d] + ":</b> N/A</p>"
+        }
+      });
+    }
     return html;
   },
 
@@ -117,6 +132,7 @@ Template.co_detail.helpers({
     let Labels = Object.keys(CoverageLabels);
 
     let html = '';
+    Session.set('reqCoverageInfo', reqDetails.coverageInfo);
     Labels.forEach(function (d, i) {
       if (reqDetails.coverageInfo[d] != undefined) {
         html += "<p><b>" + CoverageLabels[d] + ":</b> " + reqDetails.coverageInfo[d] + "</p>"

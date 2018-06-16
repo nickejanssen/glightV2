@@ -35,6 +35,7 @@ Template.upload_cert.onCreated(function () {
 Template.upload_cert.events({
   'submit #formAddCert': function (event, template) {
     event.preventDefault();
+    chkvalidation();
     var metaContext = {};
     if (Router.current()
       .route.getName() == "App.upload_cert_public") {
@@ -82,7 +83,7 @@ Template.upload_cert.events({
           if (Session.get('policyID')) {
             AddPolicy.policyID = Session.get('policyID');
           }
-          AddPolicy.coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
+          AddPolicy.coverageInfo = $('.' + Session.get('currentCov')).serializeObject();
           //debugger;
           Meteor.call("AddNewPolicy", AddPolicy, (error, result) => {
             if (error) {
@@ -124,6 +125,9 @@ Template.upload_cert.helpers({
   chooseCov: function () {
     var name = Session.get('currentCov');
     console.log(name);
+    Meteor.defer(() => {
+      chkvalidation();
+    });
     Meteor.setTimeout(function () {
       // $('select').not('.disabled').material_select();
       // $('select multiple').not('.disabled').material_select();
@@ -163,6 +167,7 @@ Template.upload_cert.onRendered(() => {
   //Session.set('currentCov', false)
   // $('select').not('.disabled').material_select();
   // $('select multiple').not('.disabled').material_select();
+  chkvalidation();
 $('.select').select2();
   if (Router.current()
     .route.getName() == "App.upload_cert_public") {
@@ -192,6 +197,14 @@ $('.select').select2();
     alert('File deleted');
   });
 
+
+});
+
+Template.upload_cert.onDestroyed(() => { });
+
+function chkvalidation() {
+
+  $('#formAddCert').data('bootstrapValidator', null);
   $("#formAddCert").bootstrapValidator({
     feedbackIcons: {
          valid: 'fa fa-check',
@@ -671,6 +684,4 @@ $('.select').select2();
 
      }
    });
-});
-
-Template.upload_cert.onDestroyed(() => { });
+}

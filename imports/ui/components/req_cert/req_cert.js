@@ -80,47 +80,47 @@ Template.req_cert.events({
       const cname = reqCompany.companyName;
       const coverage = e.currentTarget.certCove.value.trim();
       debugger
-      const coverageInfo = $('#' + Session.get('currentCov')).serializeObject();
-      // Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
-      //   if (error) {
-      //     alert(error);
-      //   } else {
-      //     Meteor.call("sendMail", email, result);
-      //     swal({
-      //       title: "Request Sent!",
-      //       text: "Would you like to request another or go to your review your policies on the audit page?",
-      //       type: "success",
-      //       showCancelButton: true,
-      //       confirmButtonColor: "#66BB6A",
-      //       confirmButtonText: "Go to Policies",
-      //       cancelButtonText: "Request Another",
-      //       cancelButtonColor: "#26C6DA",
-      //       closeOnConfirm: false,
-      //       closeOnCancel: false
-      //     },
-      //     function(isConfirm){
-      //       if (isConfirm) {
-      //         document.getElementById("formRequestCertificte").reset();
-      //         swal({
-      //           title: "Going to Policies",
-      //           text: "",
-      //           type: "success",
-      //           timer: 2000,
-      //           showConfirmButton: false
-      //         });
-      //         Router.go('/audit');
-      //       } else {
-      //         swal({
-      //           title: "Awesome!",
-      //           text: "Continue requesting",
-      //           timer: 1500,
-      //           showConfirmButton: false
-      //         });
-      //       }
-      //     });
-      //     document.getElementById("formRequestCertificte").reset();
-      //   }
-      // });
+      const coverageInfo = $('.' + Session.get('currentCov')).serializeObject();
+      Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
+        if (error) {
+          alert(error);
+        } else {
+          Meteor.call("sendMail", email, result);
+          swal({
+            title: "Request Sent!",
+            text: "Would you like to request another or go to your review your policies on the audit page?",
+            type: "success",
+            showCancelButton: true,
+            confirmButtonColor: "#66BB6A",
+            confirmButtonText: "Go to Policies",
+            cancelButtonText: "Request Another",
+            cancelButtonColor: "#26C6DA",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+          function(isConfirm){
+            if (isConfirm) {
+              document.getElementById("formRequestCertificte").reset();
+              swal({
+                title: "Going to Policies",
+                text: "",
+                type: "success",
+                timer: 2000,
+                showConfirmButton: false
+              });
+              Router.go('/audit');
+            } else {
+              swal({
+                title: "Awesome!",
+                text: "Continue requesting",
+                timer: 1500,
+                showConfirmButton: false
+              });
+            }
+          });
+          document.getElementById("formRequestCertificte").reset();
+        }
+      });
 
   },
 
@@ -151,6 +151,7 @@ Template.req_cert.events({
 
 Template.req_cert.onRendered(() => {
   //$('.multiselect').select2();
+  chkvalidation();
   $('.panel [data-action=reload]').click(function (e) {
       e.preventDefault();
       var block = $(this).parent().parent().parent().parent().parent();

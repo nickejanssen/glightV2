@@ -262,3 +262,6 @@ margin: 6px 3px -6px 13px !important;
 	.leftP0 {
 	  padding-left: 0;
 	}
+	.redcolor {
+		background-color: red;
+	}

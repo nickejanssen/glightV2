@@ -319,43 +319,45 @@
                   </ul>
                 </div>
               </div>
-              <table class="table">
-                <thead>
-                  <tr>
-                      <th data-field="status">Status</th>
-                      <th data-field="id">Policy Name</th>
-                      <th data-field="active">Coverage</th>
-                      <th data-field="waiting">Agent</th>
-                      <th data-field="expired">Summary</th>
-                      <th data-field="update">Req/Update</th>
-                  </tr>
-                </thead>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                        <th data-field="status">Status</th>
+                        <th data-field="id">Policy Name</th>
+                        <th data-field="active">Coverage</th>
+                        <th data-field="waiting">Agent</th>
+                        <th data-field="expired">Summary</th>
+                        <th data-field="update">Req/Update</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {{#with PastPolicies}} {{#each this}}
-                  <tr>
-                      {{#if this.isPast}}
-                      <td valign="bottom" text-align="center">
-                          <p><a class="btn-small waves-effect waves-light green">Updated</a></p>
-                      </td>
-                      {{else}}
-                      <td valign="bottom" text-align="center">
-                          <p><a class="btn-small waves-effect waves-light red">Expired</a></p>
-                      </td>
-                      {{/if}}
-                      <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
-                      <td>{{getCoverageValue this.coverage}}</td>
-                      <td>{{this.agentId}}</td>
-                      <td valign="bottom" text-align="center" class="viewPolicy">View</td>
-                      {{#if this.isPast}}
-                      <td valign="bottom" text-align="center"><a href="#">N/A</a></td>
-                      {{else}}
-                      <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
-                      {{/if}}
-                  </tr>
-                  {{/each}} {{/with}}
-                </tbody>
-              </table>
+                  <tbody>
+                    {{#with PastPolicies}} {{#each this}}
+                    <tr>
+                        {{#if this.isPast}}
+                        <td valign="bottom" text-align="center">
+                            <p><a class="btn-small waves-effect waves-light green">Updated</a></p>
+                        </td>
+                        {{else}}
+                        <td valign="bottom" text-align="center">
+                            <p><a class="btn-small waves-effect waves-light red">Expired</a></p>
+                        </td>
+                        {{/if}}
+                        <td><a href="{{this.imageurl}}" target="_blank">{{this.policyName}}</a></td>
+                        <td>{{getCoverageValue this.coverage}}</td>
+                        <td>{{this.agentId}}</td>
+                        <td valign="bottom" text-align="center" class="viewPolicy">View</td>
+                        {{#if this.isPast}}
+                        <td valign="bottom" text-align="center"><a href="#">N/A</a></td>
+                        {{else}}
+                        <td valign="bottom" text-align="center"><a href="#" class="linkRequest">Req</a>/<a href="#" class="linkUpdate">update</a></td>
+                        {{/if}}
+                    </tr>
+                    {{/each}} {{/with}}
+                  </tbody>
+                </table>
+              </div>
             </div>
             <!-- /Past -->
           </div>
@@ -600,7 +602,7 @@
         <div class="col-md-6">
         <fieldset class="form-group">
           <legend class="text-info-600"><b>Requested Coverage</b></legend>
-          <p><b>Coverage Type:</b> {{getCoverageValue reqCoverage}}</p>
+          <p id="reqCovType"><b>Coverage Type:</b> {{getCoverageValue reqCoverage}}</p>
           {{{reqCoverageInfo}}}
         </fieldset>
         </div>
@@ -609,7 +611,7 @@
         <div class="col-md-6">
         <fieldset class="form-group">
           <legend class="text-warning-600"><b>Uploaded Limits</b></legend>
-          <p><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
+          <p id="CovType"><b>Coverage Type:</b> {{getCoverageValue this.coverage}}</p>
           {{{coverageInfo this.coverage}}}
         </fieldset>
         </div>

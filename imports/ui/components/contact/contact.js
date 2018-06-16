@@ -30,6 +30,12 @@ Template.contact_form.helpers({
 });
 
 Template.contact_form.events({
+  'click .accSettings': function (event, template){
+    Router.go('/dash');
+    setTimeout(() => {
+      $('.breadcrumb-elements li a.accSettings').trigger('click');
+    }, 200)
+  },
   'submit #contactForm'(e, t) {
     e.preventDefault();
 		const userId = Meteor.userId();
