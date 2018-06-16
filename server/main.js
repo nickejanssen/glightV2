@@ -34,13 +34,13 @@ Meteor.startup(() => {
         return Meteor.absoluteUrl('reset-password/' + token);
     };
 
-    SSR.compileTemplate('verifyEmailTemplate', Assets.getText('resetPassword.html'));
+    SSR.compileTemplate('resetEmailTemplate', Assets.getText('resetPassword.html'));
     Accounts.emailTemplates.resetPassword = {
       subject() {
         return 'The Cert Collector Verification Email';
       },
       html(user, url) {
-        const html = SSR.render('verifyEmailTemplate', {
+        const html = SSR.render('resetEmailTemplate', {
           user,
           url,
         });

@@ -17453,7 +17453,7 @@ thead .htCollapseButton:after {
 *
 *  # Responsive extension
 *
-*  Optimise the table's layout for different screen sizes through the dynamic 
+*  Optimise the table's layout for different screen sizes through the dynamic
 *  insertion and removal of columns from the table
 *
 *  Version: 1.0
@@ -18423,7 +18423,7 @@ thead .htCollapseButton:after {
   background-size: cover;
 }
 .login-container .page-container {
-  padding-top: 40px;
+  /*padding-top: 40px;*/
   position: static;
 }
 .login-container .page-container .login-form {
