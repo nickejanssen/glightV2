@@ -528,7 +528,6 @@ function chkvalidation() {
          validators: {
            choice: {
                 min: 1,
-                max: 1,
                 message: 'Please choose Aggregate Applied Per'
             },
            notEmpty: {
