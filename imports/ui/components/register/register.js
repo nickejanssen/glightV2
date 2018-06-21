@@ -64,16 +64,19 @@ Template.register.events({
 
 				if (password !== passwordAgain) {
 					console.log("Passwords Not the Same");
+          template.pageSession.set("errorMessage", 'Passwords Not the Same');
 					return false;
 				}
 
 				Accounts.createUser({email: email,password: password,profile:profile}, function (err, result) {
-			 		if (err) {
-						console.log(err.reason); // Output error if registration fails
-						template.pageSession.set("errorMessage", err.reason);
-						} else {
+			 		 if (err.error === 499) {
+					   Router.go("/login"); // Redirect user if registration succeeds
+           }else if (err) {
+     						console.log(err.reason); // Output error if registration fails
+     						template.pageSession.set("errorMessage", err.reason);
+     			 }else {
 							Router.go("/login"); // Redirect user if registration succeeds
-					}
+					 }
 				});
 			};
 
