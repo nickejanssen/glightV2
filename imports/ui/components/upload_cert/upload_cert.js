@@ -90,7 +90,9 @@ Template.upload_cert.events({
               console.log(error.reason);
             } else {
               swal("Success!", "Your policy has been uploaded.", "success");
-              document.getElementById("formAddCert").reset();
+              // document.getElementById("formAddCert").reset();
+              $("#formAddCert")[0].reset();
+              $('#formAddCert').bootstrapValidator('resetForm', true);
               Meteor.call('certUploaded',result);
               Router.go('/co-detail/' + AddPolicy.companyId);
             }

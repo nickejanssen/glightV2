@@ -84,7 +84,7 @@ Template.req_cert.events({
       Meteor.call('req_certificate.insert', { email: coEmail, coverage: coverage, coverageInfo:coverageInfo, companyID: company, coName: cname, type: "New Upload" }, (error, result) => {
         if (error) {
           alert(error);
-        } else {
+        } else if (result) {
           Meteor.call("sendMail", email, result);
           swal({
             title: "Request Sent!",
@@ -100,7 +100,9 @@ Template.req_cert.events({
           },
           function(isConfirm){
             if (isConfirm) {
-              document.getElementById("formRequestCertificte").reset();
+              // document.getElementById("formRequestCertificte").reset();
+              $("#formRequestCertificte")[0].reset();
+              $('#formRequestCertificte').bootstrapValidator('resetForm', true);
               swal({
                 title: "Going to Policies",
                 text: "",
@@ -118,7 +120,9 @@ Template.req_cert.events({
               });
             }
           });
-          document.getElementById("formRequestCertificte").reset();
+          // document.getElementById("formRequestCertificte").reset();
+          $("#formRequestCertificte")[0].reset();
+          $('#formRequestCertificte').bootstrapValidator('resetForm', true);
         }
       });
 

@@ -199,7 +199,7 @@ Template.co_detail.events({
     });
   },
 
-  'click .approve': (e, t) => {
+  'click #approve': (e, t) => {
     let pid = $(e.currentTarget).attr("name");
 
     let policy = { _id: pid };
