@@ -48,10 +48,10 @@ Template.login.events({
 				requestPermissions: ['email', 'public_profile'],
 				forceApprovalPrompt: true
 			},
-			function(err){
+			function(err,res){
 				if (err){
-                    template.pageSession.set("errorMessage", err.message);
-                    console.log(err);
+          template.pageSession.set("errorMessage", err.message);
+          console.log(err.reason);
 					return false;
 				} else {
 					const profile = Users.findOne().profile;

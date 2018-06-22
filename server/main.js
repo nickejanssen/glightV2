@@ -57,7 +57,12 @@ Meteor.startup(() => {
             return user;
         }
         //user.username = user.services.facebook.name;
-        user.emails = [{address: user.services.facebook.email}];
+        user.emails = [{address: user.services.facebook.email, verified: true}];
+        user.profile = {fname: user.services.facebook.first_name,lname: user.services.facebook.last_name};
+        const exisitingUser = Users.findOne({'email.address': user.emails[0].address });
+        if(exisitingUser){
+          return exisitingUser;
+        }
         return user;
     });
 
@@ -73,7 +78,7 @@ Meteor.startup(() => {
     let sec = Meteor.settings.private.oAuth.facebook.secret;
 
     ServiceConfiguration.configurations.remove({service: "facebook"});
-    ServiceConfiguration.configurations.upsert({service: "facebook"}, {$set:{appId: fbId, secret: sec}});
+    ServiceConfiguration.configurations.upsert({service: "facebook"}, {$set:{loginStyle: "popup", appId: fbId, secret: sec}});
 
     const MAIL_URL = Meteor.settings.env.MAIL_URL;
     if (MAIL_URL) {
