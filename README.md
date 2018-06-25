@@ -1,2 +1,1 @@
-"The CertCollector"
-# Readme for The CertCollector
+#The Cert Collector
