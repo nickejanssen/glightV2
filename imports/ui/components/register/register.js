@@ -70,11 +70,19 @@ Template.register.events({
 
 				Accounts.createUser({email: email,password: password,profile:profile}, function (err, result) {
 			 		 if (err.error === 499) {
-					   Router.go("/login"); // Redirect user if registration succeeds
+               swal({
+                 title: "Registration succeeded!",
+                 text: "Please check you email to verify your account.",
+                 type: "success",
+                 timer: 8000,
+                 showConfirmButton: true
+               });
+               setTimeout(Router.go('/login'),5000);
+					   // Redirect user if registration succeeds
            } else if (err) {
      						console.log(err.reason); // Output error if registration fails
      						template.pageSession.set("errorMessage", err.reason);
-						 } else {
+					 } else {
 							swal({
 								title: "Registration succeeded!",
 								text: "Please check you email to verify your account.",
