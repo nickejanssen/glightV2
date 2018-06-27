@@ -4,7 +4,7 @@ import {Users} from "meteor/perak:user-roles";
 
 
 Meteor.methods({
-	"updateUserAccount"(userId, options) { //console.log(options);
+  "updateUserAccount"(userId, options) { //console.log(options);
 
 		if(userId !== Meteor.userId()) {
 				throw new Meteor.Error(403, "Access denied.");
@@ -14,7 +14,8 @@ Meteor.methods({
       _.extend(profile, options);
       console.log({ profile });
 		Users.update(userId, { $set: { profile } });
-	},
+
+  },
 
   'subscribePro': function(stripeToken, uEmail) {
     check(stripeToken, String);
@@ -53,7 +54,7 @@ Meteor.methods({
     let sc = "";
 
     function addSC(sc) {
-      console.log("Customer Id: " + sc);n
+      console.log("Customer Id: " + sc);
     }
 
     Stripe.customers.create({
