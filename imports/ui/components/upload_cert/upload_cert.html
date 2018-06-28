@@ -40,7 +40,7 @@
                <div class="form-group">
                   <label class="control-label col-lg-3">Select Policy</label>
                   <div class="col-lg-9">
-                      <input id="uploadFile" required class="form-control uploadFile" type="file" tabindex=1>
+                      <input id="uploadFile" required class="form-control uploadFile" type="file">
                   </div>
                 </div>
 
@@ -48,14 +48,14 @@
 
                   <label class="control-label col-lg-3">Policy Name</label>
                   <div class="col-lg-9">
-                    <input id="pname" type="text" name="pname"  class="form-control validate" placeholder="Policy Name"  tabindex=2>
+                    <input id="pname" type="text" name="pname"  class="form-control validate" placeholder="Policy Name">
                 </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-lg-3">Select a Company</label>
                   <div class="col-lg-9">
-                    <select class="select" id="certComp"  name="certComp" tabindex=3>
-                      <option value="" disabled selected>Choose your company</option>
+                    <select class="select" id="certComp"  name="certComp">
+                      <option value="" disabled>Choose your company</option>
                           {{#with AllCompanies}}
                               {{#each this}}
                               <option value="{{this._id}}">{{this.companyName}}</option>
@@ -67,20 +67,20 @@
                 <div class="form-group">
                   <label class="control-label col-lg-3">Uploading Agent</label>
                   <div class="col-lg-9">
-                  <input id="certAgent" type="text"  class="form-control validate" placeholder="Uploading Agent" name="certAgent" tabindex=4>
+                  <input id="certAgent" type="text"  class="form-control validate" placeholder="Uploading Agent" name="certAgent">
                 </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-lg-3">Policy Notes</label>
                   <div class="col-lg-9">
-                  <textarea id="comments" class="form-control" placeholder="Policy Notes" name="cphone" tabindex=5></textarea>
+                  <textarea id="comments" class="form-control" placeholder="Policy Notes" name="cphone"></textarea>
                 </div>
                 </div>
                 <h5 class="panel-title">Coverage Details</h5>
                 <div class="form-group">
                   <label class="control-label col-lg-3">Enter Coverage Information</label>
                   <div class="col-lg-9">
-                    <select class="select error browser-default" id="certCov" name="certCove" tabindex=6>
+                    <select class="select error browser-default" id="certCov" name="certCove">
                       <option value="" disabled selected>Select Coverage</option>
                       {{#each getCoverageType}}
                       <option value="{{this.key}}">{{this.value}}</option>
@@ -92,14 +92,14 @@
 
                    <label class="control-label col-lg-3">Enter Start Date</label>
                    <div class="col-lg-9">
-                     <input id="startDate" type="date" name="startDate" class="form-control datepicker" tabindex=7>
+                     <input id="startDate" type="date" name="startDate" class="form-control datepicker">
                  </div>
                  </div>
                  <div class="form-group">
 
                     <label class="control-label col-lg-3">Enter Expiration Date</label>
                     <div class="col-lg-9">
-                      <input id="expiryDate" type="date" name="expiryDate" class="form-control datepicker" tabindex=8>
+                      <input id="expiryDate" type="date" name="expiryDate" class="form-control datepicker">
                   </div>
                   </div>
                   {{#with chooseCov name}}

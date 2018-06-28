@@ -5,13 +5,13 @@
 				<div class="form-group">
 					<!-- <label class="control-label col-lg-3">Location Description</label> -->
 					<div class="col-lg-12">
-					<textarea id="locDesc" class="form-control validation" placeholder="Location Description" name="locDesc" length="150"></textarea>
+					<textarea id="locDesc" class="form-control validation" placeholder="Location Description" tabindex="1" name="locDesc" length="150"></textarea>
 				</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-3">Location Description</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="perils" name="perils">
+						<select class="select error ddlvalidation"  id="perils" name="perils" tabindex="2">
 							<option value="" disabled selected>Perils</option>
               <option value="Basic">Basic</option>
               <option value="Broad">Broad</option>
@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Coverage Type</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="covType" name="covType">
+						<select class="select error ddlvalidation"  id="covType" name="covType" tabindex="3">
 							<option value="" disabled selected>Coverage Type</option>
               <option value="Building">Building</option>
               <option value="Contents">Contents</option>
@@ -40,13 +40,13 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Coverage Amount</label>
 					<div class="col-lg-9">
-					<input id="covAmt" type="text"  class="form-control validation" placeholder="Coverage Amount" name="covAmt">
+					<input id="covAmt" type="text"  class="form-control validation" tabindex="4" placeholder="Coverage Amount" name="covAmt">
 				</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-3">Valuation</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="val" name="val">
+						<select class="select error ddlvalidation"  id="val" name="val" tabindex="5">
 							<option value="" disabled selected>Valuation</option>
 							<option value="Replacement">Replacement</option>
 							<option value="Actual Cash Value">Actual Cash Value</option>
@@ -61,7 +61,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Co-Insurance</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="coIns" name="coIns">
+						<select class="select error ddlvalidation"  id="coIns" name="coIns" tabindex="6">
 							<option value="" disabled selected>Co-Insurance</option>
               <option value="50">50</option>
               <option value="60">60</option>
@@ -79,36 +79,36 @@
 				</div>
 				<div class="form-group">
 					<label class="checkbox-inline checkbox-right">
-						<input type="checkbox" class="chkvalidation" id="av" name="av">
+						<input type="checkbox" tabindex="7" class="chkvalidation" id="av" name="av">
 						Agreed Value
 					</label>
 
 					<label class="checkbox-inline checkbox-right">
-						<input type="checkbox" class="chkvalidation" id="blanket" name="blanket">
+						<input type="checkbox" tabindex="8" class="chkvalidation" id="blanket" name="blanket">
 						Blanket
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="display-block text-semibold">Additional Perils</label>
 					<label class="checkbox-inline checkbox-right">
-						<input type="checkbox" class="chkvalidation" id="flood" name="flood">
+						<input type="checkbox" tabindex="9" class="chkvalidation" id="flood" name="flood">
 						Flood
 					</label>
 
 					<label class="checkbox-inline checkbox-right">
-						<input type="checkbox" class="chkvalidation" id="earth" name="earth">
+						<input type="checkbox" tabindex="10" class="chkvalidation" id="earth" name="earth">
 						Earthquake
 					</label>
 
 					<label class="checkbox-inline checkbox-right">
-						<input type="checkbox" class="chkvalidation" id="eqpBreak" name="eqpBreak">
+						<input type="checkbox" tabindex="11" class="chkvalidation" id="eqpBreak" name="eqpBreak">
 						Equipment Breakdown
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-3">Deductible</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="deduct" name="deduct">
+						<select class="select error ddlvalidation"  id="deduct" name="deduct" tabindex="12">
 							<option value="" disabled selected>Deductible</option>
               <option value="$100">$100</option>
               <option value="$250">$250</option>
@@ -129,7 +129,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Endorsements</label>
 					<div class="col-lg-9">
-						<select class="select error ddlvalidation"  id="end" name="end">
+						<select class="select error ddlvalidation"  id="end" name="end" tabindex="13">
 							<option value="" disabled selected>Endorsements</option>
 							<option value="Mortgagee">Mortgagee</option>
 							<option value="Loss Payee">Loss Payee</option>
@@ -140,7 +140,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-3">Notes & Endorsements</label>
 					<div class="col-lg-9">
-					<textarea id="message5" class="form-control" name="notes" length="150"></textarea>
+					<textarea id="message5" class="form-control" name="notes" length="150" tabindex="14"></textarea>
 				</div>
 				</div>
 

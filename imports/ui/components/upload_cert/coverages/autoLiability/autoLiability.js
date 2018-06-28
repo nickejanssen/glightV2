@@ -1,7 +1,12 @@
 import './autoLiability.html';
 
 Template.autoLiability.onRendered(function(){
-  $('.select').select2();
+  $('.select').select2({
+    placeholder: {
+      id: "-1",
+      selected:'selected'
+    },
+  });
 });
 
 Template.autoLiability.helpers({

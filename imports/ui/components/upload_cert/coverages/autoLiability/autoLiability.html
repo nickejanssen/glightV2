@@ -12,7 +12,7 @@
 	                <div class="form-group">
 	                  <label class="control-label col-lg-3">Policy Type</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error ddlvalidation" id="covType" name="covType">
+	                    <select class="select error ddlvalidation" id="covType" name="covType" tabindex="1">
 												<option value="" disabled selected>Policy Type</option>
 												<option value="Any Auto">Any Auto</option>
 												<option value="Hired/Non-Owned">Hired/Non-Owned</option>
@@ -30,7 +30,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Limit Types</label>
 	                  <div class="col-lg-9">
-	                    <select multiple class="select error ddlvalidation" id="limType" name="limType">
+	                    <select multiple class="select error ddlvalidation" id="limType" name="limType" tabindex="2">
 												<option value="" disabled>Limits Types</option>
 												<option value="Combined Single">Combined Single</option>
 												<option value="Split">Split</option>
@@ -40,7 +40,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Combined Single Limits</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error ddlvalidation" id="combLim" name="combLim">
+	                    <select class="select error ddlvalidation" id="combLim" name="combLim" tabindex="3">
 												<option value="" disabled selected>Combined Single Limits</option>
 												<option value="$1,000,000">$1,000,000</option>
 												<option value="$100,000">$100,000</option>
@@ -58,7 +58,7 @@
 									<div class="form-group">
 	                  <label class="control-label col-lg-3">Medical Payments</label>
 	                  <div class="col-lg-9">
-	                    <select class="select error ddlvalidation"  id="medPay" name="medPay">
+	                    <select class="select error ddlvalidation"  id="medPay" name="medPay" tabindex="4">
 												<option value="" disabled selected>Medical Payments</option>
 					              <option value="$5,000">$5,000</option>
 					              <option value="$250">$250</option>
@@ -79,7 +79,7 @@
 														<div class="form-group">
 															<label class="control-label col-lg-3">Per Person</label>
 														<div class="col-lg-9">
-															<select class="select error ddlvalidation"  id="perPer" name="perPer">
+															<select class="select error ddlvalidation"  id="perPer" name="perPer" tabindex="5">
 																<option value="" disabled selected>Per Person</option>
 																<option value="$25,000">$25,000</option>
 																<option value="$50,000">$50,000</option>
@@ -96,7 +96,7 @@
 												<div class="form-group">
 													<label class="control-label col-lg-3">Per Accident</label>
 												<div class="col-lg-9">
-													<select class="select error ddlvalidation"  id="perAcc" name="perAcc">
+													<select class="select error ddlvalidation"  id="perAcc" name="perAcc" tabindex="6">
 														<option value="" disabled selected>Per Accident</option>
 														<option value="$50,000">$50,000</option>
 														<option value="$100,000">$100,000</option>
@@ -114,7 +114,7 @@
 												<div class="form-group">
 				                  <label class="control-label col-lg-3">Damage to Rented Premise</label>
 												<div class="col-lg-9">
-													<select class="select error ddlvalidation"  id="dmgPremise" name="dmgPremise">
+													<select class="select error ddlvalidation"  id="dmgPremise" name="dmgPremise" tabindex="7">
 														<option value="" disabled selected>Damage to Rented Premise</option>
 														<option value=">$100,000">$100,000</option>
 														<option value="$50,000">$50,000</option>
@@ -132,7 +132,7 @@
 										<div class="form-group">
 											<label class="control-label col-lg-3">Medical Payments</label>
 										<div class="col-lg-9">
-											<select class="select error ddlvalidation browser-default"  id="med1Pay" name="medPay1">
+											<select class="select error ddlvalidation browser-default"  id="med1Pay" name="medPay1" tabindex="8">
 												<option value="" disabled selected>Medical Payments</option>
 												<option value="$5,000">$5,000</option>
 												<option value="$1,000">$1,000</option>
@@ -149,7 +149,7 @@
 								<div class="form-group">
                   <label class="control-label col-lg-3">Notes & Endorsements</label>
                   <div class="col-lg-9">
-                  <textarea id="message5" class="form-control" name="notes" length="150"></textarea>
+                  <textarea id="message5" class="form-control LastElement" name="notes" tabindex="9" length="150"></textarea>
                 </div>
                 </div>
 								</fieldset>
