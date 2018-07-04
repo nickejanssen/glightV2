@@ -5,6 +5,7 @@ import { RequestCertificate } from './req_certificate.js';
 import { coverageType, getCoverageVal, getCoverageLabels } from '/imports/api/constant.js';
 import { Email } from 'meteor/email';
 import moment from 'moment';
+import webshot from 'webshot';
 
 Meteor.methods({
   contactEmailSend(email, name, message) {
@@ -41,12 +42,11 @@ Meteor.methods({
 
   'sendMail'(email, doc_id, isRemind) {
     this.unblock();
-    let fileName = Meteor.settings.fileDownloadPath + this.userId + "/" + doc_id + "/coverage_info.pdf";
-    let webshot = Npm.require('webshot');
+    let fileName =  Meteor.settings.fileDownloadPath + "/"  + moment().format('x') + "coverage_info.pdf";
     let fs = Npm.require('fs');
     let Future = Npm.require('fibers/future');
 
-    let fut = new Future();
+    let future = new Future();
     let reqData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
     // if(reqCertDetails.policyID){
 
@@ -90,9 +90,9 @@ Meteor.methods({
         text: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
         html: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
         attachments: [{   // file on disk as an attachment
-              fileName: "coverage_info.pdf",
-              filePath: fileName // stream this file
-            }],
+            filename: "coverage_info.pdf",
+            path: fileName // stream this file
+        }],
         headers: {
           "X-SMTPAPI": {
             "sub": {
@@ -111,7 +111,6 @@ Meteor.methods({
           }
         }
       };
-
       Email.send(options);
       if (isRemind) {
         Meteor.call('insertHistory', reqData.companyID, 'remind', 'Sent reminder for ' + getCoverageVal(reqData.coverage));
@@ -119,7 +118,11 @@ Meteor.methods({
       else {
         Meteor.call('insertHistory', reqData.companyID, 'request', 'Sent request for ' + getCoverageVal(reqData.coverage));
       }
+      future.return()
     }));
+    
+    future.wait();
+    return future.value;
   },
   testEmailSend() {
     options = {
