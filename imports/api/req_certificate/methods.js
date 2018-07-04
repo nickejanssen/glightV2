@@ -73,7 +73,7 @@ Meteor.methods({
       "paperSize": {
         "format": "Letter",
         "orientation": "portrait",
-        "margin": "1cm"
+        "margin": "2cm"
       },
       siteType: 'html'
     };
@@ -83,7 +83,7 @@ Meteor.methods({
     webshot(html_string, fileName, webshotOptions, Meteor.bindEnvironment(function (err) {
       let uploadDocURL = Meteor.absoluteUrl('upload_cert_request/' + doc_id);
       let options = {
-        from: 'thecertcollectorrequests@getathecertcollector.com',
+        from: 'certcollectorrequests@thecertcollector.com',
         to: email,
         bcc: '',
         subject: 'Certificate Upload',
@@ -120,15 +120,15 @@ Meteor.methods({
       }
       future.return()
     }));
-    
+
     future.wait();
     return future.value;
   },
   testEmailSend() {
     options = {
-      from: 'thecertcollectorrequests@getathecertcollector.com',
+      from: 'certcollectorrequests@thecertcollector.com',
       to: 'piyushapex94@gmail.com',
-      bcc: '',
+      bcc: 'nickejanssen@gmail.com',
       subject: 'Certificate Upload',
       headers: {
         "X-SMTPAPI": {
@@ -172,7 +172,18 @@ Meteor.methods({
     let currentDate = new Date();
     allRequestCertificate.forEach((reqCertDetail, i) => {
       sendReqReminder(reqCertDetail, currentDate);
-    })
+    });
+  },
+  sendReqReminder(reqCertDetail, currentDate) {
+    let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
+    //console.log('diffInDays', diffInDays);
+    if (diffInDays >= 7) {
+      RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
+      // Meteor.call('reqRemindEmail', reqCertDetail);
+      let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
+      console.log(req_certData, this.userId, reqID);
+      Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
+    }
   }
 });
 
