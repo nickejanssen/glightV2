@@ -301,19 +301,19 @@
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>Company Name</label>
-                                                        <input type="text" name="cname" value="{{this.profile.cname}}" class="form-control">
+                                                        <input type="text" name="cname" value="{{this.profile.cname}}" class="form-control" tabindex="1">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>First Name</label>
-                                                        <input type="text" name="fname" value="{{this.profile.fname}}" class="form-control">
+                                                        <input type="text" name="fname" value="{{this.profile.fname}}" class="form-control" tabindex="2">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>Last Name</label>
-                                                        <input type="text" name="lname" value="{{this.profile.lname}}" class="form-control">
+                                                        <input type="text" name="lname" value="{{this.profile.lname}}" class="form-control" tabindex="3">
                                                       </div>
                                                     </div>
                                                 </div>
@@ -322,13 +322,13 @@
                                                     <div class="col-md-6">
                                                       <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="text" name="email" value="{{this.profile.email}}" class="form-control">
+                                                        <input type="text" name="email" value="{{this.profile.email}}" class="form-control" tabindex="4">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                       <div class="form-group">
                                                         <label>Phone #</label>
-                                                        <input type="text" name="phone" value="{{this.profile.phone}}" class="form-control input-medium" data-country="US">
+                                                        <input type="text" name="phone" value="{{this.profile.phone}}" class="form-control input-medium" data-country="US" tabindex="5">
                                                       </div>
                                                     </div>
                                                 </div>
@@ -337,13 +337,13 @@
                                                     <div class="col-md-6">
                                                       <div class="form-group">
                                                         <label>Address line 1</label>
-                                                        <input type="text" name="billaddress" value="{{this.profile.billaddress}}" class="form-control">
+                                                        <input type="text" name="billaddress" value="{{this.profile.billaddress}}" class="form-control" tabindex="6">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                       <div class="form-group">
                                                         <label>Address line 2</label>
-                                                        <input type="text" name="addline2" value="{{this.profile.addline2}}" class="form-control">
+                                                        <input type="text" name="addline2" value="{{this.profile.addline2}}" class="form-control" tabindex="7">
                                                       </div>
                                                     </div>
                                                 </div>
@@ -352,19 +352,19 @@
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>City</label>
-                                                        <input type="text" name="billcity" value="{{this.profile.billcity}}" class="form-control">
+                                                        <input type="text" name="billcity" value="{{this.profile.billcity}}" class="form-control" tabindex="8">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>State/Province</label>
-                                                        <input type="text" name="billstate" value="{{this.profile.billstate}}" class="form-control">
+                                                        <input type="text" name="billstate" value="{{this.profile.billstate}}" class="form-control" tabindex="9">
                                                       </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                       <div class="form-group">
                                                         <label>ZIP code</label>
-                                                        <input type="text" name="billzip" value="{{this.profile.billzip}}" class="form-control">
+                                                        <input type="text" name="billzip" value="{{this.profile.billzip}}" class="form-control" tabindex="10">
                                                       </div>
                                                     </div>
                                                 </div>
@@ -373,7 +373,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label class="display-block">Upload profile image</label>
-                                                            <input type="file" id="profilePic" class="file-styled profilePic">
+                                                            <input type="file" id="profilePic" class="file-styled profilePic" tabindex="11">
                                                             <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
                                                         </div>
                                                     </div>
@@ -401,20 +401,20 @@
                                                         <div class="col-md-6">
                                                           <div class="form-group">
                                                             <label>Agent Name:</label>
-                                                            <input type="text" name="aname" value="{{this.profile.aname}}" class="form-control">
+                                                            <input type="text" name="aname" value="{{this.profile.aname}}" class="form-control" tabindex="12">
                                                           </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                           <div class="form-group">
                                                             <label>Agent Email</label>
-                                                            <input type="text" name="aemail" value="{{this.profile.aemail}}" class="form-control">
+                                                            <input type="text" name="aemail" value="{{this.profile.aemail}}" class="form-control" tabindex="13">
                                                           </div>
                                                         </div>
                                                     </div>
                                                 </fieldset>
 
                                                 <div class="text-right">
-                                                    <button type="submit" name="submit" class="btn-small btn-primary">Save<i class="icon-arrow-right14 position-right"></i></button>
+                                                    <button type="submit" name="submit" class="btn-small btn-primary" tabindex="14">Save<i class="icon-arrow-right14 position-right"></i></button>
                                                 </div>
                                                 {{/with}}
                                             </form>
@@ -439,7 +439,7 @@
                                               {{#with currentUser}}
                                                     <div class="col-md-6 leftP0">
                                                         <label>Email</label>
-                                                        <input type="email" value="{{this.profile.email}}" name="email" readonly="readonly" class="form-control">
+                                                        <input type="email" value="{{this.profile.email}}" name="email" readonly="readonly" class="form-control"  tabindex="15">
                                                     </div>
                                               {{/with}}
                                             <form id="updateAccount" name="frmchangePassword" method="POST" autocomplete="false">
@@ -447,7 +447,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <label>Current password</label>
-                                                                <input type="password" name="currentPass" id="currentPass" placeholder="password" class="form-control">
+                                                                <input type="password" name="currentPass" id="currentPass" placeholder="password" class="form-control" tabindex="16">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -456,19 +456,19 @@
                                                         <div class="col-md-6">
                                                           <div class="form-group">
                                                             <label>New password</label>
-                                                            <input type="password" id="newPass" name="newPassword" placeholder="Enter new password" class="form-control">
+                                                            <input type="password" id="newPass" name="newPassword" placeholder="Enter new password" class="form-control" tabindex="17">
                                                           </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Repeat password</label>
-                                                                <input type="password" id="newPassAgain" name="confirmPassword" placeholder="Repeat new password" class="form-control">
+                                                                <input type="password" id="newPassAgain" name="confirmPassword" placeholder="Repeat new password" class="form-control" tabindex="18">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="text-right">
-                                                        <button type="submit" class="btn-small btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                                                        <button type="submit" class="btn-small btn-primary" tabindex="19">Save <i class="icon-arrow-right14 position-right"></i></button>
                                                     </div>
                                             </form>
                                         </div>
@@ -519,27 +519,27 @@
                                                                 If you would like to cancel your account all together click "Cancel Account". You will be reverted to a free account.
                                                             </p>
                                                             <p><b>Warning: Some data may be lost if reverting to free account with over 5 companies.</b></p>
-                                                            <input type="text" data-stripe="cardNumber" class="form-control card-number" placeholder="Card Number">
+                                                            <input type="text" data-stripe="cardNumber" class="form-control card-number" placeholder="Card Number" tabindex="20">
                                                         </div>
                                                         </div>
                                                     </div> <!-- end .row -->
                                                     <br/>
                                                     <div class="row">
                                                         <div class="col-xs-4">
-                                                        <input type="text" data-stripe="expMo" class="form-control exp-month" placeholder="Exp. Mo.">
+                                                        <input type="text" data-stripe="expMo" class="form-control exp-month" placeholder="Exp. Mo." tabindex="21">
                                                         </div>
                                                         <div class="col-xs-4">
-                                                        <input type="text" data-stripe="expYr" class="form-control exp-year" placeholder="Exp. Yr.">
+                                                        <input type="text" data-stripe="expYr" class="form-control exp-year" placeholder="Exp. Yr." tabindex="22">
                                                         </div>
                                                         <div class="col-xs-4">
-                                                        <input type="text" data-stripe="cvc" class="form-control cvc" placeholder="CVC">
+                                                        <input type="text" data-stripe="cvc" class="form-control cvc" placeholder="CVC" tabindex="23">
                                                         </div>
                                                     </div> <!-- end .row -->
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button type="submit" id="cancel" class="btn-small btn-danger danger-400">Cancel Subscription<i class="icon-arrow-right14 position-right"></i></button>
-                                                    <button type="submit" id="update" class="btn-small btn-primary">Update Subscription<i class="icon-arrow-right14 position-right"></i></button>
+                                                    <button type="submit" id="cancel" class="btn-small btn-danger danger-400" tabindex="25">Cancel Subscription<i class="icon-arrow-right14 position-right"></i></button>
+                                                    <button type="submit" id="update" class="btn-small btn-primary" tabindex="24">Update Subscription<i class="icon-arrow-right14 position-right"></i></button>
                                                 </div>
                                                 {{/with}}
                                             </form>

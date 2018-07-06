@@ -51,7 +51,7 @@
                     <select class="select" id="company" required name="company">
                           <option value="-1" selected>Select Company</option>
                           {{#each allCompany}}
-                          <option value="{{this._id}}">{{this.companyName}}</option>
+                          <option value="{{this._id}}" tabindex="1">{{this.companyName}}</option>
                           {{/each}}
                         </select>
                   </div>
@@ -60,7 +60,7 @@
               <fieldset class="content-group">
                 <div class="form-group">
                   <div class="col-md-3">
-                    <select class="select" id="coverage" required name="coverage">
+                    <select class="select" id="coverage" required name="coverage" tabindex="2">
                           <option value="" disabled selected>Coverage type</option>
                           {{#each getCoverageType}}
                           <option value="{{this.key}}">{{this.value}}</option>
@@ -68,20 +68,20 @@
                         </select>
                   </div>
                   <div class="col-md-2">
-                    <input type="date" class="form-control datepicker" id="startDate">
+                    <input type="date" class="form-control datepicker" id="startDate" tabindex="3">
                   </div>
                   <div class="col-md-2">
-                    <input type="date" class="form-control datepicker" id="endDate">
+                    <input type="date" class="form-control datepicker" id="endDate" tabindex="4">
                   </div>
                   <div class="col-md-2">
-                    <label class="checkbox-inline">
-								<input type="checkbox" id="email" name="email">
-								Email
-							</label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="email" name="email" tabindex="5">
+                    Email
+                  </label>
 
                   </div>
                   <div class="col-md-3">
-                    <button type="submit" class="btn-small btn-primary right submit" name="action">Start Audit<i class="icon-arrow-right14 position-right"></i></button>
+                    <button type="submit" class="btn-small btn-primary right submit" name="action" tabindex="6">Start Audit<i class="icon-arrow-right14 position-right"></i></button>
                   </div>
                 </div>
               </fieldset>
