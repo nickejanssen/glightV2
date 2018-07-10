@@ -148,6 +148,7 @@ Meteor.methods({
     };
 
     Email.send(options);
+    console.log("Reminder Email Sent for " + compDetail.companyName + " " + compDetail.policyName);
     Meteor.call('insertHistory', policyDetail.companyId, 'upload', 'Automatic reminder for ' + getCoverageVal(policyDetail.coverage));
   },
 
