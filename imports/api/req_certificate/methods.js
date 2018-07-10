@@ -187,7 +187,7 @@ Meteor.methods({
   }
 });
 
-function sendReqReminder(reqCertDetail, currentDate) {
+/*function sendReqReminder(reqCertDetail, currentDate) {
   let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
   //console.log('diffInDays', diffInDays);
   if (diffInDays >= 7) {
@@ -197,4 +197,4 @@ function sendReqReminder(reqCertDetail, currentDate) {
     console.log(req_certData, this.userId, reqID);
     Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
   }
-}
+}*/
