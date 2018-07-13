@@ -83,7 +83,10 @@ Meteor.methods({
             ":url": [uploadDocURL],
             "-reason-": [reason],
             "-coverage-": [getCoverageVal(policyDetail.coverage)],
-            "-company-": [compDetail.companyName]
+            "-company-": [compDetail.companyName],
+            "-contactName-": [compDetail.firstName + " " + compDetail.lastName ],
+            "-email-": [compDetail.companyEmail],
+            "-phone-": [compDetail.companyPhone],
           },
           // "category": ["Promotions"],
           "filters": {

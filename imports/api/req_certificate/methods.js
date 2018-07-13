@@ -48,6 +48,7 @@ Meteor.methods({
 
     let future = new Future();
     let reqData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
+    let comapnyData = Company.findOne({reqData.companyID});
     // if(reqCertDetails.policyID){
 
     // }
@@ -98,7 +99,10 @@ Meteor.methods({
             "sub": {
               ":url": [uploadDocURL],
               "-company-": [reqData.coName],
-              "-coverage-": [getCoverageVal(reqData.coverage)]
+              "-coverage-": [getCoverageVal(reqData.coverage)],
+              "-contactName-": [comapnyData.firstName + " " + comapnyData.lastName ],
+              "-email-": [comapnyData.companyEmail],
+              "-phone-": [comapnyData.companyPhone],
             },
             "filters": {
               "templates": {
