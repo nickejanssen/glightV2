@@ -6,6 +6,7 @@ import { coverageType, getCoverageVal, getCoverageLabels } from '/imports/api/co
 import { Email } from 'meteor/email';
 import moment from 'moment';
 import webshot from 'webshot';
+import { Company } from '/imports/api/company/company.js';
 
 Meteor.methods({
   contactEmailSend(email, name, message) {
@@ -48,10 +49,8 @@ Meteor.methods({
 
     let future = new Future();
     let reqData = RequestCertificate.findOne({ _id: doc_id, userId: this.userId });
-    let comapnyData = Company.findOne({reqData.companyID});
-    // if(reqCertDetails.policyID){
-
-    // }
+    console.log('reqData ', reqData);
+    let comapnyData = Company.findOne({ _id: reqData.companyID});
 
     SSR.compileTemplate('emailCoverageInfo', Assets.getText('coverage_info.html'));
 
