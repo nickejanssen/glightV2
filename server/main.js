@@ -103,12 +103,13 @@ Meteor.startup(() => {
     var job = new CronJob(
         '00 00 00 * * *',
         Meteor.bindEnvironment(() => {
-            console.log('cron job started');
+            console.log('Cron Job Started to Send Notifications');
             Meteor.call('processPolicies');
             Meteor.call('processCertRequest');
         }),
         function () {
             //when job stop
+            console.log("Job Stopped");
         },
         false,  //Start the job right now
         'America/New_York' // Whatever timezone you want to set //America/Los_Angeles
