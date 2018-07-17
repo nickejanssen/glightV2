@@ -87,7 +87,6 @@ Meteor.methods({
         to: email,
         bcc: '',
         subject: 'Certificate Upload',
-        text: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
         html: 'Please click the link below to upload the certificate:\n' + uploadDocURL + '\nor \n' + uploadDocURL + '\n Thank you!',
         attachments: [{   // file on disk as an attachment
             filename: "coverage_info.pdf",

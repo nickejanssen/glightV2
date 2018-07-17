@@ -73,7 +73,6 @@ Meteor.methods({
       from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Policy Rejected',
-      text: reason,
       html: reason,
       headers: {
         "X-SMTPAPI": JSON.stringify({
@@ -128,7 +127,6 @@ Meteor.methods({
       from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
       to: compDetail.companyEmail,
       subject: 'Gentle Reminder',
-      text: 'text',
       html: 'html',
       headers: {
         "X-SMTPAPI": JSON.stringify({
@@ -223,7 +221,6 @@ Meteor.methods({
         from: 'thecertcollectorrequests@thecertcollector.com', //'crew@getagreenlight.com'
         to: userDetails.emails[0]['address'],
         subject: 'Certificate Uploaded',
-        text: 'text',
         html: 'html',
         headers: {
           "X-SMTPAPI": JSON.stringify({
