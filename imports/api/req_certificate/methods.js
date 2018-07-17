@@ -106,7 +106,7 @@ Meteor.methods({
               "templates": {
                 "settings": {
                   "enable": 1,
-                  "template_id": "a7593107-c56e-4e80-9777-40af3b5153b5"
+                  "template_id": "e321ad33-042d-451f-bb4f-c48dff5b4fb1"
                 }
               }
             }
