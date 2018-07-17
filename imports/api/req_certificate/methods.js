@@ -94,7 +94,7 @@ Meteor.methods({
             path: fileName // stream this file
         }],
         headers: {
-          "X-SMTPAPI": {
+          "X-SMTPAPI": JSON.stringify({
             "sub": {
               ":url": [uploadDocURL],
               "-company-": [reqData.coName],
@@ -111,7 +111,7 @@ Meteor.methods({
                 }
               }
             }
-          }
+          })
         }
       };
       Email.send(options);
@@ -134,7 +134,7 @@ Meteor.methods({
       bcc: 'nickejanssen@gmail.com',
       subject: 'Certificate Upload',
       headers: {
-        "X-SMTPAPI": {
+        "X-SMTPAPI": JSON.stringify({
           "sub": {
             ":companyName": ["apex"],
             ":requestedDocument": ["text"]
@@ -148,7 +148,7 @@ Meteor.methods({
               }
             }
           }
-        }
+        })
       }
     };
 

@@ -54,7 +54,6 @@ harrison:papa-parse
 kit:sweetalert
 limitless-theme
 meteorhacks:ssr
-email@1.2.3
 mrgalaxy:stripe
 random@1.1.0
 aldeed:plans-stripe
@@ -63,3 +62,4 @@ dynamic-import@0.4.0
 underscore@1.0.10
 staringatlights:fast-render
 rgoomar:bootstrap-validator
+email@1.1.18

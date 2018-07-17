@@ -76,7 +76,7 @@ Meteor.methods({
       text: reason,
       html: reason,
       headers: {
-        "X-SMTPAPI": {
+        "X-SMTPAPI": JSON.stringify({
           "sub": {
             ":companyName": [compDetail.companyName],
             ":requestedDocument": [compDetail.policyName],
@@ -97,7 +97,7 @@ Meteor.methods({
               }
             }
           }
-        }
+        })
       }
     };
 
@@ -131,7 +131,7 @@ Meteor.methods({
       text: 'text',
       html: 'html',
       headers: {
-        "X-SMTPAPI": {
+        "X-SMTPAPI": JSON.stringify({
           "sub": {
             "-companyName-": [compDetail.companyName],
             "-requestedDocument-": [compDetail.policyName],
@@ -146,7 +146,7 @@ Meteor.methods({
               }
             }
           }
-        }
+        })
       }
     };
 
@@ -226,7 +226,7 @@ Meteor.methods({
         text: 'text',
         html: 'html',
         headers: {
-          "X-SMTPAPI": {
+          "X-SMTPAPI": JSON.stringify({
             "sub": {
               "-companyName-": [companyDetails.companyName],
               "-uploadedDocument-": [getCoverageVal(policyDetail.coverage)],
@@ -239,7 +239,7 @@ Meteor.methods({
                 }
               }
             }
-          }
+          })
         }
       };
 
