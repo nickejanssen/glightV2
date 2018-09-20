@@ -98,10 +98,11 @@ Meteor.startup(() => {
         }
     });
 
-    //************************* cron job to notify Exp. cert/req start***************************//
+    //************************* Cron job to notify exp. cert/req start ***************************//
     var CronJob = Npm.require('cron').CronJob;
     var job = new CronJob(
         '00 00 00 * * *',
+        //'00 * * * * *',
         Meteor.bindEnvironment(() => {
             console.log('Cron Job Started to Send Notifications');
             Meteor.call('processPolicies');
@@ -115,7 +116,7 @@ Meteor.startup(() => {
         'America/New_York' // Whatever timezone you want to set //America/Los_Angeles
     );
     job.start();
-    //************************* cron job to notify Exp. cert end***************************//
+    //************************* cron job to notify Eep. cert end ***************************//
 
     Router.route('/downloadAudit/:fileName',
 

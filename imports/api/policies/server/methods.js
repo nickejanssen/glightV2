@@ -12,10 +12,11 @@ var Future = Npm.require('fibers/future');
 var Fiber = Npm.require('fibers');
 
 let policyUpdateReminderType = {
-  '30': 'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
-  '15': '36cf4c99-ace1-4378-b933-bf42d8461cd8',
-  '3': 'f20b8ef8-f941-4c29-a866-e708645d7a22'
-}
+    '30': 'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
+    '15': '36cf4c99-ace1-4378-b933-bf42d8461cd8',
+    '3': 'f20b8ef8-f941-4c29-a866-e708645d7a22',
+    '1': 'f20b8ef8-f941-4c29-a866-e708645d7a22'
+};
 
 Meteor.methods({
   AddNewPolicy(policyDetail) {
@@ -107,16 +108,17 @@ Meteor.methods({
   'processPolicies'() {
     let allApprovedPolicies = Policies.find({ uApproved: true, isPast: false }).fetch();
     let currentDate = new Date();
-    allApprovedPolicies.forEach((policyDetail, i) => {
-      sendNotification(policyDetail, currentDate);
-    })
+      allApprovedPolicies.forEach((policyDetail, i) => {
+          sendNotification(policyDetail, currentDate);
+      });
   },
 
   'reminderMail'(reminderType, policyDetail) {
     this.unblock();
     let compDetail = Company.findOne({ _id: policyDetail.companyId });
 
-    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
+    let requestDetails = { email: compDetail.companyEmail, coverage: policyDetail.coverage, coverageInfo: policyDetail.coverageInfo, companyID: policyDetail.companyId, policyID: policyDetail._id, type: "Update" }
+      console.log("Coverage: " + policyDetail.coverageInfo);
     requestDetails.userId = policyDetail.userId;
     requestDetails.createdAt = new Date();
     let reqID = RequestCertificate.insert(requestDetails);
@@ -252,28 +254,29 @@ function sendNotification(policyDetail, currentDate) {
 
   if (new Date(policyDetail.expDate) > currentDate) {
     let diffInDays = moment(policyDetail.expDate).diff(moment(currentDate), 'days');
-    console.log('diffInDays', diffInDays);
+    console.log('Difference in Days: ', diffInDays);
     if (notificationDetails) {
       if (diffInDays == 30 && notificationDetails['firstReminder'] == false) {
-        console.log('30', 'email send');
+        console.log('30', 'email sent');
         //update notificationDetails
         PolicyNotifications.update({ _id: notificationDetails._id }, { $set: { 'firstReminder': true } });
         Meteor.call('reminderMail', diffInDays, policyDetail);
       }
       if (diffInDays == 15 && notificationDetails['firstReminder'] == false) {
-        console.log('15', 'email send');
+        console.log('15', 'email sent');
         //update notificationDetails
         PolicyNotifications.update({ _id: notificationDetails._id }, { $set: { 'secondReminder': true } });
         Meteor.call('reminderMail', diffInDays, policyDetail);
       }
       else if (diffInDays == 3 && notificationDetails['secondReminder'] == false) {
-        console.log('3', 'email send');
+        console.log('3', 'email sent');
         //update notificationDetails
         PolicyNotifications.update({ _id: notificationDetails._id }, { $set: { 'thirdReminder': true } });
+        console.log('3', 'email sent');
         Meteor.call('reminderMail', diffInDays, policyDetail);
       }
       else if (diffInDays == 1 && notificationDetails['thirdReminder'] == false) {
-        console.log('1', 'email send');
+        console.log('1', 'email sent');
         //update notificationDetails
         PolicyNotifications.update({ _id: notificationDetails._id }, { $set: { 'fourthReminder': true } });
         Meteor.call('reminderMail', diffInDays, policyDetail);

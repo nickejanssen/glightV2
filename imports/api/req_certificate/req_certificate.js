@@ -24,6 +24,7 @@ RequestCertificate.attachSchema(new SimpleSchema({
     },
     coverage: {
         type: String,
+        optional: true
     },
     coverageInfo: {
         type: Object,

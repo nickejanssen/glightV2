@@ -175,7 +175,7 @@ Meteor.methods({
     allRequestCertificate.forEach((reqCertDetail, i) => {
       sendReqReminder(reqCertDetail, currentDate);
     });
-  },
+  }/*,
   sendReqReminder(reqCertDetail, currentDate) {
     let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
     //console.log('diffInDays', diffInDays);
@@ -186,12 +186,12 @@ Meteor.methods({
       console.log(req_certData, this.userId, reqID);
       Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
     }
-  }
+  }*/
 });
 
-/*function sendReqReminder(reqCertDetail, currentDate) {
+function sendReqReminder(reqCertDetail, currentDate) {
   let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
-  //console.log('diffInDays', diffInDays);
+  console.log('Difference in Days', diffInDays);
   if (diffInDays >= 7) {
     RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
     // Meteor.call('reqRemindEmail', reqCertDetail);
@@ -199,4 +199,4 @@ Meteor.methods({
     console.log(req_certData, this.userId, reqID);
     Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
   }
-}*/
+}
