@@ -59,44 +59,49 @@ Template.upload_cert.events({
           console.error('Error uploading');
           alert(error);
         } else {
-          let AddPolicy = {};
+          if (event.currentTarget.startDate.valueAsDate || event.currentTarget.expiryDate.valueAsDate == null) {
+            console.log("Must Enter BOTH Dates");
+          } else {
 
-          AddPolicy.userId = Meteor.userId();
-          AddPolicy.companyId = event.currentTarget.certComp.value.trim();
-          AddPolicy.agentId = event.currentTarget.certAgent.value.trim();
-          AddPolicy.policyName = event.currentTarget.pname.value.trim();
-          AddPolicy.uploadDate = timeStamp;
-          AddPolicy.startDate = event.currentTarget.startDate.valueAsDate;
-          AddPolicy.expDate = event.currentTarget.expiryDate.valueAsDate;
-          AddPolicy.policyStatus = "received";
-          AddPolicy.uApproved = false;
-          AddPolicy.coverage = event.currentTarget.certCove.value.trim();
-          AddPolicy.imageurl = downloadUrl;
-          AddPolicy.uploadedBy = Meteor.userId();
-          console.log(AddPolicy);
-          if (Router.current().route.getName() == "App.upload_cert_public") {
-            let req_certData = RequestCertificate.findOne();
-            AddPolicy.userId = req_certData.userId;
-            AddPolicy.uploadedBy = req_certData.userId + "_req_cert";
-            AddPolicy.reqCertID = req_certData._id;
-          }
-          if (Session.get('policyID')) {
-            AddPolicy.policyID = Session.get('policyID');
-          }
-          AddPolicy.coverageInfo = $('.' + Session.get('currentCov')).serializeObject();
-          //debugger;
-          Meteor.call("AddNewPolicy", AddPolicy, (error, result) => {
-            if (error) {
-              console.log(error.reason);
-            } else {
-              swal("Success!", "Your policy has been uploaded.", "success");
-              // document.getElementById("formAddCert").reset();
-              $("#formAddCert")[0].reset();
-              $('#formAddCert').bootstrapValidator('resetForm', true);
-              Meteor.call('certUploaded',result);
-              Router.go('/co-detail/' + AddPolicy.companyId);
+            let AddPolicy = {};
+
+            AddPolicy.userId = Meteor.userId();
+            AddPolicy.companyId = event.currentTarget.certComp.value.trim();
+            AddPolicy.agentId = event.currentTarget.certAgent.value.trim();
+            AddPolicy.policyName = event.currentTarget.pname.value.trim();
+            AddPolicy.uploadDate = timeStamp;
+            AddPolicy.startDate = event.currentTarget.startDate.valueAsDate;
+            AddPolicy.expDate = event.currentTarget.expiryDate.valueAsDate;
+            AddPolicy.policyStatus = "received";
+            AddPolicy.uApproved = false;
+            AddPolicy.coverage = event.currentTarget.certCove.value.trim();
+            AddPolicy.imageurl = downloadUrl;
+            AddPolicy.uploadedBy = Meteor.userId();
+            console.log(AddPolicy);
+            if (Router.current().route.getName() == "App.upload_cert_public") {
+              let req_certData = RequestCertificate.findOne();
+              AddPolicy.userId = req_certData.userId;
+              AddPolicy.uploadedBy = req_certData.userId + "_req_cert";
+              AddPolicy.reqCertID = req_certData._id;
             }
-          });
+            if (Session.get('policyID')) {
+              AddPolicy.policyID = Session.get('policyID');
+            }
+            AddPolicy.coverageInfo = $('.' + Session.get('currentCov')).serializeObject();
+            //debugger;
+            Meteor.call("AddNewPolicy", AddPolicy, (error, result) => {
+              if (error) {
+                console.log(error.reason);
+              } else {
+                swal("Success!", "Your policy has been uploaded.", "success");
+                // document.getElementById("formAddCert").reset();
+                $("#formAddCert")[0].reset();
+                $('#formAddCert').bootstrapValidator('resetForm', true);
+                Meteor.call('certUploaded',result);
+                Router.go('/co-detail/' + AddPolicy.companyId);
+              }
+            });
+          }
         }
 
       });

@@ -35,12 +35,12 @@ Policies.attachSchema(new SimpleSchema({
     startDate: {
         type: Date,
         label: "startDate",
-        optional: true
+        optional: false
     },
     expDate: {
         type: Date,
         label: "expDate",
-        optional: true
+        optional: false
     },
     policyStatus: {
         type: String,
