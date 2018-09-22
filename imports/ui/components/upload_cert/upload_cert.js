@@ -59,7 +59,9 @@ Template.upload_cert.events({
           console.error('Error uploading');
           alert(error);
         } else {
-          if (event.currentTarget.startDate.valueAsDate || event.currentTarget.expiryDate.valueAsDate == null) {
+          var sdate = event.currentTarget.startDate.valueAsDate;
+          var edate = event.currentTarget.expiryDate.valueAsDate;
+          if (sdate === null || sdate === "", edate === null || edate === "") {
             console.log("Must Enter BOTH Dates");
           } else {
 

@@ -35,7 +35,7 @@ Meteor.methods({
     }
     let pID = Policies.insert(policyDetail);
     PolicyNotifications.insert({ policyId: pID });
-
+    console.log(policyDetail.companyId);
     Meteor.call('insertHistory', policyDetail.companyId, 'upload', getCoverageVal(policyDetail.coverage) + ' uploaded');
     return pID;
   },
