@@ -15,7 +15,7 @@ let policyUpdateReminderType = {
     '30': 'c96cb3b2-f5d6-4de1-bb1f-a42013fd2aae',
     '15': '36cf4c99-ace1-4378-b933-bf42d8461cd8',
     '3': 'f20b8ef8-f941-4c29-a866-e708645d7a22',
-    '1': 'f20b8ef8-f941-4c29-a866-e708645d7a22'
+    '1': 'd-8325364fbc344ba79f778fa3f963758a'
 };
 
 Meteor.methods({
@@ -133,8 +133,8 @@ Meteor.methods({
       headers: {
         "X-SMTPAPI": JSON.stringify({
           "sub": {
-            "-companyName-": [compDetail.companyName],
-            "-requestedDocument-": [compDetail.policyName],
+            ":companyName": [compDetail.companyName],
+            ":requestedDocument": [compDetail.policyName],
             ":url": [uploadDocURL]
           },
           // "category": ["Promotions"],

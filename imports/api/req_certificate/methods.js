@@ -173,30 +173,23 @@ Meteor.methods({
     let allRequestCertificate = RequestCertificate.find({ isuploaded: false, autoReminded: false }).fetch();
     let currentDate = new Date();
     allRequestCertificate.forEach((reqCertDetail, i) => {
-      sendReqReminder(reqCertDetail, currentDate);
+        sendReqReminder(reqCertDetail, currentDate);
+        console.log(reqCertDetail);
     });
-  }/*,
-  sendReqReminder(reqCertDetail, currentDate) {
-    let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
-    //console.log('diffInDays', diffInDays);
-    if (diffInDays >= 7) {
-      RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
-      // Meteor.call('reqRemindEmail', reqCertDetail);
-      let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
-      console.log(req_certData, this.userId, reqID);
-      Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
-    }
-  }*/
+  }
 });
 
 function sendReqReminder(reqCertDetail, currentDate) {
   let diffInDays = moment(currentDate).diff(moment(reqCertDetail.createdAt), 'days');
   console.log('Difference in Days', diffInDays);
   if (diffInDays >= 7) {
-    RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
-    // Meteor.call('reqRemindEmail', reqCertDetail);
-    let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
-    console.log(req_certData, this.userId, reqID);
-    Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
+  RequestCertificate.update({ _id: reqCertDetail._id }, { $set: { autoReminded: true } });
+      // Meteor.call('reqRemindEmail', reqCertDetail);
+      let reqID = reqCertDetail._id;
+      let req_certData = RequestCertificate.findOne({ _id: reqID, userId: this.userId });
+      console.log(req_certData, this.userId, reqID);
+      Meteor.call('sendMail', reqCertDetail.email, reqCertDetail._id, true);
+      console.log("Email Called");
+
   }
 }

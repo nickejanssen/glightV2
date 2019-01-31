@@ -25,16 +25,16 @@ Template.dash.onCreated(function () {
       var Count = Enumerable.From(result)
             .GroupBy("{ userId: $.userId }", null,
                 function(key, g) {
-                    var companyObj = {
-                        userId: key.userId,
-                        Current: g.Sum("$.activeCerts"),
-                        Pending: g.Sum("$.waitingCerts"),
-                        Past: g.Sum("$.expiredCerts")
-                    }
-                    return companyObj;
+                  var companyObj = {
+                    userId: key.userId,
+                    Current: g.Sum("$.activeCerts"),
+                    Pending: g.Sum("$.waitingCerts"),
+                    Past: g.Sum("$.expiredCerts")
+                  };
+                  return companyObj;
                 },
                 function(x) {
-                    return x.userId
+                  return x.userId;
                 }).ToArray();
        Session.set('dashboardCount',Count);
     }
